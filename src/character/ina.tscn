@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://dr7axitg2qemq"]
+
+[ext_resource type="Texture2D" uid="uid://rsuvpt8uqys1" path="res://assets/Ina.png" id="1_hidub"]
+[ext_resource type="Script" path="res://src/character/character.gd" id="1_tys11"]
+[ext_resource type="Script" path="res://src/character/InaAnim.gd" id="2_m8i4p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnidg"]
+size = Vector2(8, 4)
+
+[sub_resource type="Animation" id="Animation_no8wm"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kuj7f"]
+_data = {
+"run": SubResource("Animation_no8wm")
+}
+
+[node name="Ina" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_tys11")
+speed = 100
+anim = NodePath("AnimationPlayer")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hidub")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_qnidg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kuj7f")
+}
+script = ExtResource("2_m8i4p")
+sprite = NodePath("../Sprite2D")

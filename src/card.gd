@@ -25,6 +25,7 @@ func open():
 func close():
 	front.hide()
 	clickable.show()
+	_on_clickable_mouse_exited()
 
 
 func _on_clickable_pressed():

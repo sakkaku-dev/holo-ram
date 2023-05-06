@@ -78,6 +78,7 @@ func _on_card_click(card: Card, coord: Vector2):
 		
 		if card.card == prev_card:
 			print("Match")
+			_spawn_card(card)
 			card.queue_free()
 			prev_card_node.queue_free()
 			
@@ -99,3 +100,12 @@ func _get_card_node(coord: Vector2):
 
 func _win():
 	print("You win")
+
+func _spawn_card(card: Card):
+	var scene = card.card.character
+	if scene:
+		var char = scene.instantiate() as Node2D
+		char.global_position = card.global_position
+		get_tree().current_scene.add_child(char)
+	else:
+		print("missing scene for " % card.card)

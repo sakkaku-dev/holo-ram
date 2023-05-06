@@ -72,21 +72,17 @@ class Builder:
 	var duration = 1.0
 	var loop = true
 	var discrete = true
-
-	func setNode(n: String):
-		self.node = n
-		return self
+	
+	func _init(node):
+		self.node = node
 
 	func setName(n: String):
 		self.name = n
 		return self
 	
-	func setStartFrame(f: int):
-		self.start_frame = f
-		return self
-	
-	func setEndFrame(f: int):
-		self.end_frame = f
+	func setRange(start: int, end: int):
+		self.start_frame = start
+		self.end_frame = end
 		return self
 
 	func setDuration(d: float):
