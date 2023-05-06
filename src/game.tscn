@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwgc2pigwws7t"]
+[gd_scene load_steps=8 format=3 uid="uid://bwgc2pigwws7t"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_qyeys"]
-[ext_resource type="Texture2D" uid="uid://dd061vcd5r7hm" path="res://assets/Tiles.png" id="1_vccnl"]
 [ext_resource type="PackedScene" uid="uid://djykhlcwbn25l" path="res://src/card.tscn" id="2_50pnt"]
+[ext_resource type="Texture2D" uid="uid://skh2irua6tu6" path="res://assets/Tiles.png" id="3_srl12"]
+[ext_resource type="Resource" uid="uid://d2d1vpkp66qtd" path="res://src/levels/HoloMyth.tres" id="3_v0wkv"]
+[ext_resource type="Script" path="res://src/BoardCamera.gd" id="5_c2w5e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m3d3h"]
-texture = ExtResource("1_vccnl")
+texture = ExtResource("3_srl12")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -113,26 +115,15 @@ sources/1 = SubResource("TileSetAtlasSource_m3d3h")
 [node name="Game" type="Node2D" node_paths=PackedStringArray("camera", "tilemap")]
 script = ExtResource("1_qyeys")
 card_scene = ExtResource("2_50pnt")
+level = ExtResource("3_v0wkv")
 camera = NodePath("Camera2D")
 tilemap = NodePath("TileMap")
-cards = 10
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_xw7cl")
 cell_quadrant_size = 64
 format = 2
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/CenterContainer"]
-custom_minimum_size = Vector2(5, 5)
-layout_mode = 2
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tilemap")]
+script = ExtResource("5_c2w5e")
+tilemap = NodePath("../TileMap")

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://blo4ichun627l"]
+
+[ext_resource type="Texture2D" uid="uid://rudkcfcer6uc" path="res://assets/Profile_Kiara.png" id="1_7n1st"]
+[ext_resource type="Script" path="res://src/cards/CardResource.gd" id="2_gjopl"]
+
+[resource]
+script = ExtResource("2_gjopl")
+profile = ExtResource("1_7n1st")

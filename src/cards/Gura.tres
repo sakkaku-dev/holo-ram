@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://dv3cwr8w7m7qp"]
+
+[ext_resource type="Texture2D" uid="uid://do7hwjbfrsq0q" path="res://assets/Profile_Gura.png" id="1_hodbk"]
+[ext_resource type="Script" path="res://src/cards/CardResource.gd" id="2_ab76t"]
+
+[resource]
+script = ExtResource("2_ab76t")
+profile = ExtResource("1_hodbk")
