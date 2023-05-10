@@ -3,6 +3,7 @@ extends Node2D
 
 @export var card: CardResource
 @export var front: Sprite2D
+@export var back: Sprite2D
 @export var clickable: TextureButton
 
 signal clicked()
@@ -18,11 +19,13 @@ func _ready():
 
 
 func open():
+	back.modulate = card.border_color
 	front.show()
 	clickable.hide()
 
 
 func close():
+	back.modulate = Color.WHITE
 	front.hide()
 	clickable.show()
 	_on_clickable_mouse_exited()

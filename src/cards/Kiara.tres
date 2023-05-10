@@ -7,4 +7,5 @@
 [resource]
 script = ExtResource("2_gjopl")
 profile = ExtResource("1_7n1st")
+border_color = Color(0.580392, 0.196078, 0.168627, 1)
 character = ExtResource("1_6xuf0")

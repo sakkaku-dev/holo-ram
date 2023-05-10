@@ -32,7 +32,7 @@ _data = {
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_tys11")
-speed = 100
+speed = 50
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("Sprite2D")
 
