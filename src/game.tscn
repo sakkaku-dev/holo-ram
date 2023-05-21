@@ -136,3 +136,7 @@ camera = NodePath("Camera2D")
 [node name="Camera2D" type="Camera2D" parent="Board" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("5_2tqqg")
 tilemap = NodePath("..")
+
+[node name="ActionTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true

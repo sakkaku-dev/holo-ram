@@ -29,6 +29,7 @@ _data = {
 }
 
 [node name="Kiara" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
+motion_mode = 1
 script = ExtResource("1_d16c3")
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("Sprite2D")

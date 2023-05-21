@@ -29,6 +29,7 @@ _data = {
 }
 
 [node name="Gura" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
+motion_mode = 1
 script = ExtResource("1_kpnii")
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("Sprite2D")
