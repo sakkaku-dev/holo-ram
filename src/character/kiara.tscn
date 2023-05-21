@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dr7axitg2qemq"]
+[gd_scene load_steps=7 format=3 uid="uid://4x2cy6rprkkc"]
 
-[ext_resource type="Texture2D" uid="uid://rsuvpt8uqys1" path="res://assets/Ina.png" id="1_hidub"]
-[ext_resource type="Script" path="res://src/character/character.gd" id="1_tys11"]
-[ext_resource type="Script" path="res://src/character/InaAnim.gd" id="2_m8i4p"]
+[ext_resource type="Script" path="res://src/character/character.gd" id="1_d16c3"]
+[ext_resource type="Texture2D" uid="uid://dir7tabrqxohm" path="res://assets/Kiara.png" id="2_abhr7"]
+[ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_0mhwm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnidg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dby"]
 size = Vector2(8, 4)
 
 [sub_resource type="Animation" id="Animation_no8wm"]
@@ -28,24 +28,23 @@ _data = {
 "run": SubResource("Animation_no8wm")
 }
 
-[node name="Ina" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
-collision_layer = 0
-motion_mode = 1
-script = ExtResource("1_tys11")
+[node name="Kiara" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
+script = ExtResource("1_d16c3")
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_hidub")
+texture = ExtResource("2_abhr7")
 hframes = 4
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
-shape = SubResource("RectangleShape2D_qnidg")
+shape = SubResource("RectangleShape2D_i8dby")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_kuj7f")
 }
-script = ExtResource("2_m8i4p")
+script = ExtResource("3_0mhwm")
 sprite = NodePath("../Sprite2D")

@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://dv3cwr8w7m7qp"]
 
-[ext_resource type="PackedScene" uid="uid://dr7axitg2qemq" path="res://src/character/ina.tscn" id="1_4xmwv"]
 [ext_resource type="Texture2D" uid="uid://do7hwjbfrsq0q" path="res://assets/Profile_Gura.png" id="1_hodbk"]
+[ext_resource type="PackedScene" uid="uid://rbvbkyk5xxlv" path="res://src/character/gura.tscn" id="1_yc3pl"]
 [ext_resource type="Script" path="res://src/cards/CardResource.gd" id="2_ab76t"]
 
 [resource]
 script = ExtResource("2_ab76t")
 profile = ExtResource("1_hodbk")
 border_color = Color(0.180392, 0.32549, 0.654902, 1)
-character = ExtResource("1_4xmwv")
+character = ExtResource("1_yc3pl")
