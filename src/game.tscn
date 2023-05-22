@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfe7r8l5jn4qe"]
+[gd_scene load_steps=11 format=3 uid="uid://dfe7r8l5jn4qe"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_qyeys"]
 [ext_resource type="PackedScene" uid="uid://djykhlcwbn25l" path="res://src/board/card.tscn" id="2_ed1hm"]
@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://d2d1vpkp66qtd" path="res://src/levels/HoloMyth.tres" id="3_v0wkv"]
 [ext_resource type="Script" path="res://src/board/BoardCamera.gd" id="5_2tqqg"]
 [ext_resource type="Script" path="res://src/board/Board.gd" id="5_hyufg"]
+[ext_resource type="Script" path="res://src/ui/Countdown.gd" id="7_onprm"]
+[ext_resource type="Script" path="res://src/ui/GUI.gd" id="7_vi25v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m3d3h"]
 texture = ExtResource("3_srl12")
@@ -118,12 +120,14 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.227451, 0.482353, 0.74902, 1)
 sources/1 = SubResource("TileSetAtlasSource_m3d3h")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("board", "action_timer")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("board", "action_timer", "countdown", "gui")]
 y_sort_enabled = true
 script = ExtResource("1_qyeys")
 level = ExtResource("3_v0wkv")
 board = NodePath("Board")
 action_timer = NodePath("ActionTimer")
+countdown = NodePath("CanvasLayer/GUI/Game/Countdown")
+gui = NodePath("CanvasLayer/GUI")
 
 [node name="Board" type="TileMap" parent="." node_paths=PackedStringArray("camera")]
 z_index = -1
@@ -142,3 +146,57 @@ tilemap = NodePath("..")
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("lose_screen", "win_screen", "game_screen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_vi25v")
+lose_screen = NodePath("Lose")
+win_screen = NodePath("Win")
+game_screen = NodePath("Game")
+
+[node name="Win" type="CenterContainer" parent="CanvasLayer/GUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timer" type="Label" parent="CanvasLayer/GUI/Win"]
+layout_mode = 2
+text = "YOU_WIN"
+
+[node name="Lose" type="CenterContainer" parent="CanvasLayer/GUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timer" type="Label" parent="CanvasLayer/GUI/Lose"]
+layout_mode = 2
+text = "YOU_LOSE"
+
+[node name="Game" type="MarginContainer" parent="CanvasLayer/GUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.5
+offset_right = 34.5
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Countdown" type="Label" parent="CanvasLayer/GUI/Game"]
+layout_mode = 2
+text = "__00:00__"
+script = ExtResource("7_onprm")
