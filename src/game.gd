@@ -12,11 +12,11 @@ func _ready():
 	board.init_board(level.cards)
 	board.matched.connect(_spawn_card)
 	board.all_matched.connect(func(): gui.win())
-	
+
 	countdown.start_timer(level.cards.size() * 60)
 	countdown.timeout.connect(func(): gui.lose())
-	
-	action_timer.timeout.connect(_do_action)
+
+	action_timer.connect("timeout", _do_action)
 
 func _do_action():
 	# TODO: keep list of next characters
@@ -24,7 +24,9 @@ func _do_action():
 		var char = ready_characters.pick_random() as Character
 		ready_characters.erase(char)
 		char.action_cooldown.connect(func(): ready_characters.append(char))
-		await char.do_action(board)
+		char.do_action()
+		await char.action_finished
+		print("Action finished")
 	action_timer.start()
 
 func _spawn_card(card: CardResource, pos: Vector2):

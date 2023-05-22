@@ -129,7 +129,7 @@ action_timer = NodePath("ActionTimer")
 countdown = NodePath("CanvasLayer/GUI/Game/Countdown")
 gui = NodePath("CanvasLayer/GUI")
 
-[node name="Board" type="TileMap" parent="." node_paths=PackedStringArray("camera")]
+[node name="Board" type="TileMap" parent="." node_paths=PackedStringArray("camera") groups=["board"]]
 z_index = -1
 tile_set = SubResource("TileSet_xw7cl")
 cell_quadrant_size = 64

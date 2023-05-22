@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmxv0tahh67ba"]
+[gd_scene load_steps=8 format=3 uid="uid://cmxv0tahh67ba"]
 
 [ext_resource type="Script" path="res://src/character/character.gd" id="1_kgfc1"]
 [ext_resource type="Texture2D" uid="uid://bgvvbn01dfgc7" path="res://assets/Calli.png" id="2_wgqrn"]
@@ -23,8 +23,12 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_kgkyh"]
+resource_name = "action"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kuj7f"]
 _data = {
+"action": SubResource("Animation_kgkyh"),
 "run": SubResource("Animation_no8wm")
 }
 

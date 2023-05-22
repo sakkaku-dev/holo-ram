@@ -17,15 +17,62 @@ var selected: Array[Vector2] = []
 var data: Array[Array] = []
 var card_nodes = {}
 
-func get_position_in_front(pos: Vector2, dir: Vector2):
-	# TODO: find best position
-	var coords = local_to_map(pos)
-	return map_to_local(coords)
+func get_coord_for(pos: Vector2):
+	return local_to_map(pos)
+
+func get_global_position_for(coord: Vector2):
+	return map_to_local(coord)
+
+func get_neighbors(coord: Vector2) -> Array[Vector2]:
+	var top = Vector2(coord.x, coord.y - 1)
+	var left = Vector2(coord.x - 1, coord.y)
+	var bot = Vector2(coord.x, coord.y + 1)
+	var right = Vector2(coord.x + 1, coord.y)
+	var neighbors: Array[Vector2] = []
+	for n in [top, left, bot, right]: # should be counterclock wise for spinning
+		if is_inside(n):
+			neighbors.append(n)
+	return neighbors
+
+func is_inside(coord: Vector2):
+	return coord.x >= 0 and coord.x < data[0].size() and \
+		coord.y >= 0 and coord.y < data.size()
+
+func has_data(coord: Vector2):
+	return _get_card(coord) != null
+
+func swap(coord: Vector2, dest: Vector2):
+	var dest_value = _get_card(dest)
+	_set_card(dest, _get_card(coord))
+	_set_card(coord, dest_value)
+
+func spin_counterclock(origin: Vector2):
+	var neighbors = get_neighbors(origin)
+	assert(neighbors.size() >= 2)
+	
+	var curr = null
+	for i in range(0, neighbors.size()):
+		var n = neighbors[i]
+		if i == 0:
+			curr = _get_card(n)
+			_set_card(n, _get_card(neighbors[neighbors.size() - 1]))
+			continue
+		
+		var temp = _get_card(n)
+		_set_card(n, curr)
+		curr = temp
+
+func hide_card(coord: Vector2):
+	if coord in card_nodes:
+		card_nodes[coord].hide_card()
+		if coord in selected:
+			selected = []
+
 
 func init_board(cards: Array[CardResource]):
 	data = _create_board_data(cards)
 	_create_board_tiles(data)
-	_update_card_node_data()
+	update_card_data()
 	camera.update(data.size())
 
 func _create_board_data(cards: Array[CardResource]) -> Array[Array]:
@@ -62,7 +109,7 @@ func _create_board_tiles(board: Array[Array]):
 	
 	set_cells_terrain_connect(LAYER, cells, TERRAIN_SET, TERRAIN)
 
-func _update_card_node_data(coords: Array[Vector2] = []):
+func update_card_data(coords: Array[Vector2] = []):
 	var keys = coords if coords.size() > 0 else card_nodes.keys()
 	
 	for coord in keys:
@@ -89,14 +136,14 @@ func _on_card_click(card_node: Card, coord: Vector2):
 			matched.emit(card, card_node.global_position)
 			_set_card(coord, null)
 			_set_card(prev_coord, null)
-			_update_card_node_data([coord, prev_coord])
+			update_card_data([coord, prev_coord])
 			
 			if _card_count(1) == 0:
 				all_matched.emit()
-		else:
-			var prev_card_node = _get_card_node(prev_coord)
-			prev_card_node.close()
-			card_node.close()
+				
+		var prev_card_node = _get_card_node(prev_coord)
+		prev_card_node.close()
+		card_node.close()
 		
 		selected.clear()
 	
@@ -113,10 +160,15 @@ func _card_count(max_count = -1):
 	return count
 
 func _set_card(coord: Vector2, v):
-	data[coord.y][coord.x] = v
+	if is_inside(coord):
+		data[coord.y][coord.x] = v
 
 func _get_card(coord: Vector2):
-	return data[coord.y][coord.x]
+	if is_inside(coord):
+		return data[coord.y][coord.x]
+	return null
 
 func _get_card_node(coord: Vector2):
-	return card_nodes[coord]
+	if coord in card_nodes:
+		return card_nodes[coord]
+	return null

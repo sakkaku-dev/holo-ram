@@ -11,9 +11,12 @@ var unfocus_color = Color(.8, .8, .8, 1)
 var card = null : set = _set_card
 
 func _ready():
+	hide_card()
+	_on_clickable_mouse_exited()
+
+func hide_card():
 	hide()
 	close()
-	_on_clickable_mouse_exited()
 
 func _set_card(c: CardResource):
 	card = c

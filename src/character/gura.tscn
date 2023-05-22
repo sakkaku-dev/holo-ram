@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://rbvbkyk5xxlv"]
+[gd_scene load_steps=8 format=3 uid="uid://rbvbkyk5xxlv"]
 
 [ext_resource type="Script" path="res://src/character/character.gd" id="1_kpnii"]
 [ext_resource type="Texture2D" uid="uid://dgb5tr1mguenv" path="res://assets/Gura.png" id="2_ph7g3"]
@@ -23,8 +23,12 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_itq6d"]
+resource_name = "action"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kuj7f"]
 _data = {
+"action": SubResource("Animation_itq6d"),
 "run": SubResource("Animation_no8wm")
 }
 
