@@ -17,9 +17,15 @@ var selected: Array[Vector2] = []
 var data: Array[Array] = []
 var card_nodes = {}
 
+func get_position_in_front(pos: Vector2, dir: Vector2):
+	# TODO: find best position
+	var coords = local_to_map(pos)
+	return map_to_local(coords)
+
 func init_board(cards: Array[CardResource]):
 	data = _create_board_data(cards)
 	_create_board_tiles(data)
+	_update_card_node_data()
 	camera.update(data.size())
 
 func _create_board_data(cards: Array[CardResource]) -> Array[Array]:
@@ -48,49 +54,69 @@ func _create_board_tiles(board: Array[Array]):
 			cells.append(coord)
 			
 			if x >= 0 and y >= 0 and x < board_size and y < board_size:
-				var card_data = _get_card(coord, board)
-				if card_data:
-					var card = card_scene.instantiate() as Card
-					card.card = card_data
-					card.position = map_to_local(coord)
-					card.clicked.connect(func(): _on_card_click(card, coord))
-					add_child(card)
-					card_nodes[coord] = card
+				var card = card_scene.instantiate() as Card
+				card.position = map_to_local(coord)
+				card.clicked.connect(func(): _on_card_click(card, coord))
+				add_child(card)
+				card_nodes[coord] = card
 	
 	set_cells_terrain_connect(LAYER, cells, TERRAIN_SET, TERRAIN)
 
-func _on_card_click(card: Card, coord: Vector2):
+func _update_card_node_data(coords: Array[Vector2] = []):
+	var keys = coords if coords.size() > 0 else card_nodes.keys()
+	
+	for coord in keys:
+		var card_node = card_nodes[coord]
+		card_node.card = _get_card(coord)
+
+func _on_card_click(card_node: Card, coord: Vector2):
 	if handle_click:
 		return
 	
 	handle_click = true
-	card.open()
+	card_node.open()
 	
 	if selected.size() == 0:
 		selected.append(coord)
 	else:
-		var prev_card = _get_card(selected[0])
-		var prev_card_node = _get_card_node(selected[0])
+		var prev_coord = selected[0]
+		var card = _get_card(coord)
+		var prev_card = _get_card(prev_coord)
 		
 		await get_tree().create_timer(1).timeout
 		
-		if card.card == prev_card:
-			matched.emit(card.card, card.global_position)
-			card.queue_free()
-			prev_card_node.queue_free()
+		if card == prev_card:
+			matched.emit(card, card_node.global_position)
+			_set_card(coord, null)
+			_set_card(prev_coord, null)
+			_update_card_node_data([coord, prev_coord])
 			
-			if data.size() == 0:
+			if _card_count(1) == 0:
 				all_matched.emit()
 		else:
+			var prev_card_node = _get_card_node(prev_coord)
 			prev_card_node.close()
-			card.close()
+			card_node.close()
 		
 		selected.clear()
 	
 	handle_click = false
 
-func _get_card(coord: Vector2, d = data):
-	return d[coord.y][coord.x]
+func _card_count(max_count = -1):
+	var count = 0
+	for i in range(data.size()):
+		for j in range(data[i].size()):
+			if data[i][j] != null:
+				count += 1
+				if max_count != -1 and count >= max_count:
+					break
+	return count
+
+func _set_card(coord: Vector2, v):
+	data[coord.y][coord.x] = v
+
+func _get_card(coord: Vector2):
+	return data[coord.y][coord.x]
 
 func _get_card_node(coord: Vector2):
 	return card_nodes[coord]

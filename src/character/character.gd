@@ -3,12 +3,14 @@ extends CharacterBody2D
 
 signal action_cooldown()
 
+
 @export var speed := 50
 @export var anim: AnimationPlayer
 @export var sprite: Node2D
 @export var timer: Timer
 
 var dir = Vector2.UP
+var target_pos = null
 
 func _ready():
 	dir = dir.rotated(TAU * randf())
@@ -19,7 +21,18 @@ func _on_action_timeout():
 	action_cooldown.emit()
 
 func _physics_process(delta):
-	velocity = dir * speed
+	if target_pos:
+		var dist = global_position.distance_to(target_pos)
+		if dist < 5:
+			anim.play("action")
+			await anim.animation_finished
+			velocity = Vector2.ZERO
+			target_pos = null
+			timer.start()
+		else:
+			velocity = global_position.direction_to(target_pos) * speed
+	else:
+		velocity = dir * speed
 	
 	sprite.scale.x = sign(dir.x)
 	if anim.current_animation != "run":
@@ -31,4 +44,4 @@ func _physics_process(delta):
 			dir = dir.bounce(collision.get_normal())
 
 func do_action(board: Board):
-	pass
+	print("No action defined")

@@ -1,7 +1,6 @@
 class_name Card
 extends Node2D
 
-@export var card: CardResource
 @export var front: Sprite2D
 @export var back: Sprite2D
 @export var clickable: TextureButton
@@ -9,20 +8,25 @@ extends Node2D
 signal clicked()
 
 var unfocus_color = Color(.8, .8, .8, 1)
+var card = null : set = _set_card
 
 func _ready():
-	if card:
-		front.texture = card.profile
-	
+	hide()
 	close()
 	_on_clickable_mouse_exited()
 
+func _set_card(c: CardResource):
+	card = c
+	visible = c != null
 
 func open():
-	back.modulate = card.border_color
-	front.show()
-	clickable.hide()
-
+	if card:
+		front.texture = card.profile
+		back.modulate = card.border_color
+		front.show()
+		clickable.hide()
+	else:
+		print("cannot open card without data")
 
 func close():
 	back.modulate = Color.WHITE

@@ -118,11 +118,12 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.227451, 0.482353, 0.74902, 1)
 sources/1 = SubResource("TileSetAtlasSource_m3d3h")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("board")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("board", "action_timer")]
 y_sort_enabled = true
 script = ExtResource("1_qyeys")
 level = ExtResource("3_v0wkv")
 board = NodePath("Board")
+action_timer = NodePath("ActionTimer")
 
 [node name="Board" type="TileMap" parent="." node_paths=PackedStringArray("camera")]
 z_index = -1
@@ -140,3 +141,4 @@ tilemap = NodePath("..")
 [node name="ActionTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+autostart = true

@@ -12,13 +12,14 @@ func _ready():
 	board.all_matched.connect(_win)
 	
 	action_timer.timeout.connect(_do_action)
-	action_timer.start()
 
 func _do_action():
-	var char = ready_characters.pick_random() as Character
-	ready_characters.erase(char)
-	char.action_cooldown.connect(func(): ready_characters.append(char))
-	await char.do_action(board)
+	# TODO: keep list of next characters
+	if ready_characters.size() > 0:
+		var char = ready_characters.pick_random() as Character
+		ready_characters.erase(char)
+		char.action_cooldown.connect(func(): ready_characters.append(char))
+		await char.do_action(board)
 	action_timer.start()
 
 func _win():
