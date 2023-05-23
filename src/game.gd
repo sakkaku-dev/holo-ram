@@ -6,12 +6,17 @@ extends Node2D
 @export var countdown: Countdown
 @export var gui: GUI
 
+@onready var data: DataEventQueue = GameManager.data_queue
+
 var ready_characters: Array[Character] = []
 
 func _ready():
-	board.init_board(level.cards)
-	board.matched.connect(_spawn_card)
-	board.all_matched.connect(func(): gui.win())
+	data.init_data(level.cards)
+	board.init_board(data.size)
+	board.update_card_data(data.current_data)
+	
+	data.cleared.connect(func(): gui.win())
+	data.updated.connect(func(): board.update_card_data(data.current_data))
 
 	countdown.start_timer(level.cards.size() * 60)
 	countdown.timeout.connect(func(): gui.lose())
@@ -24,10 +29,26 @@ func _do_action():
 		var char = ready_characters.pick_random() as Character
 		ready_characters.erase(char)
 		char.action_cooldown.connect(func(): ready_characters.append(char))
-		char.do_action()
+		char.do_action(data)
 		await char.action_finished
 		print("Action finished")
 	action_timer.start()
+
+func _on_board_selected(coord1, coord2):
+	print("Selected %s, %s" % [coord1, coord2])
+	
+	var c1 = data.current_data.get_card(coord1)
+	var c2 = data.current_data.get_card(coord2)
+	
+	await get_tree().create_timer(1).timeout
+	
+	if c1 == c2:
+		print("Matched")
+		_spawn_card(c1, board.get_global_position_for(coord1))
+		data.do_event(MatchEvent.new(coord1, coord2))
+	
+	board.close_cards()
+
 
 func _spawn_card(card: CardResource, pos: Vector2):
 	var scene = card.character

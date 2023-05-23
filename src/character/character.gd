@@ -2,6 +2,7 @@ class_name Character
 extends CharacterBody2D
 
 signal action_cooldown()
+signal action_start()
 signal action_finished()
 
 @export var speed := 50
@@ -31,6 +32,7 @@ func _physics_process(delta):
 	if target_pos:
 		var dist = global_position.distance_to(target_pos)
 		if dist < 5:
+			action_start.emit()
 			anim.play("action")
 			await anim.animation_finished
 			action_finished.emit()
@@ -51,7 +53,7 @@ func _physics_process(delta):
 		if collision:
 			dir = dir.bounce(collision.get_normal())
 
-func do_action():
+func do_action(data: DataEventQueue):
 	print("No action defined")
 	target_pos = global_position
 

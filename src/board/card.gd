@@ -27,6 +27,7 @@ func open():
 		front.texture = card.profile
 		back.modulate = card.border_color
 		front.show()
+		modulate = Color.WHITE
 		clickable.hide()
 	else:
 		print("cannot open card without data")
@@ -35,6 +36,7 @@ func close():
 	back.modulate = Color.WHITE
 	front.hide()
 	clickable.show()
+	modulate = unfocus_color
 	_on_clickable_mouse_exited()
 
 

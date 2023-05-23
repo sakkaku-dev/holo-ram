@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0jtxbuvsu15k"]
+[gd_scene load_steps=3 format=3 uid="uid://d0jtxbuvsu15k"]
 
 [ext_resource type="Script" path="res://src/GameManager.gd" id="1"]
+[ext_resource type="Script" path="res://src/DataEventQueue.gd" id="2_misjs"]
 
-[node name="GameManager" type="Node"]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("data_queue")]
 script = ExtResource("1")
+data_queue = NodePath("DataEventQueue")
+
+[node name="DataEventQueue" type="Node" parent="."]
+script = ExtResource("2_misjs")

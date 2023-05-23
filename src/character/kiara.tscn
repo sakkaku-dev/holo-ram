@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dby"]
 size = Vector2(8, 4)
 
+[sub_resource type="Animation" id="Animation_jsefl"]
+resource_name = "action"
+
 [sub_resource type="Animation" id="Animation_no8wm"]
 length = 0.8
 loop_mode = 1
@@ -23,9 +26,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_jsefl"]
-resource_name = "action"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kuj7f"]
 _data = {
 "action": SubResource("Animation_jsefl"),
@@ -33,6 +33,7 @@ _data = {
 }
 
 [node name="Kiara" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite", "timer")]
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_d16c3")
 anim = NodePath("AnimationPlayer")
