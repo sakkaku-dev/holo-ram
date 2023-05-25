@@ -18,14 +18,11 @@ func undo(data: DataSnapshot):
 func _spin(data: DataSnapshot, neighbors: Array[Vector2]):
 	assert(neighbors.size() >= 2)
 	
-	var curr = null
-	for i in range(0, neighbors.size()):
-		var n = neighbors[i]
-		if i == 0:
-			curr = data.get_card(n)
-			data.set_card(n, data.get_card(neighbors[neighbors.size() - 1]))
-			continue
+	var values = []
+	for n in neighbors:
+		values.append(data.get_card(n))
 		
-		var temp = data.get_card(n)
-		data.set_card(n, curr)
-		curr = temp
+	for i in range(0, neighbors.size()):
+		var idx = i - 1 if i != 0 else neighbors.size() - 1
+		var n = neighbors[i]
+		data.set_card(n, values[idx])

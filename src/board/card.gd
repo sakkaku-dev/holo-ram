@@ -21,6 +21,9 @@ func hide_card():
 func _set_card(c: CardResource):
 	card = c
 	visible = c != null
+	if card:
+		front.texture = card.profile
+		back.modulate = card.border_color
 
 func open():
 	if card:

@@ -56,8 +56,6 @@ func _create_board_tiles(board_size: int):
 	set_cells_terrain_connect(LAYER, cells, TERRAIN_SET, TERRAIN)
 
 func _on_card_click(card_node: Card, coord: Vector2):
-#	if opened: return
-	
 	card_node.open()
 	
 	if current_select == null:

@@ -1,8 +1,8 @@
 class_name DataSnapshot
 
-var data: Array[Array] = []
+var data: Array = []
 
-func _init(d: Array[Array]):
+func _init(d: Array):
 	data = d.duplicate(true)
 
 func get_neighbors(coord: Vector2) -> Array[Vector2]:
