@@ -3,10 +3,13 @@ extends Node
 
 signal updated()
 signal cleared()
+signal unlocked()
+signal locked()
 
 var event_queue: Array[EventAction] = []
 var current_data: DataSnapshot
 var size = 0
+var is_locked = false
 
 func init_data(cards: Array[CardResource]):
 	var total_cards = cards.size() * 2
@@ -31,5 +34,13 @@ func do_event(ev: EventAction):
 	event_queue.append(ev)
 	updated.emit()
 	
+	if locked:
+		is_locked = false
+		unlocked.emit()
+	
 	if current_data.get_card_count(1) == 0:
 		cleared.emit()
+
+func lock():
+	is_locked = true
+	locked.emit()

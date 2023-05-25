@@ -39,6 +39,13 @@ func close():
 	modulate = unfocus_color
 	_on_clickable_mouse_exited()
 
+func disable():
+	clickable.hide()
+
+
+func enable():
+	clickable.show()
+
 
 func _on_clickable_pressed():
 	clicked.emit()

@@ -8,7 +8,6 @@ func _init(v: Vector2):
 
 func do(data: DataSnapshot):
 	var neighbors = data.get_neighbors(origin)
-	neighbors.reverse()
 	_spin(data, neighbors)
 
 func undo(data: DataSnapshot):

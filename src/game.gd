@@ -26,6 +26,8 @@ func _ready():
 func _do_action():
 	# TODO: keep list of next characters
 	if ready_characters.size() > 0:
+		if data.is_locked:
+			await data.unlocked
 		var char = ready_characters.pick_random() as Character
 		ready_characters.erase(char)
 		char.action_cooldown.connect(func(): ready_characters.append(char))
@@ -40,13 +42,16 @@ func _on_board_selected(coord1, coord2):
 	var c1 = data.current_data.get_card(coord1)
 	var c2 = data.current_data.get_card(coord2)
 	
-	await get_tree().create_timer(1).timeout
 	
 	if c1 == c2:
+		data.lock()
+		await get_tree().create_timer(1).timeout
 		print("Matched")
 		_spawn_card(c1, board.get_global_position_for(coord1))
 		data.do_event(MatchEvent.new(coord1, coord2))
-	
+	else:
+		await get_tree().create_timer(1).timeout
+		
 	board.close_cards()
 
 

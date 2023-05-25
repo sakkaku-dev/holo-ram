@@ -33,6 +33,7 @@ func close_cards():
 		card_nodes[coord].close()
 	opened = false
 	current_select = null
+	enable_cards()
 
 func init_board(size):
 	_create_board_tiles(size)
@@ -54,13 +55,8 @@ func _create_board_tiles(board_size: int):
 	
 	set_cells_terrain_connect(LAYER, cells, TERRAIN_SET, TERRAIN)
 
-func update_card_data(data: DataSnapshot):
-	for coord in card_nodes:
-		var card_node = card_nodes[coord]
-		card_node.card = data.get_card(coord)
-
 func _on_card_click(card_node: Card, coord: Vector2):
-	if opened: return
+#	if opened: return
 	
 	card_node.open()
 	
@@ -69,8 +65,22 @@ func _on_card_click(card_node: Card, coord: Vector2):
 	else:
 		selected.emit(current_select, coord)
 		opened = true
+		disable_cards()
 
 func _get_card_node(coord: Vector2):
 	if coord in card_nodes:
 		return card_nodes[coord]
 	return null
+
+func update_card_data(data: DataSnapshot):
+	for coord in card_nodes:
+		var card_node = card_nodes[coord]
+		card_node.card = data.get_card(coord)
+
+func disable_cards():
+	for coord in card_nodes:
+		card_nodes[coord].disable()
+		
+func enable_cards():
+	for coord in card_nodes:
+		card_nodes[coord].enable()
