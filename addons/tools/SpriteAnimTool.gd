@@ -5,7 +5,16 @@ extends AnimationPlayer
 @export var run: bool : set = execute
 
 func update():
-	pass
+	for child in get_children():
+		if child is SpriteAnim:
+			var b = Builder.new(child.node) \
+				.setName(child.anim_name) \
+				.setRange(child.start_frame, child.end_frame) \
+				.setDuration(child.duration) \
+				.setLoop(child.loop) \
+				.setDiscrete(child.discrete) \
+				.setFrames(child.frames)
+			add_animation(b)
 
 func execute(x):
 	print("execute")
@@ -39,7 +48,8 @@ func add_animation(builder: Builder) -> void:
 	anim.loop_mode = loop
 	anim.length = duration
 	
-	var sprite_path = String(owner.get_path_to(get_node(node))) + ":" + property
+	var actual_node = get_node(node) if node is String else node
+	var sprite_path = String(owner.get_path_to(actual_node)) + ":" + property
 	var existing_track = anim.find_track(sprite_path, Animation.TYPE_VALUE)
 	if existing_track != -1:
 		anim.remove_track(existing_track)

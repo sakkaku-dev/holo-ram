@@ -34,6 +34,8 @@ func _do_action():
 		char.do_action(data)
 		await char.action_finished
 		print("Action finished")
+	else:
+		print("Action ready but no characters")
 	action_timer.start()
 
 func _on_board_selected(coord1, coord2):

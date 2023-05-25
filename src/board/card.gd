@@ -5,6 +5,8 @@ extends Node2D
 @export var back: Sprite2D
 @export var clickable: TextureButton
 
+@export var debug = false
+
 signal clicked()
 
 var unfocus_color = Color(.8, .8, .8, 1)
@@ -21,7 +23,7 @@ func hide_card():
 func _set_card(c: CardResource):
 	card = c
 	visible = c != null
-	if card:
+	if card and debug:
 		front.texture = card.profile
 		back.modulate = card.border_color
 
@@ -36,7 +38,8 @@ func open():
 		print("cannot open card without data")
 
 func close():
-	back.modulate = Color.WHITE
+	if not debug:
+		back.modulate = Color.WHITE
 	front.hide()
 	clickable.show()
 	modulate = unfocus_color

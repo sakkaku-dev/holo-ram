@@ -1,14 +1,56 @@
-[gd_scene load_steps=8 format=3 uid="uid://rbvbkyk5xxlv"]
+[gd_scene load_steps=9 format=3 uid="uid://rbvbkyk5xxlv"]
 
-[ext_resource type="Script" path="res://src/character/character.gd" id="1_kpnii"]
+[ext_resource type="Script" path="res://src/character/gura.gd" id="1_5ynmp"]
 [ext_resource type="Texture2D" uid="uid://dgb5tr1mguenv" path="res://assets/Gura.png" id="2_ph7g3"]
 [ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_0dq10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dby"]
 size = Vector2(8, 4)
 
+[sub_resource type="Animation" id="Animation_qdtu6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
 [sub_resource type="Animation" id="Animation_itq6d"]
 resource_name = "action"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 8, 9, 10, 12, 15, 16, 17, 18, 19, 20, 21]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"move_to_random_card"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_no8wm"]
 length = 0.8
@@ -28,6 +70,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kuj7f"]
 _data = {
+"RESET": SubResource("Animation_qdtu6"),
 "action": SubResource("Animation_itq6d"),
 "run": SubResource("Animation_no8wm")
 }
@@ -35,10 +78,10 @@ _data = {
 [node name="Gura" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite", "timer")]
 collision_layer = 0
 motion_mode = 1
-script = ExtResource("1_kpnii")
+script = ExtResource("1_5ynmp")
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("CollisionShape2D/Sprite2D")
-timer = NodePath("ActionTimer")
+timer = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
@@ -47,8 +90,9 @@ shape = SubResource("RectangleShape2D_i8dby")
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 position = Vector2(0, -10)
 texture = ExtResource("2_ph7g3")
-hframes = 4
-frame = 1
+hframes = 10
+vframes = 3
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -56,6 +100,3 @@ libraries = {
 }
 script = ExtResource("3_0dq10")
 sprite = NodePath("../CollisionShape2D/Sprite2D")
-
-[node name="ActionTimer" type="Timer" parent="."]
-wait_time = 5.0

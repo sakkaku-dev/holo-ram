@@ -10,6 +10,7 @@ script = ExtResource("1_cmurf")
 front = NodePath("Front")
 back = NodePath("BackCover/Back")
 clickable = NodePath("Clickable")
+debug = true
 
 [node name="BackCover" type="Node2D" parent="."]
 

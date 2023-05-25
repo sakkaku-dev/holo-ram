@@ -1,9 +1,18 @@
 class_name DataSnapshot
 
 var data: Array = []
+var _available_cards = []
 
 func _init(d: Array):
 	data = d.duplicate(true)
+
+func _index_available_cards():
+	_available_cards = []
+	for y in range(0, data.size()):
+		for x in range(0, data[y].size()):
+			var coord = Vector2(x, y)
+			if has_data(coord):
+				_available_cards.append(coord)
 
 func get_neighbors(coord: Vector2) -> Array[Vector2]:
 	var top = Vector2(coord.x, coord.y - 1)
@@ -41,3 +50,13 @@ func get_card_count(max_count = -1):
 				if max_count != -1 and count >= max_count:
 					break
 	return count
+
+func random_card(exclude: Vector2):
+	_index_available_cards()
+	_available_cards.shuffle()
+	
+	for c in _available_cards:
+		if c != exclude:
+			return c
+
+	return null
