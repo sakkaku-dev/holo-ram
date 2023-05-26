@@ -7,11 +7,13 @@ var data: DataEventQueue
 
 var finished = 0
 var spawned = []
+var neighbors = []
 
 func do_action(data: DataEventQueue):
 	self.data = data
 	coord = board.get_coord_for(global_position)
-	target_pos = board.get_global_position_for(coord)
+	self.target_pos = board.get_global_position_for(coord)
+	
 	finished = 0
 	spawned = []
 
@@ -22,12 +24,14 @@ func _on_finished():
 
 func spawn_tentacles():
 	var neighbors = data.current_data.get_neighbors(coord)
+	var cards = neighbors.duplicate()
+	cards.append(coord)
+	board.disable_cards(cards)
 	
 	var neighbors_with_data = []
 	for n in neighbors:
 		if data.current_data.has_data(n):
 			neighbors_with_data.append(n)
-	
 	
 	for neighbor in neighbors_with_data:
 		var dir = coord.direction_to(neighbor)

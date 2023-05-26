@@ -75,14 +75,13 @@ _data = {
 "run": SubResource("Animation_no8wm")
 }
 
-[node name="Ina" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite", "timer")]
+[node name="Ina" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_pxm51")
 tentacle_scene = ExtResource("2_fgkkk")
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("CollisionShape2D/Sprite2D")
-timer = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)

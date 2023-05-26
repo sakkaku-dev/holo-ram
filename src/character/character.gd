@@ -2,8 +2,13 @@ class_name Character
 extends CharacterBody2D
 
 signal action_cooldown()
-signal action_start()
 signal action_finished()
+
+enum {
+	MOVE,
+	MOVE_TARGET,
+	ACTION,
+}
 
 @export var speed := 50
 @export var anim: AnimationPlayer
@@ -13,7 +18,13 @@ signal action_finished()
 @onready var board: Board = get_tree().get_first_node_in_group("board")
 
 var dir = Vector2.UP
-var target_pos = null
+var target_pos = null : set = _set_target_pos
+var state = MOVE
+
+func _set_target_pos(v):
+	target_pos = v
+	if target_pos != null:
+		state = MOVE_TARGET
 
 func _ready():
 	dir = dir.rotated(TAU * randf())
@@ -24,35 +35,51 @@ func _ready():
 	if not anim.has_animation("move"):
 		anim.get_animation_library("").add_animation("move", Animation.new())
 
-func _on_action_timeout():
-	action_cooldown.emit()
+	anim.animation_finished.connect(_on_anim_finished)
+
+func _on_anim_finished(anim: String):
+	if anim == "action":
+		action_finished.emit()
+		target_pos = null
+		get_tree().create_timer(action_cooldown_time).timeout.connect(func(): action_cooldown.emit())
+		state = MOVE
 
 func _physics_process(delta):
-	if target_pos:
-		var dist = global_position.distance_to(target_pos)
-		if dist < 5:
-			action_start.emit()
-			anim.play("action")
-			await anim.animation_finished
-			action_finished.emit()
-			velocity = Vector2.ZERO
-			target_pos = null
-			get_tree().create_timer(action_cooldown_time).timeout.connect(_on_action_timeout)
-		else:
-			velocity = global_position.direction_to(target_pos) * speed
-	else:
-		velocity = dir * speed
+	match state:
+		MOVE: _move()
+		MOVE_TARGET: _move_target()
 	
-	sprite.scale.x = sign(dir.x)
-	if anim.current_animation != "run":
-		anim.play("run")
-	
-	if move_and_slide():
+
+func _move():
+	if _do_move(dir):
 		var collision = get_last_slide_collision()
 		if collision:
 			dir = dir.bounce(collision.get_normal())
 
+func _move_target():
+	if target_pos != null:
+		var dist = global_position.distance_to(target_pos)
+		if dist < 5:
+			state = ACTION
+			_action()
+		else:
+			_do_move(global_position.direction_to(target_pos))
+	else:
+		_action()
+
+func _do_move(d):
+	velocity = d * speed
+	
+	sprite.scale.x = sign(d.x)
+	if anim.current_animation != "run":
+		anim.play("run")
+	
+	return move_and_slide()
+
+func _action():
+	state = ACTION
+	anim.play("action")
+	
 func do_action(data: DataEventQueue):
 	print("No action defined")
 	target_pos = global_position
-

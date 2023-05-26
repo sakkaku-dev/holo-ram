@@ -26,7 +26,9 @@ func _ready():
 func _do_action():
 	# TODO: keep list of next characters
 	if ready_characters.size() > 0:
+		print("Picking random char for action")
 		if data.is_locked:
+			print("Waiting for lock")
 			await data.unlocked
 		var char = ready_characters.pick_random() as Character
 		ready_characters.erase(char)
