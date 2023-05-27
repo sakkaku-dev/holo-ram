@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bfvwn0pgury8m"]
 
-[ext_resource type="Script" path="res://src/character/character.gd" id="1_nnxnr"]
-[ext_resource type="Texture2D" uid="uid://b3n6ovragn7er" path="res://assets/Ame.png" id="2_240fa"]
+[ext_resource type="Script" path="res://src/character/ame.gd" id="1_odguo"]
+[ext_resource type="Texture2D" uid="uid://cwku6ughniudo" path="res://assets/Ame.png" id="2_240fa"]
 [ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_uir4r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dby"]
@@ -9,6 +9,18 @@ size = Vector2(8, 4)
 
 [sub_resource type="Animation" id="Animation_jll44"]
 resource_name = "action"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
 
 [sub_resource type="Animation" id="Animation_no8wm"]
 length = 0.8
@@ -35,7 +47,7 @@ _data = {
 [node name="Ame" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
 collision_layer = 0
 motion_mode = 1
-script = ExtResource("1_nnxnr")
+script = ExtResource("1_odguo")
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("CollisionShape2D/Sprite2D")
 
@@ -46,8 +58,8 @@ shape = SubResource("RectangleShape2D_i8dby")
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 position = Vector2(0, -10)
 texture = ExtResource("2_240fa")
-hframes = 4
-frame = 1
+hframes = 5
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -55,6 +67,3 @@ libraries = {
 }
 script = ExtResource("3_uir4r")
 sprite = NodePath("../CollisionShape2D/Sprite2D")
-
-[node name="ActionTimer" type="Timer" parent="."]
-wait_time = 5.0

@@ -32,8 +32,16 @@ func init_data(cards: Array[CardResource]):
 func do_event(ev: EventAction):
 	ev.do(current_data)
 	event_queue.append(ev)
+	_check_after_change()
+
+func undo_event():
+	var ev: EventAction = event_queue.pop_back()
+	if ev:
+		ev.undo(current_data)
+		_check_after_change()
+
+func _check_after_change():
 	updated.emit()
-	
 	if locked:
 		is_locked = false
 		unlocked.emit()
