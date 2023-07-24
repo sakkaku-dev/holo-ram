@@ -52,7 +52,7 @@ alignment = 2
 
 [node name="CardView" type="Button" parent="LevelSelect/MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "Cards"
+text = "CARDS"
 
 [node name="MarginContainer" type="Control" parent="."]
 layout_mode = 1
@@ -91,7 +91,7 @@ alignment = 2
 
 [node name="CloseCardView" type="Button" parent="MarginContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
-text = "x"
+text = "CLOSE"
 
 [connection signal="pressed" from="LevelSelect/MarginContainer/HBoxContainer/CardView" to="." method="_on_card_view_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer2/HBoxContainer/CloseCardView" to="." method="_on_close_card_view_pressed"]

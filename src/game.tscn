@@ -181,11 +181,11 @@ layout_mode = 2
 
 [node name="Resume" type="Button" parent="CanvasLayer/Pause/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "RESUME"
+text = "RESUME_GAME"
 
 [node name="Back" type="Button" parent="CanvasLayer/Pause/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "BACK"
+text = "BACK_MENU"
 
 [connection signal="selected" from="Board" to="." method="_on_board_selected"]
 [connection signal="pressed" from="CanvasLayer/Pause/CenterContainer/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_resume_pressed"]

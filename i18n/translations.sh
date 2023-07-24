@@ -1,13 +1,13 @@
 #!/bin/sh
 
-DIR="addons/i18n"
+DIR="i18n"
 
 pybabel extract -F "$DIR/babelrc" -k text -k LineEdit/placeholder_text -k tr -k items --no-location -o "$DIR/messages.pot" \
-    src "$DIR/menu"
+    src
 
 cd $DIR
 
-LANGS=(en de)
+LANGS=(en ja)
 
 for LANG in "${LANGS[@]}"; do
 	if [[ ! -f $LANG.po ]]; then

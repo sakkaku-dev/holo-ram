@@ -30,10 +30,11 @@ layout_mode = 2
 [node name="Timer" type="Label" parent="Win/VBoxContainer"]
 layout_mode = 2
 text = "YOU_WIN"
+horizontal_alignment = 1
 
 [node name="Back" type="Button" parent="Win/VBoxContainer"]
 layout_mode = 2
-text = "BACK"
+text = "BACK_MENU"
 
 [node name="Lose" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -49,14 +50,15 @@ layout_mode = 2
 [node name="Timer" type="Label" parent="Lose/VBoxContainer"]
 layout_mode = 2
 text = "YOU_LOSE"
+horizontal_alignment = 1
 
 [node name="Back" type="Button" parent="Lose/VBoxContainer"]
 layout_mode = 2
-text = "BACK"
+text = "BACK_MENU"
 
 [node name="Restart" type="Button" parent="Lose/VBoxContainer"]
 layout_mode = 2
-text = "BACK"
+text = "RESTART"
 
 [node name="Game" type="MarginContainer" parent="."]
 layout_mode = 1
