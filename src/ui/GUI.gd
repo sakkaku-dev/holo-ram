@@ -13,3 +13,10 @@ func win():
 	
 func lose():
 	change_menu(lose_screen)
+
+
+func _on_back_pressed():
+	get_tree().change_scene_to_file("res://src/ui/start.tscn")
+
+func _on_restart_pressed():
+	get_tree().reload_current_scene()

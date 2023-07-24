@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfe7r8l5jn4qe"]
+[gd_scene load_steps=9 format=3 uid="uid://dfe7r8l5jn4qe"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_qyeys"]
 [ext_resource type="PackedScene" uid="uid://djykhlcwbn25l" path="res://src/board/card.tscn" id="2_ed1hm"]
 [ext_resource type="Texture2D" uid="uid://eds4w4758r2" path="res://assets/Tiles.png" id="3_srl12"]
 [ext_resource type="Script" path="res://src/board/BoardCamera.gd" id="5_2tqqg"]
 [ext_resource type="Script" path="res://src/board/Board.gd" id="5_hyufg"]
-[ext_resource type="Script" path="res://src/ui/Countdown.gd" id="7_onprm"]
-[ext_resource type="Script" path="res://src/ui/GUI.gd" id="7_vi25v"]
+[ext_resource type="PackedScene" uid="uid://cfipnqrkop3v0" path="res://src/ui/gui.tscn" id="6_vpecd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m3d3h"]
 texture = ExtResource("3_srl12")
@@ -147,56 +146,6 @@ autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="GUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("lose_screen", "win_screen", "game_screen")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("7_vi25v")
-lose_screen = NodePath("Lose")
-win_screen = NodePath("Win")
-game_screen = NodePath("Game")
-
-[node name="Win" type="CenterContainer" parent="CanvasLayer/GUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Timer" type="Label" parent="CanvasLayer/GUI/Win"]
-layout_mode = 2
-text = "YOU_WIN"
-
-[node name="Lose" type="CenterContainer" parent="CanvasLayer/GUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Timer" type="Label" parent="CanvasLayer/GUI/Lose"]
-layout_mode = 2
-text = "YOU_LOSE"
-
-[node name="Game" type="MarginContainer" parent="CanvasLayer/GUI"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -34.5
-offset_right = 34.5
-offset_bottom = 40.0
-grow_horizontal = 2
-
-[node name="Countdown" type="Label" parent="CanvasLayer/GUI/Game"]
-layout_mode = 2
-text = "__00:00__"
-script = ExtResource("7_onprm")
+[node name="GUI" parent="CanvasLayer" instance=ExtResource("6_vpecd")]
 
 [connection signal="selected" from="Board" to="." method="_on_board_selected"]

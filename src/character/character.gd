@@ -58,9 +58,9 @@ func _move():
 			dir = dir.bounce(normal)
 
 			# prevent too straight bounces
-			if normal.dot(dir) >= 0.8:
+			if normal.dot(dir) >= 0.9:
 				var diff_sign = -1 if normal.angle() > dir.angle() else 1
-				dir = dir.rotated(PI/4) # TODO: range?
+				dir = dir.rotated(diff_sign * PI/4) # TODO: range?
 
 func _move_target():
 	if target_pos != null:

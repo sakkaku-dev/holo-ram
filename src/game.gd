@@ -15,13 +15,20 @@ func _ready():
 	board.init_board(data.size)
 	board.update_card_data(data.current_data)
 	
-	data.cleared.connect(func(): gui.win())
+	data.cleared.connect(_win)
 	data.updated.connect(func(): board.update_card_data(data.current_data))
 
 	countdown.start_timer(level.cards.size() * 60)
-	countdown.timeout.connect(func(): gui.lose())
+	countdown.timeout.connect(_lose)
 
 	# action_timer.connect("timeout", _do_action)
+
+func _win():
+	gui.win()
+	GameManager.unlock_level()
+
+func _lose():
+	gui.lose()
 
 # func _do_action():
 # 	# TODO: keep list of next characters
@@ -58,9 +65,9 @@ func _on_board_selected(coord1, coord2):
 func _spawn_card(card: CardResource, pos: Vector2):
 	var scene = card.character
 	if scene:
-		var char = scene.instantiate() as Node2D
-		ready_characters.append(char)
-		char.global_position = pos
-		get_tree().current_scene.add_child(char)
+		var node = scene.instantiate() as Node2D
+		ready_characters.append(node)
+		node.global_position = pos
+		get_tree().current_scene.add_child(node)
 	else:
 		print("missing scene for " % card)

@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://pihadjqbutpv"]
+[gd_scene load_steps=3 format=3 uid="uid://pihadjqbutpv"]
 
-[ext_resource type="Texture2D" uid="uid://dtlurymadgc3i" path="res://icon.svg" id="1_21iad"]
 [ext_resource type="Script" path="res://src/ui/LevelSelect.gd" id="1_rwe0w"]
 [ext_resource type="PackedScene" uid="uid://dfe7r8l5jn4qe" path="res://src/game.tscn" id="2_xu5pg"]
 
@@ -28,43 +27,3 @@ layout_mode = 2
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 5
-
-[node name="TextureButton" type="TextureButton" parent="LevelSelect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("1_21iad")
-
-[node name="TextureButton2" type="TextureButton" parent="LevelSelect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("1_21iad")
-
-[node name="TextureButton3" type="TextureButton" parent="LevelSelect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("1_21iad")
-
-[node name="TextureButton4" type="TextureButton" parent="LevelSelect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("1_21iad")
-
-[node name="TextureButton5" type="TextureButton" parent="LevelSelect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("1_21iad")
-
-[node name="TextureButton6" type="TextureButton" parent="LevelSelect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("1_21iad")
-
-[node name="TextureButton7" type="TextureButton" parent="LevelSelect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("1_21iad")
-
-[node name="TextureButton8" type="TextureButton" parent="LevelSelect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("1_21iad")
-
-[node name="TextureButton9" type="TextureButton" parent="LevelSelect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("1_21iad")
-
-[node name="TextureButton10" type="TextureButton" parent="LevelSelect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("1_21iad")

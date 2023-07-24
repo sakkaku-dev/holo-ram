@@ -22,8 +22,10 @@ func _ready():
 
 		var btn = TextureButton.new()
 		btn.texture_normal = res.cover
-		btn.pressed.connect(_load_level)
+		btn.disabled = level in GameManager.unlocked_levels
+		btn.pressed.connect(func(): _load_level(path))
 		container.add_child(btn)
+		print("Add level %s" % level)
 
 func _load_level(path: String):
 	GameManager.current_level_file = path

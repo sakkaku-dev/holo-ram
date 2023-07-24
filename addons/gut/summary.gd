@@ -247,7 +247,7 @@ func log_summary_text(lgr):
 	if(!found_failing_or_pending):
 		lgr.log('All tests passed', lgr.fmts.green)
 
-	# just picked a non-printable char, dunno if it is a good or bad choice.
+	# just picked a non-printable c, dunno if it is a good or bad choice.
 	var npws = PackedByteArray([31]).get_string_from_ascii()
 
 	lgr.log()

@@ -24,13 +24,13 @@ func exists(key: String):
 	return get_value(key) != null
 
 
-static func find_last(str: String, char: String) -> int:
+static func find_last(str: String, c: String) -> int:
 	var found = []
 	var current_idx = 0
 	var times_called = 0
 	
 	while current_idx < str.length():
-		var search = str.find(char, current_idx + 1)
+		var search = str.find(c, current_idx + 1)
 		if search == -1:
 			break
 		
