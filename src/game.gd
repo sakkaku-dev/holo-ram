@@ -21,24 +21,24 @@ func _ready():
 	countdown.start_timer(level.cards.size() * 60)
 	countdown.timeout.connect(func(): gui.lose())
 
-	action_timer.connect("timeout", _do_action)
+	# action_timer.connect("timeout", _do_action)
 
-func _do_action():
-	# TODO: keep list of next characters
-	if ready_characters.size() > 0:
-		print("Picking random char for action")
-		if data.is_locked:
-			print("Waiting for lock")
-			await data.unlocked
-		var char = ready_characters.pick_random() as Character
-		ready_characters.erase(char)
-		char.action_cooldown.connect(func(): ready_characters.append(char))
-		char.do_action(data)
-		await char.action_finished
-		print("Action finished")
-	else:
-		print("Action ready but no characters")
-	action_timer.start()
+# func _do_action():
+# 	# TODO: keep list of next characters
+# 	if ready_characters.size() > 0:
+# 		print("Picking random char for action")
+# 		if data.is_locked:
+# 			print("Waiting for lock")
+# 			await data.unlocked
+# 		var char = ready_characters.pick_random() as Character
+# 		ready_characters.erase(char)
+# 		char.action_cooldown.connect(func(): ready_characters.append(char))
+# 		char.do_action(data)
+# 		await char.action_finished
+# 		print("Action finished")
+# 	else:
+# 		print("Action ready but no characters")
+# 	action_timer.start()
 
 func _on_board_selected(coord1, coord2):
 	print("Selected %s, %s" % [coord1, coord2])

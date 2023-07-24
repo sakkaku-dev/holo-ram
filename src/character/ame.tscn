@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bfvwn0pgury8m"]
 
 [ext_resource type="Script" path="res://src/character/character.gd" id="1_nnxnr"]
-[ext_resource type="Texture2D" uid="uid://cwku6ughniudo" path="res://assets/Ame.png" id="2_240fa"]
+[ext_resource type="Texture2D" uid="uid://b3n6ovragn7er" path="res://assets/Ame.png" id="2_240fa"]
 [ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_uir4r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dby"]
@@ -32,13 +32,12 @@ _data = {
 "run": SubResource("Animation_no8wm")
 }
 
-[node name="Ame" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite", "timer")]
+[node name="Ame" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_nnxnr")
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("CollisionShape2D/Sprite2D")
-timer = NodePath("ActionTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)

@@ -54,7 +54,13 @@ func _move():
 	if _do_move(dir):
 		var collision = get_last_slide_collision()
 		if collision:
-			dir = dir.bounce(collision.get_normal())
+			var normal = collision.get_normal()
+			dir = dir.bounce(normal)
+
+			# prevent too straight bounces
+			if normal.dot(dir) >= 0.8:
+				var diff_sign = -1 if normal.angle() > dir.angle() else 1
+				dir = dir.rotated(PI/4) # TODO: range?
 
 func _move_target():
 	if target_pos != null:
