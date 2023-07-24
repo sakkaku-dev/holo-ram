@@ -1,15 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://pihadjqbutpv"]
+[gd_scene load_steps=6 format=3 uid="uid://pihadjqbutpv"]
 
+[ext_resource type="Texture2D" uid="uid://dtlurymadgc3i" path="res://icon.svg" id="1_21iad"]
 [ext_resource type="Script" path="res://src/ui/LevelSelect.gd" id="1_rwe0w"]
+[ext_resource type="Script" path="res://src/ui/start.gd" id="1_x1jhj"]
 [ext_resource type="PackedScene" uid="uid://dfe7r8l5jn4qe" path="res://src/game.tscn" id="2_xu5pg"]
+[ext_resource type="Script" path="res://src/ui/CardView.gd" id="3_egsno"]
 
-[node name="Start" type="Control"]
+[node name="Start" type="Control" node_paths=PackedStringArray("level_select", "card_view")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_x1jhj")
+level_select = NodePath("LevelSelect")
+card_view = NodePath("GridContainer")
 
 [node name="LevelSelect" type="CenterContainer" parent="." node_paths=PackedStringArray("container")]
 layout_mode = 1
@@ -27,3 +33,53 @@ layout_mode = 2
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cards"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = -30
+theme_override_constants/v_separation = 5
+columns = 20
+script = ExtResource("3_egsno")
+
+[node name="TextureRect" type="TextureRect" parent="GridContainer"]
+layout_mode = 2
+texture = ExtResource("1_21iad")
+
+[node name="TextureRect2" type="TextureRect" parent="GridContainer"]
+layout_mode = 2
+texture = ExtResource("1_21iad")
+
+[node name="TextureRect3" type="TextureRect" parent="GridContainer"]
+layout_mode = 2
+texture = ExtResource("1_21iad")
+
+[node name="TextureRect4" type="TextureRect" parent="GridContainer"]
+layout_mode = 2
+texture = ExtResource("1_21iad")
+
+[node name="TextureRect5" type="TextureRect" parent="GridContainer"]
+layout_mode = 2
+texture = ExtResource("1_21iad")
+
+[node name="TextureRect6" type="TextureRect" parent="GridContainer"]
+layout_mode = 2
+texture = ExtResource("1_21iad")
