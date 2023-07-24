@@ -8,3 +8,7 @@ func _ready():
 
 func _on_card_view_pressed():
 	change_menu(card_view)
+
+
+func _on_close_card_view_pressed():
+	go_back()

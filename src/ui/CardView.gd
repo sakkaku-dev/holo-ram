@@ -7,6 +7,7 @@ func _ready():
 		var res = load(CARD_FOLDER + card) as CardResource
 		var tex = TextureRect.new()
 		tex.texture = res.profile
+		tex.custom_minimum_size = Vector2(150, 150)
 		tex.mouse_entered.connect(func(): tex.z_index = 10)
 		tex.mouse_exited.connect(func(): tex.z_index = 0)
 		add_child(tex)

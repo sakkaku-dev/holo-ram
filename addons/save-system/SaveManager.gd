@@ -28,12 +28,12 @@ func load_from_slot(slot: int):
 	var file = FileAccess.open(file_name, FileAccess.READ)
 	var data
 	if file == null:
-		logger.error("Failed to load data from %s: %s" % [file_name, file.get_open_error()])
+		logger.error("Failed to load data from %s: %s" % [file_name, FileAccess.get_open_error()])
 	else:
 		data = file.get_var()
 		if data:
 			logger.debug("Load %s" % str(data))
-	file.close()
+		file.close()
 
 	return data
 

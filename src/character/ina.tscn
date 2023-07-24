@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://b6rtswpgxw1ek"]
 
-[ext_resource type="Texture2D" uid="uid://hjmrax0mmeoc" path="res://assets/Ina.png" id="1_hidub"]
+[ext_resource type="Texture2D" uid="uid://rsuvpt8uqys1" path="res://assets/Ina.png" id="1_hidub"]
 [ext_resource type="Script" path="res://src/character/ina.gd" id="1_pxm51"]
 [ext_resource type="PackedScene" uid="uid://cs337ajmjlh45" path="res://src/character/tentacle.tscn" id="2_fgkkk"]
 [ext_resource type="Script" path="res://src/character/InaAnim.gd" id="2_m8i4p"]

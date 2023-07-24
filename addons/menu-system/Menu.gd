@@ -8,9 +8,13 @@ func _unhandled_input(event: InputEvent):
 func _handle_event(event: InputEvent):
 	if event.is_action_pressed("ui_cancel"):
 		if is_in_sub_menu():
-			menu_stack.pop_back()
-			update_menu()
+			go_back()
 			get_viewport().set_input_as_handled()
+
+func go_back():
+	if is_in_sub_menu():
+		menu_stack.pop_back()
+		update_menu()
 
 func is_menu_visible():
 	return menu_stack.size() > 0

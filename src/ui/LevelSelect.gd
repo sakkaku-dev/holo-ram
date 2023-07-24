@@ -6,8 +6,6 @@ const LEVELS_DIR = "res://src/levels"
 @export var container: Control
 
 func _ready():
-	await GameManager.ready
-
 	var dir = DirAccess.open(LEVELS_DIR)
 	var levels = []
 	if dir:
