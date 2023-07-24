@@ -34,3 +34,6 @@ func load_data():
 	if data:
 		unlocked_cards = data["cards"]
 		unlocked_levels = data["levels"]
+
+func change_to_menu():
+	get_tree().change_scene_to_file("res://src/ui/start.tscn")

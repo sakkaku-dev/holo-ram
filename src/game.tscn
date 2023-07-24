@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfe7r8l5jn4qe"]
+[gd_scene load_steps=10 format=3 uid="uid://dfe7r8l5jn4qe"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_qyeys"]
 [ext_resource type="PackedScene" uid="uid://djykhlcwbn25l" path="res://src/board/card.tscn" id="2_ed1hm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://src/board/BoardCamera.gd" id="5_2tqqg"]
 [ext_resource type="Script" path="res://src/board/Board.gd" id="5_hyufg"]
 [ext_resource type="PackedScene" uid="uid://cfipnqrkop3v0" path="res://src/ui/gui.tscn" id="6_vpecd"]
+[ext_resource type="Script" path="res://src/ui/Pause.gd" id="7_d0s3h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m3d3h"]
 texture = ExtResource("3_srl12")
@@ -148,4 +149,44 @@ autostart = true
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("6_vpecd")]
 
+[node name="Pause" type="Control" parent="CanvasLayer"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_d0s3h")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.705882)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pause/CenterContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="CanvasLayer/Pause/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "RESUME"
+
+[node name="Back" type="Button" parent="CanvasLayer/Pause/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "BACK"
+
 [connection signal="selected" from="Board" to="." method="_on_board_selected"]
+[connection signal="pressed" from="CanvasLayer/Pause/CenterContainer/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/CenterContainer/VBoxContainer/Back" to="CanvasLayer/Pause" method="_on_back_pressed"]

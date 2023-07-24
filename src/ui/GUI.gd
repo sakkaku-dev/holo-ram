@@ -16,7 +16,7 @@ func lose():
 
 
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://src/ui/start.tscn")
+	GameManager.change_to_menu()
 
 func _on_restart_pressed():
 	get_tree().reload_current_scene()

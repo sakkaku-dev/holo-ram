@@ -2,7 +2,6 @@ extends Control
 
 const LEVELS_DIR = "res://src/levels"
 
-@export var game_scene: PackedScene
 @export var container: Control
 
 func _ready():
@@ -25,8 +24,7 @@ func _ready():
 		#btn.disabled = level in GameManager.unlocked_levels
 		btn.pressed.connect(func(): _load_level(path))
 		container.add_child(btn)
-		print("Add level %s" % level)
 
 func _load_level(path: String):
 	GameManager.current_level_file = path
-	get_tree().change_scene_to_packed(game_scene)
+	get_tree().change_scene_to_file("res://src/game.tscn")

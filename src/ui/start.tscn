@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://pihadjqbutpv"]
+[gd_scene load_steps=4 format=3 uid="uid://pihadjqbutpv"]
 
 [ext_resource type="Script" path="res://src/ui/LevelSelect.gd" id="1_rwe0w"]
 [ext_resource type="Script" path="res://src/ui/start.gd" id="1_x1jhj"]
-[ext_resource type="PackedScene" uid="uid://dfe7r8l5jn4qe" path="res://src/game.tscn" id="2_xu5pg"]
 [ext_resource type="Script" path="res://src/ui/CardView.gd" id="3_egsno"]
 
 [node name="Start" type="Control" node_paths=PackedStringArray("level_select", "card_view")]
@@ -24,7 +23,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rwe0w")
-game_scene = ExtResource("2_xu5pg")
 container = NodePath("CenterContainer/GridContainer")
 
 [node name="CenterContainer" type="CenterContainer" parent="LevelSelect"]
