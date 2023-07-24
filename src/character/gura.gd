@@ -5,8 +5,8 @@ var data: DataEventQueue
 
 var swap_card
 
-func do_action(data: DataEventQueue):
-	self.data = data
+func do_action(d: DataEventQueue):
+	self.data = d
 	coord = board.get_coord_for(global_position)
 	self.target_pos = board.get_global_position_for(coord)
 

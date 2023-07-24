@@ -1,6 +1,5 @@
 extends Node2D
 
-@export var level: LevelResource
 @export var board: Board
 @export var action_timer: Timer
 @export var countdown: Countdown
@@ -11,6 +10,7 @@ extends Node2D
 var ready_characters: Array[Character] = []
 
 func _ready():
+	var level = load(GameManager.current_level_file)
 	data.init_data(level.cards)
 	board.init_board(data.size)
 	board.update_card_data(data.current_data)
@@ -41,16 +41,12 @@ func _ready():
 # 	action_timer.start()
 
 func _on_board_selected(coord1, coord2):
-	print("Selected %s, %s" % [coord1, coord2])
-	
 	var c1 = data.current_data.get_card(coord1)
 	var c2 = data.current_data.get_card(coord2)
-	
 	
 	if c1 == c2:
 		data.lock()
 		await get_tree().create_timer(1).timeout
-		print("Matched")
 		_spawn_card(c1, board.get_global_position_for(coord1))
 		data.do_event(MatchEvent.new(coord1, coord2))
 	else:
