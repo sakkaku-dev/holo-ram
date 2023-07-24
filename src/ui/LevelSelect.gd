@@ -22,7 +22,7 @@ func _ready():
 
 		var btn = TextureButton.new()
 		btn.texture_normal = res.cover
-		btn.disabled = level in GameManager.unlocked_levels
+		#btn.disabled = level in GameManager.unlocked_levels
 		btn.pressed.connect(func(): _load_level(path))
 		container.add_child(btn)
 		print("Add level %s" % level)
