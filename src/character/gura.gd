@@ -11,7 +11,7 @@ func do_action(d: DataEventQueue):
 	self.target_pos = board.get_global_position_for(coord)
 
 func select_random_card():
-	swap_card = data.current_data.random_card(coord)
+	swap_card = data.get_data().random_card(coord)
 	if swap_card == null:
 		print("No more cards to swap with")
 		return

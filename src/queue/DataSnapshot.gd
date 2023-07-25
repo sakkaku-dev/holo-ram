@@ -6,6 +6,9 @@ var _available_cards = []
 func _init(d: Array):
 	data = d.duplicate(true)
 
+func clone():
+	return DataSnapshot.new(data)
+
 func _index_available_cards():
 	_available_cards = []
 	for y in range(0, data.size()):
@@ -51,7 +54,7 @@ func get_card_count(max_count = -1):
 					break
 	return count
 
-func random_card(exclude: Vector2):
+func random_card(exclude: Vector2 = Vector2(-1, -1)):
 	_index_available_cards()
 	_available_cards.shuffle()
 	

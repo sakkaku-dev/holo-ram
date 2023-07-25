@@ -3,14 +3,13 @@ extends Character
 @export var tentacle_scene: PackedScene
 
 var coord: Vector2
-var data: DataEventQueue
+var queue: DataEventQueue
 
 var finished = 0
 var spawned = []
-var neighbors = []
 
 func do_action(data: DataEventQueue):
-	self.data = data
+	queue = data
 	coord = board.get_coord_for(global_position)
 	self.target_pos = board.get_global_position_for(coord)
 	
@@ -20,17 +19,18 @@ func do_action(data: DataEventQueue):
 func _on_finished():
 	finished += 1
 	if finished == spawned.size():
-		data.do_event(SpinEvent.new(coord))
+		queue.do_event(SpinEvent.new(coord))
 
 func spawn_tentacles():
-	var neighbors = data.current_data.get_neighbors(coord)
+	var data = queue.get_data()
+	var neighbors = data.get_neighbors(coord)
 	var cards = neighbors.duplicate()
 	cards.append(coord)
 	board.disable_cards(cards)
 	
 	var neighbors_with_data = []
 	for n in neighbors:
-		if data.current_data.has_data(n):
+		if data.has_data(n):
 			neighbors_with_data.append(n)
 	
 	for neighbor in neighbors_with_data:
@@ -76,8 +76,8 @@ func _create_tentacle():
 	tentacle.global_position = target_pos
 	return tentacle
 
-func _in_neighbors(coord: Vector2, neighbors: Array[Vector2]):
+func _in_neighbors(v: Vector2, neighbors: Array[Vector2]):
 	for n in neighbors:
-		if n.x == coord.x and n.y == coord.y:
+		if n.x == v.x and n.y == v.y:
 			return true
 	return false

@@ -29,6 +29,11 @@ func init_data(cards: Array[CardResource]):
 	
 	current_data = DataSnapshot.new(data)
 
+func get_data(clone = false) -> DataSnapshot:
+	if clone:
+		return current_data.clone()
+	return current_data
+
 func do_event(ev: EventAction):
 	ev.do(current_data)
 	event_queue.append(ev)

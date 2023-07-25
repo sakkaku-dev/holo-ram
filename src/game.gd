@@ -5,18 +5,18 @@ extends Node2D
 @export var countdown: Countdown
 @export var gui: GUI
 
-@onready var data: DataEventQueue = GameManager.data_queue
+@onready var queue: DataEventQueue = GameManager.data_queue
 
 var ready_characters: Array[Character] = []
 
 func _ready():
 	var level = load(GameManager.current_level_file)
-	data.init_data(level.cards)
-	board.init_board(data.size)
-	board.update_card_data(data.current_data)
+	queue.init_data(level.cards)
+	board.init_board(queue.size)
+	board.update_card_data(queue.get_data())
 	
-	data.cleared.connect(_win)
-	data.updated.connect(func(): board.update_card_data(data.current_data))
+	queue.cleared.connect(_win)
+	queue.updated.connect(func(): board.update_card_data(queue.get_data()))
 
 	countdown.start_timer(level.cards.size() * 60)
 	countdown.timeout.connect(_lose)
@@ -34,13 +34,13 @@ func _lose():
 # 	# TODO: keep list of next characters
 # 	if ready_characters.size() > 0:
 # 		print("Picking random char for action")
-# 		if data.is_locked:
+# 		if queue.is_locked:
 # 			print("Waiting for lock")
-# 			await data.unlocked
+# 			await queue.unlocked
 # 		var char = ready_characters.pick_random() as Character
 # 		ready_characters.erase(char)
 # 		char.action_cooldown.connect(func(): ready_characters.append(char))
-# 		char.do_action(data)
+# 		char.do_action(queue)
 # 		await char.action_finished
 # 		print("Action finished")
 # 	else:
@@ -53,7 +53,7 @@ func _on_board_selected(coord1, coord2):
 
 	var ev = MatchEvent.new(coord1, coord2)
 	ev.matched.connect(func(card): _spawn_card_character(card, board.get_global_position_for(coord1)))
-	data.do_event(ev)
+	queue.do_event(ev)
 
 	board.close_cards()
 
