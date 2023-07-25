@@ -13,7 +13,6 @@ const BOARD_TILE = Vector2(1, 1)
 
 var current_select = null
 var card_nodes = {}
-var opened = false
 
 func get_coord_for(pos: Vector2):
 	return local_to_map(pos)
@@ -31,7 +30,6 @@ func hide_card(coord: Vector2):
 func close_cards():
 	for coord in card_nodes:
 		card_nodes[coord].close()
-	opened = false
 	current_select = null
 	enable_cards()
 
@@ -62,7 +60,6 @@ func _on_card_click(card_node: Card, coord: Vector2):
 		current_select = coord
 	else:
 		selected.emit(current_select, coord)
-		opened = true
 		disable_cards()
 
 func _get_card_node(coord: Vector2):

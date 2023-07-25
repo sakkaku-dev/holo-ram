@@ -54,3 +54,25 @@ func test_spin(params=use_parameters(spin_params)):
 	var spin = SpinEvent.new(origin)
 	spin.do(data)
 	assert_eq_deep(data.data, expected_data)
+
+
+func test_undo_spin():
+	var data = DataSnapshot.new([
+		[0, 1, 0],
+		[0, 0, 0],
+		[0, 2, 0],
+	])
+	var spin = SpinEvent.new(Vector2(1, 1))
+	spin.do(data)
+	assert_eq_deep(data.data, [
+		[0, 0, 0],
+		[1, 0, 2],
+		[0, 0, 0],
+	])
+
+	spin.undo(data)
+	assert_eq_deep(data.data, [
+		[0, 1, 0],
+		[0, 0, 0],
+		[0, 2, 0],
+	])

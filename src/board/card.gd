@@ -12,6 +12,8 @@ signal clicked()
 var unfocus_color = Color(.8, .8, .8, 1)
 var card = null : set = _set_card
 
+# TODO: why not texture button?
+
 func _ready():
 	hide_card()
 	_on_clickable_mouse_exited()

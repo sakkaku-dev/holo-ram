@@ -48,21 +48,17 @@ func _lose():
 # 	action_timer.start()
 
 func _on_board_selected(coord1, coord2):
-	var c1 = data.current_data.get_card(coord1)
-	var c2 = data.current_data.get_card(coord2)
-	
-	if c1 == c2:
-		data.lock()
-		await get_tree().create_timer(1).timeout
-		_spawn_card(c1, board.get_global_position_for(coord1))
-		data.do_event(MatchEvent.new(coord1, coord2))
-	else:
-		await get_tree().create_timer(1).timeout
-		
+	# TODO: lock?
+	await get_tree().create_timer(1).timeout
+
+	var ev = MatchEvent.new(coord1, coord2)
+	ev.matched.connect(func(card): _spawn_card_character(card, board.get_global_position_for(coord1)))
+	data.do_event(ev)
+
 	board.close_cards()
 
 
-func _spawn_card(card: CardResource, pos: Vector2):
+func _spawn_card_character(card: CardResource, pos: Vector2):
 	var scene = card.character
 	if scene:
 		var node = scene.instantiate() as Node2D

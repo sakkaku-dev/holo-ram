@@ -1,6 +1,8 @@
 class_name MatchEvent
 extends EventAction
 
+signal matched(value)
+
 var data1: Vector2
 var data2: Vector2
 
@@ -10,8 +12,12 @@ func _init(d1: Vector2, d2: Vector2):
 
 
 func do(data: DataSnapshot):
-	data.set_card(data1, null)
-	data.set_card(data2, null)
+	var card1 = data.get_card(data1)
+	var card2 = data.get_card(data2)
+	if card1 == card2:
+		data.set_card(data1, null)
+		data.set_card(data2, null)
+		matched.emit(card1)
 
 
 func undo(data: DataSnapshot):
