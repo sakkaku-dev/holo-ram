@@ -37,14 +37,14 @@ func _ready():
 
 	anim.animation_finished.connect(_on_anim_finished)
 
-func _on_anim_finished(anim: String):
-	if anim == "action":
+func _on_anim_finished(anim_name: String):
+	if anim_name == "action":
 		action_finished.emit()
 		target_pos = null
 		get_tree().create_timer(action_cooldown_time).timeout.connect(func(): action_cooldown.emit())
 		state = MOVE
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	match state:
 		MOVE: _move()
 		MOVE_TARGET: _move_target()
@@ -76,7 +76,7 @@ func _move_target():
 func _do_move(d):
 	velocity = d * speed
 	
-	sprite.scale.x = sign(d.x)
+	sprite.scale.x = sign(d.x) # direction won't be zero, so it's fine
 	if anim.current_animation != "run":
 		anim.play("run")
 	
@@ -86,6 +86,6 @@ func _action():
 	state = ACTION
 	anim.play("action")
 	
-func do_action(data: DataEventQueue):
+func do_action(_data: DataEventQueue):
 	print("No action defined")
 	target_pos = global_position

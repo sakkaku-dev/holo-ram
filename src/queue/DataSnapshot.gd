@@ -2,6 +2,7 @@ class_name DataSnapshot
 
 var data: Array = []
 var _available_cards = []
+var _empty_pos = []
 
 func _init(d: Array):
 	data = d.duplicate(true)
@@ -11,11 +12,14 @@ func clone():
 
 func _index_available_cards():
 	_available_cards = []
+	_empty_pos = []
 	for y in range(0, data.size()):
 		for x in range(0, data[y].size()):
 			var coord = Vector2(x, y)
 			if has_data(coord):
 				_available_cards.append(coord)
+			else:
+				_empty_pos.append(coord)
 
 func get_neighbors(coord: Vector2) -> Array[Vector2]:
 	var top = Vector2(coord.x, coord.y - 1)
@@ -63,3 +67,6 @@ func random_card(exclude: Vector2 = Vector2(-1, -1)):
 			return c
 
 	return null
+
+func random_free():
+	return _empty_pos.pick_random()
