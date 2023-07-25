@@ -16,9 +16,11 @@ func select_random_card():
 		print("No more cards to swap with")
 		return
 	
+	data.do_event(SwapEvent.new(coord, swap_card), action_finished)
+
+	# TODO: disable all?
 	board.disable_cards([coord, swap_card])
 
 func swap():
 	if swap_card != null:
 		global_position = board.get_global_position_for(swap_card)
-		data.do_event(SwapEvent.new(coord, swap_card))

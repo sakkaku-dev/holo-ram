@@ -10,9 +10,13 @@ func test_queue_history():
 	var start_data = queue.get_data(true)
 
 	queue.do_event(SpinEvent.new(Vector2(1, 1)))
+	simulate(queue, 1, 1)
 	queue.do_event(SwapEvent.new(Vector2(0, 1), Vector2(0, 0)))
-	queue.undo_event()
-	queue.undo_event()
+	simulate(queue, 1, 1)
+	queue.do_event(UndoEvent.new())
+	simulate(queue, 1, 1)
+	queue.do_event(UndoEvent.new())
+	simulate(queue, 1, 1)
 
 	assert_signal_emit_count(queue, 'updated', 4)
 	assert_eq_deep(queue.get_data().data, start_data.data)
@@ -28,5 +32,7 @@ func test_emit_cleared():
 	var second = data.random_card(first)
 
 	queue.do_event(MatchEvent.new(first, second))
+	simulate(queue, 1, 1)
+
 	assert_signal_emitted(queue, 'cleared')
 	

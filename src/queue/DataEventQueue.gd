@@ -6,7 +6,8 @@ signal cleared()
 signal unlocked()
 signal locked()
 
-var event_queue: Array[EventAction] = []
+var event_queue: Array[Dictionary] = []
+var event_history: Array[EventAction] = []
 var current_data: DataSnapshot
 var size = 0
 var is_locked = false
@@ -34,26 +35,36 @@ func get_data(clone = false) -> DataSnapshot:
 		return current_data.clone()
 	return current_data
 
-func do_event(ev: EventAction):
-	ev.do(current_data)
-	event_queue.append(ev)
-	_check_after_change()
+func do_event(ev: EventAction, wait_for = null):
+	event_queue.append({"event": ev, "wait": wait_for})
 
-func undo_event():
-	var ev: EventAction = event_queue.pop_back()
+func _process(_delta):
+	var obj = event_queue.pop_front()
+	if obj:
+		is_locked = true
+
+		var ev = obj["event"]
+		var wait = obj["wait"]
+
+		if wait:
+			await wait
+
+		if ev is UndoEvent:
+			_undo_event()
+		else:
+			ev.do(current_data)
+			event_history.append(ev)
+
+		_check_after_change()
+		is_locked = false
+
+func _undo_event():
+	var ev: EventAction = event_history.pop_back()
 	if ev:
 		ev.undo(current_data)
-		_check_after_change()
 
 func _check_after_change():
 	updated.emit()
-	if locked:
-		is_locked = false
-		unlocked.emit()
 	
 	if current_data.get_card_count(1) == 0:
 		cleared.emit()
-
-func lock():
-	is_locked = true
-	locked.emit()

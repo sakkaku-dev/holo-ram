@@ -7,8 +7,8 @@ enum {
 
 var type: int
 
-func do(data: DataSnapshot):
+func do(_data: DataSnapshot):
 	pass
 
-func undo(data: DataSnapshot):
+func undo(_data: DataSnapshot):
 	pass
