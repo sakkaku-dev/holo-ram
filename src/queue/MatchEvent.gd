@@ -2,6 +2,7 @@ class_name MatchEvent
 extends EventAction
 
 signal matched(value)
+signal wrong_match()
 
 var data1: Vector2
 var data2: Vector2
@@ -20,6 +21,8 @@ func do(data: DataSnapshot):
 		data.set_card(data1, null)
 		data.set_card(data2, null)
 		matched.emit(card1)
+	else:
+		wrong_match.emit()
 
 
 func undo(data: DataSnapshot):

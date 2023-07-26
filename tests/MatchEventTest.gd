@@ -11,6 +11,7 @@ func test_match():
 	ev.do(data)
 
 	assert_signal_emitted_with_parameters(ev, 'matched', [1])
+	assert_signal_not_emitted(ev, 'wrong_match')
 	assert_eq_deep(data.data, [
 		[null, null],
 		[null, null],
@@ -27,6 +28,7 @@ func test_not_match():
 	ev.do(data)
 
 	assert_signal_not_emitted(ev, 'matched')
+	assert_signal_emitted(ev, 'wrong_match')
 	assert_eq_deep(data.data, [
 		[null, 1],
 		[null, 2],

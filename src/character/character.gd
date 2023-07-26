@@ -14,12 +14,15 @@ enum {
 @export var anim: AnimationPlayer
 @export var sprite: Node2D
 @export var action_cooldown_time := 5.0
+@export var move_to_closest = false
 
 @onready var board: Board = get_tree().get_first_node_in_group("board")
+@onready var queue: DataEventQueue = GameManager.data_queue
 
 var dir = Vector2.UP
 var target_pos = null : set = _set_target_pos
 var state = MOVE
+var coord
 
 func _set_target_pos(v):
 	target_pos = v
@@ -66,7 +69,6 @@ func _move_target():
 	if target_pos != null:
 		var dist = global_position.distance_to(target_pos)
 		if dist < 5:
-			state = ACTION
 			_action()
 		else:
 			_do_move(global_position.direction_to(target_pos))
@@ -86,7 +88,15 @@ func _action():
 	state = ACTION
 	anim.play("action")
 	board.disable_cards()
+
+	_create_event()
+
+func _create_event():
+	pass
 	
-func do_action(_data: DataEventQueue):
-	print("No action defined")
-	target_pos = global_position
+func do_action():
+	if move_to_closest:
+		coord = board.get_coord_for(global_position)
+		self.target_pos = board.get_global_position_for(coord)
+	else:
+		target_pos = global_position

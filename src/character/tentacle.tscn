@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cs337ajmjlh45"]
 
-[ext_resource type="Texture2D" uid="uid://b6cickd7r5g73" path="res://assets/Tentacle.png" id="1_ihavj"]
+[ext_resource type="Texture2D" uid="uid://bwec2tqbios36" path="res://assets/Tentacle.png" id="1_ihavj"]
 [ext_resource type="Script" path="res://src/character/tentacle.gd" id="1_wc8fe"]
-[ext_resource type="Texture2D" uid="uid://d0yvnfmfnvemy" path="res://assets/Tentacle_Card.png" id="2_3brkv"]
+[ext_resource type="Texture2D" uid="uid://diira6ajh117o" path="res://assets/Tentacle_Card.png" id="2_3brkv"]
 
 [sub_resource type="Animation" id="Animation_gfrwb"]
 length = 0.001

@@ -44,12 +44,9 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"select_random_card"
-}, {
 "args": [],
 "method": &"swap"
 }]
@@ -84,6 +81,7 @@ motion_mode = 1
 script = ExtResource("1_5ynmp")
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("CollisionShape2D/Sprite2D")
+move_to_closest = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)

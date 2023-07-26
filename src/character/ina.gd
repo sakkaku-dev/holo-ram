@@ -4,19 +4,11 @@ signal tentacles_finished
 
 @export var tentacle_scene: PackedScene
 
-var coord: Vector2
-var queue: DataEventQueue
-
 var finished = 0
 var spawned = []
 
-func do_action(data: DataEventQueue):
-	queue = data
-	coord = board.get_coord_for(global_position)
-	self.target_pos = board.get_global_position_for(coord)
-	
-	finished = 0
-	spawned = []
+func _create_event():
+	queue.do_event(SpinEvent.new(coord, queue.get_data()), tentacles_finished)
 
 func _on_finished():
 	finished += 1
@@ -24,11 +16,13 @@ func _on_finished():
 		tentacles_finished.emit()
 
 func spawn_tentacles():
+	finished = 0
+	spawned = []
+
 	var data = queue.get_data()
 	var neighbors = data.get_neighbors(coord)
 	var cards = neighbors.duplicate()
 	cards.append(coord)
-	queue.do_event(SpinEvent.new(coord, data), tentacles_finished)
 	
 	var neighbors_with_data = []
 	for n in neighbors:
@@ -54,8 +48,6 @@ func spawn_tentacles():
 		t.finished.connect(_on_finished)
 
 func _next_free_neighbor(curr: Vector2, neighbors: Array[Vector2]):
-	var rot_delta = -PI/2
-	
 	var dir = coord.direction_to(curr)
 	var matching_cross = 2 # cross can only be until 1
 	var matching = null

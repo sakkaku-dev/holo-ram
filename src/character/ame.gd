@@ -1,5 +1,4 @@
 extends Character
 
-func do_action(data: DataEventQueue):
-	self.target_pos = global_position
-	data.do_event(UndoEvent.new())
+func _create_event():
+	queue.do_event(UndoEvent.new())
