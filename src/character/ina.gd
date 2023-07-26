@@ -28,7 +28,7 @@ func spawn_tentacles():
 	var neighbors = data.get_neighbors(coord)
 	var cards = neighbors.duplicate()
 	cards.append(coord)
-	queue.do_event(SpinEvent.new(coord), tentacles_finished)
+	queue.do_event(SpinEvent.new(coord, data), tentacles_finished)
 	board.disable_cards(cards)
 	
 	var neighbors_with_data = []

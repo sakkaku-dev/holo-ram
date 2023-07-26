@@ -12,3 +12,6 @@ func do(_data: DataSnapshot):
 
 func undo(_data: DataSnapshot):
 	pass
+
+func get_affected() -> Array[Vector2]:
+	return []

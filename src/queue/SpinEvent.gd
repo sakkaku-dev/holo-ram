@@ -2,18 +2,22 @@ class_name SpinEvent
 extends EventAction
 
 var origin: Vector2
+var neighbors: Array[Vector2]
 
-func _init(v: Vector2):
+func _init(v: Vector2, data: DataSnapshot):
 	origin = v
+	neighbors = data.get_neighbors(origin)
+
+func get_affected():
+	return neighbors
 
 func do(data: DataSnapshot):
-	var neighbors = data.get_neighbors(origin)
 	_spin(data, neighbors)
 
 func undo(data: DataSnapshot):
-	var neighbors = data.get_neighbors(origin)
-	neighbors.reverse()
-	_spin(data, neighbors)
+	var reversed = neighbors.duplicate()
+	reversed.reverse()
+	_spin(data, reversed)
 
 func _spin(data: DataSnapshot, neighbors: Array[Vector2]):
 	assert(neighbors.size() >= 2)

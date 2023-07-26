@@ -10,6 +10,8 @@ func _init(d1: Vector2, d2: Vector2):
 	data1 = d1
 	data2 = d2
 
+func get_affected():
+	return [data1, data2]
 
 func do(data: DataSnapshot):
 	var card1 = data.get_card(data1)

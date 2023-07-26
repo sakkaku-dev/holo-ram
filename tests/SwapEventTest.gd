@@ -30,3 +30,11 @@ func test_undo_swap():
 		[0, 1],
 		[0, 2],
 	])
+
+func test_affected():
+	var ev = SwapEvent.new(Vector2(1, 0), Vector2(0, 1))
+
+	var actual = ev.get_affected()
+	assert_eq(actual.size(), 2)
+	assert_has(actual, Vector2(1, 0))
+	assert_has(actual, Vector2(0, 1))

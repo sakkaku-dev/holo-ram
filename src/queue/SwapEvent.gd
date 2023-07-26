@@ -8,6 +8,8 @@ func _init(t: Vector2, d: Vector2):
 	target = t
 	dest = d
 
+func get_affected():
+	return [target, dest]
 
 func do(data: DataSnapshot):
 	_swap(data, target, dest)

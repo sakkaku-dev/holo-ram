@@ -31,3 +31,11 @@ func test_not_match():
 		[null, 1],
 		[null, 2],
 	])
+
+func test_affected():
+	var ev = MatchEvent.new(Vector2(1, 0), Vector2(1, 1))
+
+	var actual = ev.get_affected()
+	assert_eq(actual.size(), 2)
+	assert_has(actual, Vector2(1, 0))
+	assert_has(actual, Vector2(1, 1))

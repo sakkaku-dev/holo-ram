@@ -9,7 +9,7 @@ func test_queue_history():
 
 	var start_data = queue.get_data(true)
 
-	queue.do_event(SpinEvent.new(Vector2(1, 1)))
+	queue.do_event(SpinEvent.new(Vector2(1, 1), queue.get_data()))
 	simulate(queue, 1, 1)
 	queue.do_event(SwapEvent.new(Vector2(0, 1), Vector2(0, 0)))
 	simulate(queue, 1, 1)
