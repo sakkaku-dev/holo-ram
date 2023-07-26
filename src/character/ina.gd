@@ -1,5 +1,7 @@
 extends Character
 
+signal tentacles_finished
+
 @export var tentacle_scene: PackedScene
 
 var coord: Vector2
@@ -19,13 +21,14 @@ func do_action(data: DataEventQueue):
 func _on_finished():
 	finished += 1
 	if finished == spawned.size():
-		queue.do_event(SpinEvent.new(coord))
+		tentacles_finished.emit()
 
 func spawn_tentacles():
 	var data = queue.get_data()
 	var neighbors = data.get_neighbors(coord)
 	var cards = neighbors.duplicate()
 	cards.append(coord)
+	queue.do_event(SpinEvent.new(coord), tentacles_finished)
 	board.disable_cards(cards)
 	
 	var neighbors_with_data = []
