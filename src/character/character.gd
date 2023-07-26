@@ -85,6 +85,7 @@ func _do_move(d):
 func _action():
 	state = ACTION
 	anim.play("action")
+	board.disable_cards()
 	
 func do_action(_data: DataEventQueue):
 	print("No action defined")
