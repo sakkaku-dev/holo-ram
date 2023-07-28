@@ -31,7 +31,6 @@ func _lose():
 	gui.lose()
 
 func _do_action():
-	# TODO: keep list of next characters
 	if ready_characters.size() > 0:
 		print("Picking random char for action")
 		var c = ready_characters.pick_random() as Character

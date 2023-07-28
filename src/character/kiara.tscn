@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://4x2cy6rprkkc"]
 
-[ext_resource type="Script" path="res://src/character/character.gd" id="1_d16c3"]
+[ext_resource type="Script" path="res://src/character/kiara.gd" id="1_165gu"]
 [ext_resource type="Texture2D" uid="uid://brqmlboeha46" path="res://assets/Kiara.png" id="2_abhr7"]
 [ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_0mhwm"]
 
@@ -35,7 +35,7 @@ _data = {
 [node name="Kiara" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
 collision_layer = 0
 motion_mode = 1
-script = ExtResource("1_d16c3")
+script = ExtResource("1_165gu")
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("CollisionShape2D/Sprite2D")
 

@@ -58,15 +58,16 @@ func get_card_count(max_count = -1):
 					break
 	return count
 
-func random_card(exclude: Vector2 = Vector2(-1, -1)):
+func random_card(exclude: Array[Vector2] = []):
 	_index_available_cards()
 	_available_cards.shuffle()
 	
 	for c in _available_cards:
-		if c != exclude:
+		if not c in exclude:
 			return c
 
 	return null
 
 func random_free():
+	_index_available_cards()
 	return _empty_pos.pick_random()

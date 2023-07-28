@@ -29,7 +29,7 @@ func test_emit_cleared():
 
 	var data = queue.get_data()
 	var first = data.random_card()
-	var second = data.random_card(first)
+	var second = data.random_card([first] as Array[Vector2])
 
 	queue.do_event(MatchEvent.new(first, second))
 	simulate(queue, 1, 1)

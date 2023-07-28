@@ -9,7 +9,7 @@ func _init(v: Vector2, data: DataSnapshot):
 	neighbors = data.get_neighbors(origin)
 
 func get_affected():
-	return neighbors
+	return neighbors.duplicate()
 
 func do(data: DataSnapshot):
 	_spin(data, neighbors)

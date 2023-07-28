@@ -3,7 +3,7 @@ extends Character
 var swap_card
 
 func _create_event():
-	swap_card = queue.get_data().random_card(coord)
+	swap_card = queue.get_data().random_card([coord])
 	if swap_card == null:
 		print("No more cards to swap with")
 		return null
