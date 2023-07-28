@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://dy2ianhrus4vh"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dy2ianhrus4vh"]
 
 [ext_resource type="PackedScene" uid="uid://bfvwn0pgury8m" path="res://src/character/ame.tscn" id="1_7lwbv"]
-[ext_resource type="Texture2D" uid="uid://cmgd1v3vesg60" path="res://assets/Profile_Ame.png" id="1_lje8v"]
+[ext_resource type="Texture2D" uid="uid://c38bip1y6kp3c" path="res://assets/Profile_Ame.png" id="1_lje8v"]
 [ext_resource type="Script" path="res://src/cards/CardResource.gd" id="2_dmprl"]
+[ext_resource type="Texture2D" uid="uid://meab3dtlm203" path="res://assets/Illust_Ame.png" id="2_hyjbq"]
 
 [resource]
 script = ExtResource("2_dmprl")
 profile = ExtResource("1_lje8v")
 border_color = Color(0.835294, 0.792157, 0.345098, 1)
 character = ExtResource("1_7lwbv")
+illust = ExtResource("2_hyjbq")
+name = "AME"
+text = "AME_TEXT"

@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://dv3cwr8w7m7qp"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dv3cwr8w7m7qp"]
 
 [ext_resource type="PackedScene" uid="uid://rbvbkyk5xxlv" path="res://src/character/gura.tscn" id="1_3jlkj"]
-[ext_resource type="Texture2D" uid="uid://uk1elv347evj" path="res://assets/Profile_Gura.png" id="1_hodbk"]
+[ext_resource type="Texture2D" uid="uid://do7hwjbfrsq0q" path="res://assets/Profile_Gura.png" id="1_hodbk"]
 [ext_resource type="Script" path="res://src/cards/CardResource.gd" id="2_ab76t"]
+[ext_resource type="Texture2D" uid="uid://c1bo1hfb3dc7l" path="res://assets/Illust_Gura.png" id="2_r13ku"]
 
 [resource]
 script = ExtResource("2_ab76t")
 profile = ExtResource("1_hodbk")
 border_color = Color(0.180392, 0.32549, 0.654902, 1)
 character = ExtResource("1_3jlkj")
+illust = ExtResource("2_r13ku")
+name = "GURA"
+text = "GURA_TEXT"
