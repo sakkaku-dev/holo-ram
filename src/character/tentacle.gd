@@ -7,19 +7,6 @@ signal finished()
 @export var body: Node2D
 
 func _ready():
-#	move(Vector2.RIGHT, Vector2.UP)
-#	await anim.animation_finished
-#	move(Vector2.RIGHT, Vector2.LEFT)
-#	await anim.animation_finished
-#	move(Vector2.RIGHT, Vector2.DOWN)
-#	await anim.animation_finished
-#
-#	move(Vector2.UP, Vector2.RIGHT)
-#	await anim.animation_finished
-#	move(Vector2.UP, Vector2.LEFT)
-#	await anim.animation_finished
-#	move(Vector2.UP, Vector2.DOWN)
-#	await anim.animation_finished
 	anim.animation_finished.connect(_anim_finished)
 
 func _anim_finished(_n):

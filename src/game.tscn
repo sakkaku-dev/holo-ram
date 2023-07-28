@@ -132,6 +132,7 @@ z_index = -1
 tile_set = SubResource("TileSet_xw7cl")
 cell_quadrant_size = 64
 format = 2
+layer_0/tile_data = PackedInt32Array(65535, 65537, 1)
 script = ExtResource("5_hyufg")
 card_scene = ExtResource("2_ed1hm")
 camera = NodePath("Camera2D")

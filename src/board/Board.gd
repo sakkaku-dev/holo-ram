@@ -62,7 +62,7 @@ func _on_card_click(card_node: Card, coord: Vector2):
 		selected.emit(current_select, coord)
 		disable_cards()
 
-func _get_card_node(coord: Vector2):
+func get_card_node(coord: Vector2):
 	if coord in card_nodes:
 		return card_nodes[coord]
 	return null

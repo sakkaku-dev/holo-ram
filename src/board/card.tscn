@@ -1,9 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://djykhlcwbn25l"]
+[gd_scene load_steps=10 format=3 uid="uid://djykhlcwbn25l"]
 
 [ext_resource type="Script" path="res://src/board/card.gd" id="1_cmurf"]
 [ext_resource type="Texture2D" uid="uid://4qdy7kisrvo4" path="res://assets/Card_Back.png" id="2_nt10v"]
 [ext_resource type="Texture2D" uid="uid://qtti1ckespkl" path="res://assets/Card_Logo.png" id="3_plra6"]
 [ext_resource type="Texture2D" uid="uid://bqh2iwvekeqbs" path="res://assets/Profile_Ina.png" id="4_oy4aw"]
+[ext_resource type="Texture2D" uid="uid://bmxs5p25tcvsa" path="res://assets/Kiara_Card.png" id="5_jbrv1"]
+
+[sub_resource type="Animation" id="Animation_3hma5"]
+resource_name = "burn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_7mjbq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_cphxk"]
+resource_name = "burn_away"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_78xkk"]
+_data = {
+"RESET": SubResource("Animation_7mjbq"),
+"burn": SubResource("Animation_3hma5"),
+"burn_away": SubResource("Animation_cphxk")
+}
 
 [node name="Card" type="Node2D" node_paths=PackedStringArray("front", "back", "clickable")]
 script = ExtResource("1_cmurf")
@@ -29,6 +84,16 @@ offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_78xkk")
+}
+
+[node name="Card" type="Sprite2D" parent="."]
+texture = ExtResource("5_jbrv1")
+hframes = 10
+vframes = 2
 
 [connection signal="mouse_entered" from="Clickable" to="." method="_on_clickable_mouse_entered"]
 [connection signal="mouse_exited" from="Clickable" to="." method="_on_clickable_mouse_exited"]

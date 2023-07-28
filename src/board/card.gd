@@ -7,6 +7,8 @@ extends Node2D
 
 @export var debug = false
 
+@onready var anim := $AnimationPlayer
+
 signal clicked()
 
 var unfocus_color = Color(.8, .8, .8, 1)
@@ -15,6 +17,7 @@ var card = null : set = _set_card
 # TODO: why not texture button?
 
 func _ready():
+	anim.play("RESET")
 	hide_card()
 	_on_clickable_mouse_exited()
 
@@ -53,6 +56,14 @@ func disable():
 
 func enable():
 	clickable.show()
+
+
+func burn():
+	anim.play("burn")
+
+
+func burn_away():
+	anim.play("burn_away")
 
 
 func _on_clickable_pressed():

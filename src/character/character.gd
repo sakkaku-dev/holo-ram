@@ -22,7 +22,7 @@ enum {
 var dir = Vector2.UP
 var target_pos = null : set = _set_target_pos
 var state = MOVE
-var coord
+var coord: Vector2
 
 func _set_target_pos(v):
 	target_pos = v
@@ -96,7 +96,7 @@ func _create_event():
 	
 func do_action():
 	if move_to_closest:
-		coord = board.get_coord_for(global_position)
+		coord = Vector2(board.get_coord_for(global_position))
 		self.target_pos = board.get_global_position_for(coord)
 	else:
 		target_pos = global_position

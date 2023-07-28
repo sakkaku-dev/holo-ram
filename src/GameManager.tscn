@@ -4,12 +4,10 @@
 [ext_resource type="Script" path="res://src/queue/DataEventQueue.gd" id="2_pstfi"]
 [ext_resource type="Script" path="res://addons/save-system/SaveManager.gd" id="3_lf46s"]
 
-[node name="GameManager" type="Node"]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("data_queue", "save_manager")]
 script = ExtResource("1")
-data_queue = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","script":ExtResource("2_pstfi"))
-
-save_manager = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","script":ExtResource("3_lf46s"))
-
+data_queue = NodePath("DataEventQueue")
+save_manager = NodePath("SaveManager")
 
 [node name="DataEventQueue" type="Node" parent="."]
 script = ExtResource("2_pstfi")
