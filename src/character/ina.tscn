@@ -25,6 +25,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_e405o"]
 resource_name = "action"
+length = 0.5
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -83,6 +84,7 @@ tentacle_scene = ExtResource("2_fgkkk")
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("CollisionShape2D/Sprite2D")
 move_to_closest = true
+finish_on_action = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)

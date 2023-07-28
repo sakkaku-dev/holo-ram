@@ -1,14 +1,55 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmxv0tahh67ba"]
+[gd_scene load_steps=9 format=3 uid="uid://cmxv0tahh67ba"]
 
 [ext_resource type="Script" path="res://src/character/calli.gd" id="1_f2cko"]
-[ext_resource type="Texture2D" uid="uid://bxmu02agyxw7o" path="res://assets/Calli.png" id="2_wgqrn"]
+[ext_resource type="Texture2D" uid="uid://bgvvbn01dfgc7" path="res://assets/Calli.png" id="2_wgqrn"]
 [ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_104kv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dby"]
 size = Vector2(8, 4)
 
+[sub_resource type="Animation" id="Animation_wi0wf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
 [sub_resource type="Animation" id="Animation_kgkyh"]
 resource_name = "action"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"summon_hands"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_no8wm"]
 length = 0.8
@@ -28,6 +69,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kuj7f"]
 _data = {
+"RESET": SubResource("Animation_wi0wf"),
 "action": SubResource("Animation_kgkyh"),
 "run": SubResource("Animation_no8wm")
 }
@@ -38,6 +80,7 @@ motion_mode = 1
 script = ExtResource("1_f2cko")
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("CollisionShape2D/Sprite2D")
+finish_on_action = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
@@ -46,8 +89,8 @@ shape = SubResource("RectangleShape2D_i8dby")
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 position = Vector2(0, -10)
 texture = ExtResource("2_wgqrn")
-hframes = 4
-frame = 1
+hframes = 5
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

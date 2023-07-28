@@ -14,6 +14,7 @@ func _on_finished():
 	finished += 1
 	if finished == spawned.size():
 		tentacles_finished.emit()
+		finish_action()
 
 func spawn_tentacles():
 	finished = 0

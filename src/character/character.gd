@@ -15,6 +15,7 @@ enum {
 @export var sprite: Node2D
 @export var action_cooldown_time := 5.0
 @export var move_to_closest = false
+@export var finish_on_action = true
 
 @onready var board: Board = get_tree().get_first_node_in_group("board")
 @onready var queue: DataEventQueue = GameManager.data_queue
@@ -41,11 +42,14 @@ func _ready():
 	anim.animation_finished.connect(_on_anim_finished)
 
 func _on_anim_finished(anim_name: String):
-	if anim_name == "action":
-		action_finished.emit()
-		target_pos = null
-		get_tree().create_timer(action_cooldown_time).timeout.connect(func(): action_cooldown.emit())
-		state = MOVE
+	if anim_name == "action" and finish_on_action:
+		finish_action()
+
+func finish_action():
+	action_finished.emit()
+	target_pos = null
+	get_tree().create_timer(action_cooldown_time).timeout.connect(func(): action_cooldown.emit())
+	state = MOVE
 
 func _physics_process(_delta):
 	match state:

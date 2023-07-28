@@ -1,6 +1,8 @@
 class_name Card
 extends Node2D
 
+signal summon_finished
+
 @export var front: Sprite2D
 @export var back: Sprite2D
 @export var clickable: TextureButton
@@ -76,3 +78,9 @@ func _on_clickable_mouse_entered():
 
 func _on_clickable_mouse_exited():
 	modulate = unfocus_color
+
+func summon():
+	anim.play("summon")
+
+func summon_finish():
+	summon_finished.emit()
