@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://rbvbkyk5xxlv"]
 
 [ext_resource type="Script" path="res://src/character/gura.gd" id="1_5ynmp"]
-[ext_resource type="Texture2D" uid="uid://b4obu5yyykkmh" path="res://assets/Gura.png" id="2_ph7g3"]
+[ext_resource type="Texture2D" uid="uid://dgb5tr1mguenv" path="res://assets/Gura.png" id="2_ph7g3"]
 [ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_0dq10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dby"]

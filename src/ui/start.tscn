@@ -48,7 +48,6 @@ grow_horizontal = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LevelSelect/MarginContainer"]
 layout_mode = 2
-alignment = 2
 
 [node name="CardView" type="Button" parent="LevelSelect/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -63,15 +62,24 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 60.0
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.694118)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = -50
 theme_override_constants/v_separation = 5
@@ -87,7 +95,6 @@ grow_horizontal = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer2"]
 layout_mode = 2
-alignment = 2
 
 [node name="CloseCardView" type="Button" parent="MarginContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
