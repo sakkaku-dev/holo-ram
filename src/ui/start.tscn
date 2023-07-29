@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://pihadjqbutpv"]
+[gd_scene load_steps=6 format=3 uid="uid://pihadjqbutpv"]
 
 [ext_resource type="Script" path="res://src/ui/LevelSelect.gd" id="1_rwe0w"]
 [ext_resource type="Script" path="res://src/ui/start.gd" id="1_x1jhj"]
 [ext_resource type="Script" path="res://src/ui/CardView.gd" id="3_egsno"]
+[ext_resource type="PackedScene" uid="uid://ptqjtyoovh87" path="res://src/ui/pack_preview.tscn" id="4_77clk"]
 [ext_resource type="Texture2D" uid="uid://bl3uipejn2w8y" path="res://assets/Illust_Ina.png" id="4_ysbjm"]
 
 [node name="Start" type="Control" node_paths=PackedStringArray("level_select", "card_view")]
@@ -24,6 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rwe0w")
+preview_scene = ExtResource("4_77clk")
 container = NodePath("CenterContainer/GridContainer")
 
 [node name="CenterContainer" type="CenterContainer" parent="LevelSelect"]
@@ -55,6 +57,7 @@ layout_mode = 2
 text = "CARDS"
 
 [node name="CardView" type="Control" parent="." node_paths=PackedStringArray("grid", "texture", "name_label", "text_label")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

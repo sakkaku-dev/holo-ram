@@ -2,6 +2,7 @@ extends Control
 
 const LEVELS_DIR = "res://src/levels"
 
+@export var preview_scene: PackedScene
 @export var container: Control
 
 func _ready():
@@ -22,8 +23,20 @@ func _ready():
 		var btn = TextureButton.new()
 		btn.texture_normal = res.cover
 		#btn.disabled = level in GameManager.unlocked_levels
+		
+		var preview = preview_scene.instantiate()
+		preview.level = res
+		preview.hide()
+		
 		btn.pressed.connect(func(): _load_level(path))
+		btn.mouse_entered.connect(func(): preview.show())
+		btn.mouse_exited.connect(func(): preview.hide())
+		
+		btn.add_child(preview)
 		container.add_child(btn)
+
+func _show_preview(res: LevelResource):
+	pass
 
 func _load_level(path: String):
 	GameManager.current_level_file = path

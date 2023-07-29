@@ -6,11 +6,18 @@ signal cleared()
 signal unlocked()
 signal locked()
 
+var board: Board
+
 var event_queue: Array[Dictionary] = []
 var event_history: Array[EventAction] = []
 var current_data: DataSnapshot
 var size = 0
-var is_locked = false
+
+func get_board():
+	if board:
+		return board
+	board = get_tree().get_first_node_in_group("board")
+	return board
 
 func init_data(cards: Array[CardResource]):
 	var total_cards = cards.size() * 2
@@ -41,9 +48,7 @@ func do_event(ev: EventAction, wait_for = null):
 func _process(_delta):
 	var obj = event_queue.pop_front()
 	if obj:
-		is_locked = true
-
-		var ev = obj["event"]
+		var ev = obj["event"] as EventAction
 		var wait = obj["wait"]
 
 		if wait:
@@ -52,11 +57,13 @@ func _process(_delta):
 		if ev is UndoEvent:
 			_undo_event()
 		else:
+			if ev.get_affected().size() > 0:
+				get_board().disable_cards()
+			
 			ev.do(current_data)
 			event_history.append(ev)
 
 		_check_after_change()
-		is_locked = false
 
 func _undo_event():
 	var ev: EventAction = event_history.pop_back()

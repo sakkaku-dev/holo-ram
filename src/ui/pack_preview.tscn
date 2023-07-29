@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://ptqjtyoovh87"]
+
+[ext_resource type="Script" path="res://src/ui/PackPreview.gd" id="1_ajcje"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oottx"]
+bg_color = Color(0, 0, 0, 0.705882)
+
+[node name="PackPreview" type="Control" node_paths=PackedStringArray("name_label", "container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 40)
+size_flags_vertical = 0
+script = ExtResource("1_ajcje")
+name_label = NodePath("MarginContainer/MarginContainer/VBoxContainer/Label")
+container = NodePath("MarginContainer/MarginContainer/VBoxContainer/HBoxContainer")
+
+[node name="MarginContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oottx")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1

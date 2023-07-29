@@ -106,6 +106,3 @@ libraries = {
 }
 script = ExtResource("3_0mhwm")
 sprite = NodePath("../CollisionShape2D/Sprite2D")
-
-[node name="ActionTimer" type="Timer" parent="."]
-wait_time = 5.0

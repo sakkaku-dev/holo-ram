@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=5 format=3 uid="uid://d3vvng6sjjt4r"]
+
+[ext_resource type="Resource" uid="uid://b46alej3nn3cq" path="res://src/cards/Korone.tres" id="1_f461q"]
+[ext_resource type="Texture2D" uid="uid://b21ewxu4qs0j5" path="res://assets/Pack_HoloGamers.png" id="1_s6dlv"]
+[ext_resource type="Script" path="res://src/levels/LevelResource.gd" id="1_t2i78"]
+[ext_resource type="Resource" uid="uid://bukbbdr4n8ejl" path="res://src/cards/Okayu.tres" id="2_cstol"]
+
+[resource]
+script = ExtResource("1_t2i78")
+cards = Array[Resource("res://src/cards/CardResource.gd")]([ExtResource("1_f461q"), ExtResource("2_cstol")])
+name = "HOLOGAMERS"
+cover = ExtResource("1_s6dlv")

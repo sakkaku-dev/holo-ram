@@ -91,8 +91,6 @@ func _do_move(d):
 func _action():
 	state = ACTION
 	anim.play("action")
-	board.disable_cards()
-
 	_create_event()
 
 func _create_event():
