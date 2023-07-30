@@ -1,6 +1,6 @@
 extends Node
 
-@export var max_cards_per_game := 30
+@export var max_cards_per_game := 50
 @export var data_queue: DataEventQueue
 @export var save_manager: SaveManager
 
