@@ -10,6 +10,7 @@ script = ExtResource("1_bedi1")
 profile = ExtResource("2_lvbxl")
 border_color = Color(0.45098, 0.25098, 0.192157, 1)
 character = ExtResource("1_0klsa")
+type = 5
 illust = ExtResource("2_2cs7k")
 name = "KORONE"
 text = "KORONE_TEXT"

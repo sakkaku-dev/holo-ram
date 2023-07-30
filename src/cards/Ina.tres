@@ -10,6 +10,7 @@ script = ExtResource("1_jaqc7")
 profile = ExtResource("1_q7n2c")
 border_color = Color(0.505882, 0.180392, 0.803922, 1)
 character = ExtResource("1_xx4j0")
+type = 3
 illust = ExtResource("2_8y01j")
 name = "INA"
 text = "INA_TEXT"

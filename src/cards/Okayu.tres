@@ -10,6 +10,7 @@ script = ExtResource("3_x0joa")
 profile = ExtResource("2_5y6k3")
 border_color = Color(0.596078, 0.341176, 0.788235, 1)
 character = ExtResource("1_llvee")
+type = 6
 illust = ExtResource("2_smvr2")
 name = "OKAYU"
 text = "OKAYU_TEXT"

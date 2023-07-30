@@ -9,4 +9,5 @@
 script = ExtResource("1_t2i78")
 cards = Array[Resource("res://src/cards/CardResource.gd")]([ExtResource("1_f461q"), ExtResource("2_cstol")])
 name = "HOLOGAMERS"
+type = 1
 cover = ExtResource("1_s6dlv")

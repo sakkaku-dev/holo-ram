@@ -22,7 +22,6 @@ func _ready():
 
 		var btn = TextureButton.new()
 		btn.texture_normal = res.cover
-		#btn.disabled = level in GameManager.unlocked_levels
 		
 		var preview = preview_scene.instantiate()
 		preview.level = res

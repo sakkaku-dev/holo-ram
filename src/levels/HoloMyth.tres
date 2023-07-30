@@ -12,4 +12,5 @@
 script = ExtResource("6_ehtp5")
 cards = Array[Resource("res://src/cards/CardResource.gd")]([ExtResource("1_cal73"), ExtResource("2_y8eu8"), ExtResource("3_uq1am"), ExtResource("4_6rcgc"), ExtResource("5_3xrnq")])
 name = "HOLOMYTH"
+type = 0
 cover = ExtResource("6_1qdjc")

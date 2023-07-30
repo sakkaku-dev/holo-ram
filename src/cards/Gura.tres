@@ -10,6 +10,7 @@ script = ExtResource("2_ab76t")
 profile = ExtResource("1_hodbk")
 border_color = Color(0.180392, 0.32549, 0.654902, 1)
 character = ExtResource("1_3jlkj")
+type = 2
 illust = ExtResource("2_r13ku")
 name = "GURA"
 text = "GURA_TEXT"

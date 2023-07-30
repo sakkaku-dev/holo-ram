@@ -10,8 +10,8 @@ const CARD_FOLDER = "res://src/cards/"
 func _ready():
 	_set_card_details(null)
 	
-	for card in GameManager.unlocked_cards:
-		var res = load(CARD_FOLDER + card) as CardResource
+	for card in GameManager.get_unlocked_cards():
+		var res = load(card) as CardResource
 		var tex = TextureRect.new()
 		tex.texture = res.profile
 		tex.stretch_mode = TextureRect.STRETCH_KEEP

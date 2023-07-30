@@ -10,6 +10,7 @@ script = ExtResource("2_gjopl")
 profile = ExtResource("1_7n1st")
 border_color = Color(0.580392, 0.196078, 0.168627, 1)
 character = ExtResource("1_0s3pg")
+type = 4
 illust = ExtResource("2_ds0am")
 name = "KIARA"
 text = "KIARA_TEXT"
