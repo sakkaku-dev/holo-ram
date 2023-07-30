@@ -4,7 +4,7 @@ extends Node
 @export var data_queue: DataEventQueue
 @export var save_manager: SaveManager
 
-var current_level_file = ""
+var _current_level_file = ""
 
 var _card_type_map = {
 	CardResource.Type.AME: "res://src/cards/Ame.tres",
@@ -28,8 +28,24 @@ var _unlocked_levels = []
 func _ready():
 	load_data()
 
+func start_game(lvl):
+	_current_level_file = lvl
+	get_tree().change_scene_to_file("res://src/game.tscn")
+
+func get_cards_for_game():
+	var level = load(_current_level_file) as LevelResource
+	var cards = level.cards.duplicate()
+	var unlocked = get_unlocked_card_paths()
+	unlocked.shuffle()
+
+	while cards.size() < max_cards_per_game and unlocked.size() > 0:
+		var res = load(unlocked.pop_front())
+		if not res in cards:
+			cards.append(res)
+	return cards
+
 func unlock_level():
-	var level = load(current_level_file) as LevelResource
+	var level = load(_current_level_file) as LevelResource
 	var level_key = LevelResource.Type.keys()[level.type]
 	if not level_key in _unlocked_levels:
 		_unlocked_levels.append(level_key)
@@ -51,11 +67,11 @@ func load_data():
 	if data:
 		_unlocked_cards = data["cards"]
 		_unlocked_levels = data["levels"]
-		
+
 func get_card_resource(type: int) -> CardResource:
 	return load(_card_type_map[type])
 
-func get_unlocked_cards():
+func get_unlocked_card_paths():
 	var result = []
 	for type in get_unlocked_card_types():
 		result.append(_card_type_map[type])

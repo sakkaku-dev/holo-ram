@@ -50,8 +50,8 @@ _data = {
 
 [node name="Fubuki" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
 script = ExtResource("1_bmyvu")
-anim = NodePath("")
-sprite = NodePath("")
+anim = NodePath("AnimationPlayer")
+sprite = NodePath("CollisionShape2D/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)

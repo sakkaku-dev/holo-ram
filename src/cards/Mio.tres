@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cda1j5xb6hr23"]
 
 [ext_resource type="PackedScene" uid="uid://p73y1ngor3lp" path="res://src/character/mio.tscn" id="1_be8de"]
-[ext_resource type="Texture2D" uid="uid://c60t1jve2ssa1" path="res://assets/Illust_Okayu.png" id="2_pqrm7"]
+[ext_resource type="Texture2D" uid="uid://la0hsskof8sd" path="res://assets/Illust_Mio.png" id="2_8lm3x"]
 [ext_resource type="Texture2D" uid="uid://c2bpokc1jbj04" path="res://assets/Profile_Mio.png" id="3_rag8a"]
 [ext_resource type="Script" path="res://src/cards/CardResource.gd" id="4_lvllh"]
 
@@ -11,6 +11,6 @@ profile = ExtResource("3_rag8a")
 border_color = Color(0.219608, 0.0784314, 0.0627451, 1)
 character = ExtResource("1_be8de")
 type = 8
-illust = ExtResource("2_pqrm7")
+illust = ExtResource("2_8lm3x")
 name = "MIO"
 text = "MIO_TEXT"

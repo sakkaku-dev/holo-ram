@@ -10,15 +10,15 @@ extends Node2D
 var ready_characters: Array[Character] = []
 
 func _ready():
-	var level = load(GameManager.current_level_file)
-	queue.init_data(level.cards)
+	var cards = GameManager.get_cards_for_game()
+	queue.init_data(cards)
 	board.init_board(queue.size)
 	board.update_card_data(queue.get_data())
 	
 	queue.cleared.connect(_win)
 	queue.updated.connect(func(): board.update_card_data(queue.get_data()))
 
-	countdown.start_timer(level.cards.size() * 60)
+	countdown.start_timer(cards.size() * 60)
 	countdown.timeout.connect(_lose)
 
 	action_timer.connect("timeout", _do_action)

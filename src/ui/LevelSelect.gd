@@ -38,5 +38,4 @@ func _show_preview(res: LevelResource):
 	pass
 
 func _load_level(path: String):
-	GameManager.current_level_file = path
-	get_tree().change_scene_to_file("res://src/game.tscn")
+	GameManager.start_game(path)
