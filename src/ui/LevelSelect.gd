@@ -28,14 +28,12 @@ func _ready():
 		preview.hide()
 		
 		btn.pressed.connect(func(): _load_level(path))
-		btn.mouse_entered.connect(func(): preview.show())
-		btn.mouse_exited.connect(func(): preview.hide())
+		#btn.mouse_entered.connect(func(): preview.show())
+		#btn.mouse_exited.connect(func(): preview.hide())
 		
 		btn.add_child(preview)
 		container.add_child(btn)
 
-func _show_preview(res: LevelResource):
-	pass
 
 func _load_level(path: String):
 	GameManager.start_game(path)

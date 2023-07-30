@@ -18,7 +18,7 @@ func _ready():
 	queue.cleared.connect(_win)
 	queue.updated.connect(func(): board.update_card_data(queue.get_data()))
 
-	countdown.start_timer(cards.size() * 60)
+	countdown.start_timer(max(60, cards.size() * 10))
 	countdown.timeout.connect(_lose)
 
 	action_timer.connect("timeout", _do_action)
