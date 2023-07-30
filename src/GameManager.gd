@@ -13,7 +13,9 @@ var _card_type_map = {
 	CardResource.Type.INA: "res://src/cards/Ina.tres",
 	CardResource.Type.KIARA: "res://src/cards/Kiara.tres",
 	CardResource.Type.KORONE: "res://src/cards/Korone.tres",
-	CardResource.Type.OKAYU: "res://src/cards/Okayu.tres"
+	CardResource.Type.OKAYU: "res://src/cards/Okayu.tres",
+	CardResource.Type.FUBUKI: "res://src/cards/Fubuki.tres",
+	CardResource.Type.MIO: "res://src/cards/Mio.tres"
 }
 var _level_type_map = {
 	LevelResource.Type.HOLOMYTH: "res://src/levels/HoloMyth.tres",
@@ -48,12 +50,17 @@ func load_data():
 		_unlocked_cards = data["cards"]
 		_unlocked_levels = data["levels"]
 		
+func get_card_resource(type: int) -> CardResource:
+	return load(_card_type_map[type])
 
 func get_unlocked_cards():
 	var result = []
 	for c in _unlocked_cards:
 		result.append(_card_type_map[CardResource.Type[c]])
 	return result
+
+func get_unlocked_card_types():
+	return _unlocked_cards
 
 func change_to_menu():
 	get_tree().change_scene_to_file("res://src/ui/start.tscn")

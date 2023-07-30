@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://bmq6l5jcrve7o"]
+
+[ext_resource type="Script" path="res://src/character/okayu.gd" id="1_bmyvu"]
+[ext_resource type="Texture2D" uid="uid://c3o6bk02s2udl" path="res://assets/Fubuki.png" id="2_bjab6"]
+[ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_7v5tk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m485r"]
+size = Vector2(8, 4)
+
+[sub_resource type="Animation" id="Animation_wi0wf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_kgkyh"]
+resource_name = "action"
+
+[sub_resource type="Animation" id="Animation_no8wm"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kuj7f"]
+_data = {
+"RESET": SubResource("Animation_wi0wf"),
+"action": SubResource("Animation_kgkyh"),
+"run": SubResource("Animation_no8wm")
+}
+
+[node name="Fubuki" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
+script = ExtResource("1_bmyvu")
+anim = NodePath("")
+sprite = NodePath("")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_m485r")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(0, -10)
+texture = ExtResource("2_bjab6")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kuj7f")
+}
+script = ExtResource("3_7v5tk")
+sprite = NodePath("../CollisionShape2D/Sprite2D")

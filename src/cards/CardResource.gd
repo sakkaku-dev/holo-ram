@@ -9,6 +9,8 @@ enum Type {
 	KIARA,
 	KORONE,
 	OKAYU,
+	FUBUKI,
+	MIO,
 }
 
 @export var profile: Texture2D
