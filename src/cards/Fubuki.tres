@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bmq6l5jcrve7o" path="res://src/character/fubuki.tscn" id="1_nfv60"]
 [ext_resource type="Texture2D" uid="uid://c60t1jve2ssa1" path="res://assets/Illust_Okayu.png" id="2_108mw"]
-[ext_resource type="Texture2D" uid="uid://d1i2ds58oj77k" path="res://assets/Profile_Okayu.png" id="3_fdgyb"]
+[ext_resource type="Texture2D" uid="uid://baq0eh3yfwkr2" path="res://assets/Profile_Fubuki.png" id="3_kvf62"]
 [ext_resource type="Script" path="res://src/cards/CardResource.gd" id="4_4dmyj"]
 
 [resource]
 script = ExtResource("4_4dmyj")
-profile = ExtResource("3_fdgyb")
+profile = ExtResource("3_kvf62")
 border_color = Color(0.886275, 0.882353, 0.921569, 1)
 character = ExtResource("1_nfv60")
 type = 7

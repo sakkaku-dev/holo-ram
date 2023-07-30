@@ -30,12 +30,14 @@ func _ready():
 
 func unlock_level():
 	var level = load(current_level_file) as LevelResource
-	if not level.type in _unlocked_levels:
-		_unlocked_levels.append(LevelResource.Type.keys()[level.type])
+	var level_key = LevelResource.Type.keys()[level.type]
+	if not level_key in _unlocked_levels:
+		_unlocked_levels.append(level_key)
 
 	for card in level.cards:
-		if not card.type in _unlocked_cards:
-			_unlocked_cards.append(CardResource.Type.keys()[card.type])
+		var card_key = CardResource.Type.keys()[card.type]
+		if not card_key in _unlocked_cards:
+			_unlocked_cards.append(card_key)
 	save_data()
 
 func save_data():
@@ -55,12 +57,15 @@ func get_card_resource(type: int) -> CardResource:
 
 func get_unlocked_cards():
 	var result = []
-	for c in _unlocked_cards:
-		result.append(_card_type_map[CardResource.Type[c]])
+	for type in get_unlocked_card_types():
+		result.append(_card_type_map[type])
 	return result
 
 func get_unlocked_card_types():
-	return _unlocked_cards
+	var types = []
+	for c in _unlocked_cards:
+		types.append(CardResource.Type[c])
+	return types
 
 func change_to_menu():
 	get_tree().change_scene_to_file("res://src/ui/start.tscn")
