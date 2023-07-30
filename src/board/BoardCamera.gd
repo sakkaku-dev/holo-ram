@@ -17,7 +17,7 @@ func _center_camera(board_size):
 
 func _zoom_camera_fit():
 	# TODO: fit for vertical screen?
-	var map_size = tilemap.get_used_rect().size.y
+	var map_size = tilemap.get_used_rect().size.y - 1
 	var global_size = map_size * tile_size.y
 	var zoom_amount = get_viewport_rect().size.y / global_size
 	zoom = Vector2(zoom_amount, zoom_amount)

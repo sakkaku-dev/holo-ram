@@ -5,6 +5,8 @@ const LEVELS_DIR = "res://src/levels"
 @export var preview_scene: PackedScene
 @export var container: Control
 
+var inactive_color = Color(0.7, 0.7, 0.7)
+
 func _ready():
 	var dir = DirAccess.open(LEVELS_DIR)
 	var levels = []
@@ -27,13 +29,21 @@ func _ready():
 		preview.level = res
 		preview.hide()
 		
+		btn.modulate = inactive_color
 		btn.pressed.connect(func(): _load_level(path))
-		#btn.mouse_entered.connect(func(): preview.show())
-		#btn.mouse_exited.connect(func(): preview.hide())
+		btn.mouse_entered.connect(func(): _on_enter(btn))
+		btn.mouse_exited.connect(func(): _on_exit(btn))
 		
 		btn.add_child(preview)
 		container.add_child(btn)
 
+func _on_enter(btn):
+	#preview.show()
+	btn.modulate = Color.WHITE
+	
+func _on_exit(btn):
+	#preview.hide()
+	btn.modulate = inactive_color
 
 func _load_level(path: String):
 	GameManager.start_game(path)
