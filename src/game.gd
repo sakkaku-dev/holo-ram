@@ -44,9 +44,7 @@ func _on_board_selected(coord1, coord2):
 	var ev = MatchEvent.new(coord1, coord2)
 	ev.matched.connect(func(card): _spawn_card_character(card, board.get_global_position_for(coord1)))
 	ev.wrong_match.connect(func(): board.close_cards())
-	
-	await get_tree().create_timer(1.0).timeout
-	queue.process_event(ev)
+	queue.do_event(ev, get_tree().create_timer(1.0).timeout)
 
 func _spawn_card_character(card: CardResource, pos: Vector2):
 	var scene = card.character

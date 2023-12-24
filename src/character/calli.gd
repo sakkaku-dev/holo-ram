@@ -7,6 +7,7 @@ signal summon_finished
 
 var cards: Array[Vector2]
 var finished = 0
+var actual_count := 0
 
 func _create_event():
 	cards = []
@@ -17,8 +18,10 @@ func _create_event():
 			break
 		
 		cards.append(card)
-	
+
+	actual_count = cards.size()
 	queue.do_event(SwapInOrderEvent.new(cards.duplicate()), summon_finished)
+	summon_hands()
 
 func _on_finish():
 	finished += 1

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cmxv0tahh67ba"]
 
 [ext_resource type="Script" path="res://src/character/calli.gd" id="1_f2cko"]
-[ext_resource type="Texture2D" uid="uid://bgvvbn01dfgc7" path="res://assets/Calli.png" id="2_wgqrn"]
+[ext_resource type="Texture2D" uid="uid://42j26i0e432v" path="res://assets/Calli.png" id="2_wgqrn"]
 [ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_104kv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dby"]
@@ -48,12 +48,10 @@ _data = {
 "run": SubResource("Animation_no8wm")
 }
 
-[node name="Calli" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
+[node name="Calli" type="CharacterBody2D"]
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_f2cko")
-anim = NodePath("AnimationPlayer")
-sprite = NodePath("CollisionShape2D/Sprite2D")
 finish_on_action = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

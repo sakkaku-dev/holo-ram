@@ -22,8 +22,6 @@ func spawn_tentacles():
 
 	var data = queue.get_data()
 	var neighbors = data.get_neighbors(coord)
-	var cards = neighbors.duplicate()
-	cards.append(coord)
 	
 	var neighbors_with_data = []
 	for n in neighbors:
@@ -68,7 +66,7 @@ func _create_tentacle():
 	var tentacle = tentacle_scene.instantiate() as Tentacle
 	add_child(tentacle)
 	move_child(tentacle, 0)
-	tentacle.global_position = target_pos
+	tentacle.global_position = global_position
 	return tentacle
 
 func _in_neighbors(v: Vector2, neighbors: Array[Vector2]):

@@ -81,12 +81,10 @@ _data = {
 "run": SubResource("Animation_no8wm")
 }
 
-[node name="Kiara" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
+[node name="Kiara" type="CharacterBody2D"]
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_165gu")
-anim = NodePath("AnimationPlayer")
-sprite = NodePath("CollisionShape2D")
 move_to_closest = true
 move_closest_available = true
 
