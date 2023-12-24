@@ -9,7 +9,9 @@ var cards: Array[Vector2]
 var finished = 0
 var actual_count := 0
 
-func _create_event():
+func do_action():
+	start_action("action")
+	
 	cards = []
 	finished = 0
 	for _i in range(count):
@@ -25,7 +27,7 @@ func _create_event():
 
 func _on_finish():
 	finished += 1
-	if finished == count:
+	if finished >= count:
 		summon_finished.emit()
 		finish_action()
 

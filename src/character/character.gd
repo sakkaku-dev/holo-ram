@@ -12,73 +12,46 @@ enum {
 
 @export var action_cooldown_time := 5.0
 
-
-@export var move_to_closest := false
-@export var move_closest_available := false
-@export var finish_on_action := true
-
-@onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var board: Board = get_tree().get_first_node_in_group("board")
+@onready var move = $Move
+@onready var move_target = $MoveTarget
+@onready var animation_player = $AnimationPlayer
 
-var queue: DataEventQueue 
-var move: Move
-var move_target: MoveTarget
-
+var queue: DataEventQueue
 var state = MOVE
-var coord: Vector2
-var closest_available: Vector2
-
-func _ready():
-	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
-	
-	move = Move.new()
-	move.body = self
-	move.sprite = get_node("CollisionShape2D")
-	move.anim = anim
-	add_child(move)
-	
-	move_target = MoveTarget.new()
-	move_target.move = move
-	add_child(move_target)
-	
-	anim.animation_finished.connect(_on_anim_finished)
-	move_target.start_action.connect(func(): _action())
-	
-func _action():
-	state = ACTION
-	_create_event()
-	anim.play("action")
-
-func _on_anim_finished(anim_name: String):
-	if anim_name == "action" and finish_on_action:
-		finish_action()
 
 func finish_action():
-	action_finished.emit()
-	move_target.enter(null)
-	get_tree().create_timer(action_cooldown_time).timeout.connect(func(): action_cooldown.emit())
 	state = MOVE
+	action_finished.emit()
+	get_tree().create_timer(action_cooldown_time).timeout.connect(func(): action_cooldown.emit())
 
 func _physics_process(delta):
 	match state:
 		MOVE: move.update(delta)
 		MOVE_TARGET: move_target.update(delta)
 
-func _create_event():
-	pass
-	
 func do_action():
-	if move_to_closest:
-		coord = Vector2(board.get_coord_for(global_position))
-		if move_closest_available:
-			closest_available = queue.get_data().get_closest_card_coord(coord, move.dir)
-			if closest_available:
-				to_target(board.get_global_position_for(closest_available))
-		else:
-			to_target(board.get_global_position_for(coord))
-	else:
-		to_target(global_position)
+	pass
 
-func to_target(pos: Vector2):
-	move_target.enter(global_position)
+func start_action(anim = null):
+	state = ACTION
+	if anim:
+		animation_player.play(anim)
+
+func to_closest_card():
+	var coord = get_current_coord()
+	var closest_available = queue.get_data().get_closest_card_coord(coord, move.dir)
+	if closest_available:
+		await _to_target(closest_available)
+
+func to_current_field():
+	var coord = get_current_coord()
+	await _to_target(coord)
+
+func _to_target(pos: Vector2):
+	move_target.enter(board.get_global_position_for(pos))
 	state = MOVE_TARGET
+	await move_target.start_action
+
+func get_current_coord():
+	return Vector2(board.get_coord_for(global_position))

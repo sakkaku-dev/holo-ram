@@ -1,34 +1,17 @@
 [gd_scene load_steps=8 format=3 uid="uid://bfvwn0pgury8m"]
 
+[ext_resource type="PackedScene" uid="uid://dxcx81de68w1" path="res://src/character/character.tscn" id="1_2tq7s"]
 [ext_resource type="Script" path="res://src/character/ame.gd" id="1_odguo"]
 [ext_resource type="Texture2D" uid="uid://b3n1chop2jr4a" path="res://assets/Ame.png" id="2_240fa"]
-[ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_uir4r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dby"]
-size = Vector2(8, 4)
-
-[sub_resource type="Animation" id="Animation_jll44"]
-resource_name = "action"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-
-[sub_resource type="Animation" id="Animation_no8wm"]
+[sub_resource type="Animation" id="Animation_iksjv"]
+resource_name = "run"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -38,32 +21,42 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kuj7f"]
-_data = {
-"action": SubResource("Animation_jll44"),
-"run": SubResource("Animation_no8wm")
+[sub_resource type="Animation" id="Animation_7usak"]
+resource_name = "action"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
 }
 
-[node name="Ame" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
-collision_layer = 0
-motion_mode = 1
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tv0gy"]
+_data = {
+"action": SubResource("Animation_7usak"),
+"run": SubResource("Animation_iksjv")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i75y"]
+size = Vector2(16, 4)
+
+[node name="Ame" instance=ExtResource("1_2tq7s")]
 script = ExtResource("1_odguo")
-anim = NodePath("AnimationPlayer")
-sprite = NodePath("CollisionShape2D/Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-shape = SubResource("RectangleShape2D_i8dby")
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_tv0gy")
+}
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(0, -10)
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_2i75y")
+
+[node name="Sprite2D" parent="CollisionShape2D" index="0"]
+position = Vector2(0, -16)
 texture = ExtResource("2_240fa")
 hframes = 5
-frame = 4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_kuj7f")
-}
-script = ExtResource("3_uir4r")
-sprite = NodePath("../CollisionShape2D/Sprite2D")

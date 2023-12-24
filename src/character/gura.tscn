@@ -1,34 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://rbvbkyk5xxlv"]
+[gd_scene load_steps=8 format=3 uid="uid://rbvbkyk5xxlv"]
 
 [ext_resource type="Script" path="res://src/character/gura.gd" id="1_5ynmp"]
-[ext_resource type="Texture2D" uid="uid://dgb5tr1mguenv" path="res://assets/Gura.png" id="2_ph7g3"]
-[ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_0dq10"]
+[ext_resource type="PackedScene" uid="uid://dxcx81de68w1" path="res://src/character/character.tscn" id="1_440t5"]
+[ext_resource type="Texture2D" uid="uid://ckeynpcsfxghh" path="res://assets/Gura.png" id="2_ph7g3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dby"]
-size = Vector2(8, 4)
-
-[sub_resource type="Animation" id="Animation_qdtu6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-
-[sub_resource type="Animation" id="Animation_itq6d"]
+[sub_resource type="Animation" id="Animation_l4u4r"]
 resource_name = "action"
 length = 1.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -40,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("../..")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -52,13 +34,14 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_no8wm"]
+[sub_resource type="Animation" id="Animation_n3ieg"]
+resource_name = "run"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -68,35 +51,29 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kuj7f"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bc546"]
 _data = {
-"RESET": SubResource("Animation_qdtu6"),
-"action": SubResource("Animation_itq6d"),
-"run": SubResource("Animation_no8wm")
+"action": SubResource("Animation_l4u4r"),
+"run": SubResource("Animation_n3ieg")
 }
 
-[node name="Gura" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite")]
-collision_layer = 0
-motion_mode = 1
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3rw1"]
+size = Vector2(16, 6)
+
+[node name="Gura" instance=ExtResource("1_440t5")]
 script = ExtResource("1_5ynmp")
-anim = NodePath("AnimationPlayer")
-sprite = NodePath("CollisionShape2D/Sprite2D")
-move_to_closest = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-shape = SubResource("RectangleShape2D_i8dby")
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_bc546")
+}
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(0, -10)
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_o3rw1")
+
+[node name="Sprite2D" parent="CollisionShape2D" index="0"]
+position = Vector2(0, -14)
 texture = ExtResource("2_ph7g3")
 hframes = 10
 vframes = 3
-frame = 5
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_kuj7f")
-}
-script = ExtResource("3_0dq10")
-sprite = NodePath("../CollisionShape2D/Sprite2D")
+frame = 4

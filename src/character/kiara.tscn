@@ -1,34 +1,19 @@
 [gd_scene load_steps=9 format=3 uid="uid://4x2cy6rprkkc"]
 
+[ext_resource type="PackedScene" uid="uid://dxcx81de68w1" path="res://src/character/character.tscn" id="1_156q1"]
 [ext_resource type="Script" path="res://src/character/kiara.gd" id="1_165gu"]
 [ext_resource type="Texture2D" uid="uid://balbfrl7hlui6" path="res://assets/Kiara_Body.png" id="2_yb5jx"]
-[ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_0mhwm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dby"]
-size = Vector2(8, 4)
-
-[sub_resource type="Animation" id="Animation_0hcxs"]
+[sub_resource type="Animation" id="Animation_c7880"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
 
-[sub_resource type="Animation" id="Animation_jsefl"]
+[sub_resource type="Animation" id="Animation_hwboy"]
 resource_name = "action"
 length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -40,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("../..")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -58,13 +43,14 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_no8wm"]
+[sub_resource type="Animation" id="Animation_dv5qm"]
+resource_name = "run"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -74,34 +60,30 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kuj7f"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rqqwy"]
 _data = {
-"RESET": SubResource("Animation_0hcxs"),
-"action": SubResource("Animation_jsefl"),
-"run": SubResource("Animation_no8wm")
+"RESET": SubResource("Animation_c7880"),
+"action": SubResource("Animation_hwboy"),
+"run": SubResource("Animation_dv5qm")
 }
 
-[node name="Kiara" type="CharacterBody2D"]
-collision_layer = 0
-motion_mode = 1
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hsfm"]
+size = Vector2(16, 4)
+
+[node name="Kiara" instance=ExtResource("1_156q1")]
 script = ExtResource("1_165gu")
-move_to_closest = true
-move_closest_available = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-shape = SubResource("RectangleShape2D_i8dby")
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_rqqwy")
+}
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(3, -12)
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_8hsfm")
+
+[node name="Sprite2D" parent="CollisionShape2D" index="0"]
+position = Vector2(0, -15)
 texture = ExtResource("2_yb5jx")
 hframes = 10
 vframes = 2
 frame = 5
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_kuj7f")
-}
-script = ExtResource("3_0mhwm")
-sprite = NodePath("../CollisionShape2D/Sprite2D")

@@ -6,8 +6,17 @@ signal tentacles_finished
 
 var finished = 0
 var spawned = []
+var neighbors_with_data = []
 
-func _create_event():
+func do_action():
+	var coord = get_current_coord()
+	neighbors_with_data = queue.get_data().get_neighbors(coord, false, true)
+	if neighbors_with_data.is_empty():
+		return
+	
+	await to_current_field()
+	start_action("action")
+	
 	queue.do_event(SpinEvent.new(coord, queue.get_data()), tentacles_finished)
 
 func _on_finished():
@@ -20,17 +29,13 @@ func spawn_tentacles():
 	finished = 0
 	spawned = []
 
+	var coord = get_current_coord()
 	var data = queue.get_data()
 	var neighbors = data.get_neighbors(coord)
 	
-	var neighbors_with_data = []
-	for n in neighbors:
-		if data.has_data(n):
-			neighbors_with_data.append(n)
-	
 	for neighbor in neighbors_with_data:
 		var dir = coord.direction_to(neighbor)
-		var target = _next_free_neighbor(neighbor, neighbors)
+		var target = _next_free_neighbor(coord, neighbor, neighbors)
 		if target == null:
 			spawned -= 1
 			print("No available next neighbor found for %s in %s" % [neighbor, neighbors])
@@ -46,7 +51,7 @@ func spawn_tentacles():
 	for t in spawned:
 		t.finished.connect(_on_finished)
 
-func _next_free_neighbor(curr: Vector2, neighbors: Array[Vector2]):
+func _next_free_neighbor(coord: Vector2, curr: Vector2, neighbors: Array[Vector2]):
 	var dir = coord.direction_to(curr)
 	var matching_cross = 2 # cross can only be until 1
 	var matching = null

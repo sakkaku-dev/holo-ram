@@ -1,4 +1,5 @@
 extends Character
 
-func _create_event():
+func do_action():
+	start_action()
 	queue.do_event(UndoEvent.new())

@@ -21,7 +21,7 @@ func _index_available_cards():
 			else:
 				_empty_pos.append(coord)
 
-func get_neighbors(coord: Vector2, include_diagonal = false) -> Array[Vector2]:
+func get_neighbors(coord: Vector2, include_diagonal = false, with_data = false) -> Array[Vector2]:
 	var top = coord + Vector2.UP
 	var left = coord + Vector2.LEFT
 	var bot = coord + Vector2.DOWN
@@ -38,7 +38,7 @@ func get_neighbors(coord: Vector2, include_diagonal = false) -> Array[Vector2]:
 		all.append_array([top_left, top_right, bot_left, bot_right]) # not used for spinning, so order not important
 	
 	for n in all: 
-		if is_inside(n):
+		if is_inside(n) and (not with_data or has_data(n)):
 			neighbors.append(n)
 	return neighbors
 
