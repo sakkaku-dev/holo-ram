@@ -94,3 +94,24 @@ func test_get_neighbors():
 		Vector2(1, 1),
 		Vector2(2, 2),
 	])
+
+	assert_contains_exact(data.get_neighbors(Vector2(1, 0), true), [
+		Vector2(0, 0),
+		Vector2(2, 0),
+		Vector2(1, 1),
+		Vector2(2, 1),
+		Vector2(0, 1),
+	])
+
+func test_get_closest_card_coord():
+	var data = DataSnapshot.new([
+		[0, 0, 0],
+		[0, null, 0],
+		[0, 0, 0]
+	])
+	
+	assert_eq(data.get_closest_card_coord(Vector2(0, 0), Vector2.DOWN), Vector2(0, 0))
+	assert_eq(data.get_closest_card_coord(Vector2(1, 0), Vector2.RIGHT), Vector2(1, 0))
+	
+	assert_eq(data.get_closest_card_coord(Vector2(1, 1), Vector2.DOWN), Vector2(1, 2))
+	assert_eq(data.get_closest_card_coord(Vector2(1, 1), Vector2.LEFT), Vector2(0, 1))

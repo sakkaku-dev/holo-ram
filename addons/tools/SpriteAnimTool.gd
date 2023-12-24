@@ -17,9 +17,7 @@ func update():
 			add_animation(b)
 
 func execute(x):
-	print("execute")
 	if not Engine.is_editor_hint():
-		print("SpriteAnimTool can only be run in the editor")
 		return
 	update()
 

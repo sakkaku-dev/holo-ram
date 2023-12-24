@@ -21,13 +21,23 @@ func _index_available_cards():
 			else:
 				_empty_pos.append(coord)
 
-func get_neighbors(coord: Vector2) -> Array[Vector2]:
-	var top = Vector2(coord.x, coord.y - 1)
-	var left = Vector2(coord.x - 1, coord.y)
-	var bot = Vector2(coord.x, coord.y + 1)
-	var right = Vector2(coord.x + 1, coord.y)
+func get_neighbors(coord: Vector2, include_diagonal = false) -> Array[Vector2]:
+	var top = coord + Vector2.UP
+	var left = coord + Vector2.LEFT
+	var bot = coord + Vector2.DOWN
+	var right = coord + Vector2.RIGHT
+	
 	var neighbors: Array[Vector2] = []
-	for n in [top, left, bot, right]: # should be counterclock wise for spinning
+	var all = [top, left, bot, right] # should be counterclock wise for spinning
+	
+	if include_diagonal:
+		var top_left = top + Vector2.LEFT
+		var top_right = top + Vector2.RIGHT
+		var bot_left = bot + Vector2.LEFT
+		var bot_right = bot + Vector2.RIGHT
+		all.append_array([top_left, top_right, bot_left, bot_right]) # not used for spinning, so order not important
+	
+	for n in all: 
 		if is_inside(n):
 			neighbors.append(n)
 	return neighbors
@@ -71,3 +81,16 @@ func random_card(exclude: Array[Vector2] = []):
 func random_free():
 	_index_available_cards()
 	return _empty_pos.pick_random()
+
+func get_closest_card_coord(coord: Vector2, dir := Vector2.ZERO):
+	if has_data(coord):
+		return coord
+	
+	var neighbors = get_neighbors(coord, true).map(func(x): return {"coord": x, "dot": coord.direction_to(x).dot(dir)})
+	neighbors.sort_custom(func(a, b): return a.dot > b.dot)
+	
+	for n in neighbors:
+		if has_data(n.coord):
+			return n.coord
+	
+	return null

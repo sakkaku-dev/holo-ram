@@ -1,16 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqpq7e7ms1yji"]
+[gd_scene load_steps=3 format=3 uid="uid://dqpq7e7ms1yji"]
 
 [ext_resource type="Script" path="res://src/GameManager.gd" id="1"]
-[ext_resource type="Script" path="res://src/queue/DataEventQueue.gd" id="2_pstfi"]
 [ext_resource type="Script" path="res://addons/save-system/SaveManager.gd" id="3_lf46s"]
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("data_queue", "save_manager")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("save_manager")]
 script = ExtResource("1")
-data_queue = NodePath("DataEventQueue")
 save_manager = NodePath("SaveManager")
-
-[node name="DataEventQueue" type="Node" parent="."]
-script = ExtResource("2_pstfi")
 
 [node name="SaveManager" type="Node" parent="."]
 script = ExtResource("3_lf46s")

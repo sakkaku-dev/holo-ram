@@ -35,4 +35,4 @@ func test_emit_cleared():
 	simulate(queue, 1, 1)
 
 	assert_signal_emitted(queue, 'cleared')
-	
+

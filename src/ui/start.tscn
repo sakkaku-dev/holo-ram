@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/ui/start.gd" id="1_x1jhj"]
 [ext_resource type="Script" path="res://src/ui/CardView.gd" id="3_egsno"]
 [ext_resource type="PackedScene" uid="uid://ptqjtyoovh87" path="res://src/ui/pack_preview.tscn" id="4_77clk"]
-[ext_resource type="Texture2D" uid="uid://bl3uipejn2w8y" path="res://assets/Illust_Ina.png" id="4_ysbjm"]
+[ext_resource type="Texture2D" uid="uid://b6byl0f6fnfk2" path="res://assets/Illust_Ina.png" id="4_ysbjm"]
 [ext_resource type="TileSet" uid="uid://ca7clh3efb1t0" path="res://src/board/tiles.tres" id="6_c6fpq"]
 
 [node name="Start" type="Control" node_paths=PackedStringArray("level_select", "card_view")]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfe7r8l5jn4qe"]
+[gd_scene load_steps=9 format=3 uid="uid://dfe7r8l5jn4qe"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_qyeys"]
 [ext_resource type="TileSet" uid="uid://ca7clh3efb1t0" path="res://src/board/tiles.tres" id="2_3888b"]
 [ext_resource type="PackedScene" uid="uid://djykhlcwbn25l" path="res://src/board/card.tscn" id="2_ed1hm"]
+[ext_resource type="Script" path="res://src/queue/DataEventQueue.gd" id="2_k5nvo"]
 [ext_resource type="Script" path="res://src/board/BoardCamera.gd" id="5_2tqqg"]
 [ext_resource type="Script" path="res://src/board/Board.gd" id="5_hyufg"]
 [ext_resource type="PackedScene" uid="uid://cfipnqrkop3v0" path="res://src/ui/gui.tscn" id="6_vpecd"]
@@ -16,10 +17,13 @@ action_timer = NodePath("ActionTimer")
 countdown = NodePath("CanvasLayer/GUI/Game/Countdown")
 gui = NodePath("CanvasLayer/GUI")
 
+[node name="DataEventQueue" type="Node" parent="."]
+script = ExtResource("2_k5nvo")
+
 [node name="Board" type="TileMap" parent="." node_paths=PackedStringArray("camera") groups=["board"]]
 z_index = -1
 tile_set = ExtResource("2_3888b")
-cell_quadrant_size = 64
+rendering_quadrant_size = 64
 format = 2
 layer_0/tile_data = PackedInt32Array(65535, 65537, 1)
 script = ExtResource("5_hyufg")
@@ -76,6 +80,7 @@ text = "RESUME_GAME"
 layout_mode = 2
 text = "BACK_MENU"
 
+[connection signal="locked" from="DataEventQueue" to="." method="_on_data_event_queue_locked"]
 [connection signal="selected" from="Board" to="." method="_on_board_selected"]
 [connection signal="pressed" from="CanvasLayer/Pause/CenterContainer/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/CenterContainer/VBoxContainer/Back" to="CanvasLayer/Pause" method="_on_back_pressed"]

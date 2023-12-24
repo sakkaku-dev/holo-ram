@@ -5,7 +5,7 @@ extends Node2D
 @export var countdown: Countdown
 @export var gui: GUI
 
-@onready var queue: DataEventQueue = GameManager.data_queue
+@onready var queue = $DataEventQueue
 
 var ready_characters: Array[Character] = []
 
@@ -44,7 +44,9 @@ func _on_board_selected(coord1, coord2):
 	var ev = MatchEvent.new(coord1, coord2)
 	ev.matched.connect(func(card): _spawn_card_character(card, board.get_global_position_for(coord1)))
 	ev.wrong_match.connect(func(): board.close_cards())
-	queue.do_event(ev, get_tree().create_timer(1).timeout)
+	
+	await get_tree().create_timer(1.0).timeout
+	queue.process_event(ev)
 
 func _spawn_card_character(card: CardResource, pos: Vector2):
 	var scene = card.character
@@ -52,8 +54,13 @@ func _spawn_card_character(card: CardResource, pos: Vector2):
 		var node = scene.instantiate() as Node2D
 		ready_characters.append(node)
 		node.global_position = pos
+		node.queue = queue
 		get_tree().current_scene.add_child(node)
 	else:
 		print("missing scene for " % card)
 	
 	board.close_cards()
+
+
+func _on_data_event_queue_locked():
+	board.disable_cards()

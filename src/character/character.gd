@@ -14,16 +14,21 @@ enum {
 @export var anim: AnimationPlayer
 @export var sprite: Node2D
 @export var action_cooldown_time := 5.0
-@export var move_to_closest = false
-@export var finish_on_action = true
+
+@export var move_to_closest := false
+@export var move_closest_available := false
+@export var finish_on_action := true
 
 @onready var board: Board = get_tree().get_first_node_in_group("board")
-@onready var queue: DataEventQueue = GameManager.data_queue
+
+var queue: DataEventQueue 
 
 var dir = Vector2.UP
 var target_pos = null : set = _set_target_pos
 var state = MOVE
+
 var coord: Vector2
+var closest_available: Vector2
 
 func _set_target_pos(v):
 	target_pos = v
@@ -36,8 +41,8 @@ func _ready():
 	
 	if not anim.has_animation("action"):
 		anim.get_animation_library("").add_animation("action", Animation.new())
-	if not anim.has_animation("move"):
-		anim.get_animation_library("").add_animation("move", Animation.new())
+	if not anim.has_animation("run"):
+		anim.get_animation_library("").add_animation("run", Animation.new())
 
 	anim.animation_finished.connect(_on_anim_finished)
 
@@ -65,7 +70,7 @@ func _move():
 			dir = dir.bounce(normal)
 
 			# prevent too straight bounces
-			if normal.dot(dir) >= 0.9:
+			if normal.dot(dir) >= 0.95:
 				var diff_sign = -1 if normal.angle() > dir.angle() else 1
 				dir = dir.rotated(diff_sign * PI/4) # TODO: range?
 
@@ -99,6 +104,11 @@ func _create_event():
 func do_action():
 	if move_to_closest:
 		coord = Vector2(board.get_coord_for(global_position))
-		self.target_pos = board.get_global_position_for(coord)
+		if move_closest_available:
+			closest_available = queue.get_data().get_closest_card_coord(coord, dir)
+			if closest_available:
+				self.target_pos = board.get_global_position_for(closest_available)
+		else:
+			self.target_pos = board.get_global_position_for(coord)
 	else:
 		target_pos = global_position

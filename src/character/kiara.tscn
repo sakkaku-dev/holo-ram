@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://4x2cy6rprkkc"]
 
 [ext_resource type="Script" path="res://src/character/kiara.gd" id="1_165gu"]
-[ext_resource type="Texture2D" uid="uid://cujwkhq4nll3n" path="res://assets/Kiara_Body.png" id="2_yb5jx"]
+[ext_resource type="Texture2D" uid="uid://balbfrl7hlui6" path="res://assets/Kiara_Body.png" id="2_yb5jx"]
 [ext_resource type="Script" path="res://src/character/InaAnim.gd" id="3_0mhwm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dby"]
@@ -88,6 +88,7 @@ script = ExtResource("1_165gu")
 anim = NodePath("AnimationPlayer")
 sprite = NodePath("CollisionShape2D")
 move_to_closest = true
+move_closest_available = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
