@@ -12,10 +12,9 @@ func do_action():
 	if card == null:
 		card = coord
 	
-	card_node = board.get_card_node(card)
+	card_node = board.get_card_node(coord)
 	queue.do_event(SwapEvent.new(coord, card), action_finished)
-	await action_finished
-	finish_action()
+	animation_player.play("action")
 
 func burn_card():
 	card_node.burn()

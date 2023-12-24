@@ -10,6 +10,7 @@ signal summon_finished
 @export var debug = false
 
 @onready var anim := $AnimationPlayer
+@onready var back_cover = $BackCover
 
 signal clicked()
 
@@ -30,6 +31,7 @@ func hide_card():
 func _set_card(c: CardResource):
 	card = c
 	visible = c != null
+	back_cover.show()
 	if card and debug:
 		front.texture = card.profile
 		back.modulate = card.border_color

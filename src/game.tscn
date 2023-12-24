@@ -36,7 +36,6 @@ tilemap = NodePath("..")
 
 [node name="ActionTimer" type="Timer" parent="."]
 wait_time = 6.0
-autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

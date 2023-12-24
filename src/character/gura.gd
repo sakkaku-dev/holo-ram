@@ -4,7 +4,7 @@ var swap_card
 
 func do_action():
 	await to_closest_card()
-	start_action()
+	start_action("action")
 	
 	var coord = get_current_coord()
 	swap_card = queue.get_data().random_card([coord])
@@ -13,8 +13,6 @@ func do_action():
 		return null
 	
 	queue.do_event(SwapEvent.new(coord, swap_card), action_finished)
-	await action_finished
-	finish_action()
 
 func swap():
 	if swap_card != null:

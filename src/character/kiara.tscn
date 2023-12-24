@@ -29,8 +29,8 @@ tracks/1/path = NodePath("../..")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.1, 1.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1.1, 1.8, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"burn_card"
@@ -40,6 +40,9 @@ tracks/1/keys = {
 }, {
 "args": [],
 "method": &"move_to_card"
+}, {
+"args": [],
+"method": &"finish_action"
 }]
 }
 
