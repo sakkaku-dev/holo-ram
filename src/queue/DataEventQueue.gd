@@ -11,7 +11,7 @@ var event_history: Array[EventAction] = []
 var current_data: DataSnapshot
 var size = 0
 
-func init_data(cards: Array[CardResource]):
+func init_data(cards: Array):
 	var total_cards = cards.size() * 2
 	var board_size = int(ceil(sqrt(total_cards)))
 	var data: Array[Array] = []

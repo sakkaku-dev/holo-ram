@@ -3,9 +3,7 @@ extends Node
 @export var max_cards_per_game := 50
 @export var save_manager: SaveManager
 
-var _current_level_file = ""
-
-var _card_type_map = {
+const _card_type_map = {
 	CardResource.Type.AME: "res://src/cards/Ame.tres",
 	CardResource.Type.CALLI: "res://src/cards/Calli.tres",
 	CardResource.Type.GURA: "res://src/cards/Gura.tres",
@@ -16,32 +14,26 @@ var _card_type_map = {
 	CardResource.Type.FUBUKI: "res://src/cards/Fubuki.tres",
 	CardResource.Type.MIO: "res://src/cards/Mio.tres"
 }
-var _level_type_map = {
+const _level_type_map = {
 	LevelResource.Type.HOLOMYTH: "res://src/levels/HoloMyth.tres",
 	LevelResource.Type.HOLOGAMERS: "res://src/levels/HoloGamers.tres"
 }
 
 var _unlocked_cards = []
 var _unlocked_levels = []
+var _current_level_file = ""
+var _cards := []
 
 func _ready():
 	load_data()
 
-func start_game(lvl):
+func start_game(lvl, cards: Array):
 	_current_level_file = lvl
+	_cards = cards
 	get_tree().change_scene_to_file("res://src/game.tscn")
 
 func get_cards_for_game():
-	var level = load(_current_level_file) as LevelResource
-	var cards = level.cards.duplicate()
-	var unlocked = get_unlocked_card_paths()
-	unlocked.shuffle()
-
-	while cards.size() < max_cards_per_game and unlocked.size() > 0:
-		var res = load(unlocked.pop_front())
-		if not res in cards:
-			cards.append(res)
-	return cards
+	return _cards.duplicate()
 
 func unlock_level():
 	var level = load(_current_level_file) as LevelResource

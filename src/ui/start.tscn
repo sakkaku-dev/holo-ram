@@ -1,13 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://pihadjqbutpv"]
+[gd_scene load_steps=14 format=3 uid="uid://pihadjqbutpv"]
 
 [ext_resource type="Script" path="res://src/ui/LevelSelect.gd" id="1_rwe0w"]
 [ext_resource type="Script" path="res://src/ui/start.gd" id="1_x1jhj"]
 [ext_resource type="Script" path="res://src/ui/CardView.gd" id="3_egsno"]
 [ext_resource type="PackedScene" uid="uid://ptqjtyoovh87" path="res://src/ui/pack_preview.tscn" id="4_77clk"]
 [ext_resource type="Texture2D" uid="uid://b6byl0f6fnfk2" path="res://assets/Illust_Ina.png" id="4_ysbjm"]
+[ext_resource type="Script" path="res://src/ui/CardSelect.gd" id="5_u1gqe"]
+[ext_resource type="PackedScene" uid="uid://8ly61l37hqye" path="res://src/ui/card_slot.tscn" id="6_7qsxn"]
 [ext_resource type="TileSet" uid="uid://ca7clh3efb1t0" path="res://src/board/tiles.tres" id="6_c6fpq"]
+[ext_resource type="PackedScene" uid="uid://di6ymg3j5rydo" path="res://src/ui/slot_card_drag.tscn" id="7_iq5ji"]
+[ext_resource type="Script" path="res://src/ui/SlotCardSelect.gd" id="7_lesf4"]
+[ext_resource type="Script" path="res://src/base-system/effect/EffectRoot.gd" id="8_uki7r"]
+[ext_resource type="Script" path="res://src/base-system/effect/Fade.gd" id="9_2q6d4"]
+[ext_resource type="Script" path="res://src/base-system/effect/Slide.gd" id="10_eq285"]
 
-[node name="Start" type="Control" node_paths=PackedStringArray("level_select", "card_view")]
+[node name="Start" type="Control" node_paths=PackedStringArray("level_select", "card_view", "card_select")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +24,7 @@ grow_vertical = 2
 script = ExtResource("1_x1jhj")
 level_select = NodePath("LevelSelect")
 card_view = NodePath("CardView")
+card_select = NodePath("CardSelect")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("6_c6fpq")
@@ -61,6 +69,104 @@ layout_mode = 2
 [node name="CardView" type="Button" parent="LevelSelect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "CARDS"
+
+[node name="CardSelect" type="Control" parent="." node_paths=PackedStringArray("container", "slot_card_select")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_u1gqe")
+container = NodePath("Control/CenterContainer/GridContainer")
+slot_card_select = NodePath("Control/SlotCardSelect/MarginContainer/ScrollContainer/VBoxContainer")
+card_slot_scene = ExtResource("6_7qsxn")
+slot_drag_scene = ExtResource("7_iq5ji")
+
+[node name="ColorRect2" type="ColorRect" parent="CardSelect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Control" type="Control" parent="CardSelect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CardSelect/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CardSelect/Control/CenterContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="SlotCardSelect" type="PanelContainer" parent="CardSelect/Control"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 150.0
+grow_vertical = 2
+script = ExtResource("7_lesf4")
+
+[node name="MarginContainer" type="MarginContainer" parent="CardSelect/Control/SlotCardSelect"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CardSelect/Control/SlotCardSelect/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardSelect/Control/SlotCardSelect/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/separation = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="CardSelect/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="Play" type="Button" parent="CardSelect/Control/MarginContainer"]
+layout_mode = 2
+text = "PLAY"
+
+[node name="EffectRoot" type="Node" parent="CardSelect"]
+script = ExtResource("8_uki7r")
+
+[node name="Fade" type="Node" parent="CardSelect/EffectRoot" node_paths=PackedStringArray("node")]
+script = ExtResource("9_2q6d4")
+node = NodePath("../../ColorRect2")
+
+[node name="Slide" type="Node" parent="CardSelect/EffectRoot" node_paths=PackedStringArray("node")]
+script = ExtResource("10_eq285")
+dir = Vector2(1, 0)
+node = NodePath("../../Control")
 
 [node name="CardView" type="Control" parent="." node_paths=PackedStringArray("grid", "texture", "name_label", "text_label")]
 visible = false
@@ -157,5 +263,8 @@ layout_mode = 2
 layout_mode = 2
 text = "CLOSE"
 
+[connection signal="select_cards" from="LevelSelect" to="." method="_on_level_select_select_cards"]
 [connection signal="pressed" from="LevelSelect/MarginContainer/HBoxContainer/CardView" to="." method="_on_card_view_pressed"]
+[connection signal="cards_selected" from="CardSelect" to="." method="_on_card_select_cards_selected"]
+[connection signal="pressed" from="CardSelect/Control/MarginContainer/Play" to="CardSelect" method="_on_play_pressed"]
 [connection signal="pressed" from="CardView/MarginContainer2/HBoxContainer/CloseCardView" to="." method="_on_close_card_view_pressed"]

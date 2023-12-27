@@ -1,49 +1,29 @@
 extends Control
 
+signal select_cards(lvl)
+
 const LEVELS_DIR = "res://src/levels"
 
 @export var preview_scene: PackedScene
 @export var container: Control
 
-var inactive_color = Color(0.7, 0.7, 0.7)
-
 func _ready():
-	var dir = DirAccess.open(LEVELS_DIR)
-	var levels = []
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if file_name.ends_with(".tres"):
-				levels.append(file_name)
-			file_name = dir.get_next()
+	var levels = Array(DirAccess.get_files_at(LEVELS_DIR)) \
+		.filter(func(x): return x.ends_with(".tres")) \
+		.map(func(x): return load("%s/%s" % [LEVELS_DIR, x]))
 
 	for level in levels:
-		var path = "%s/%s" % [LEVELS_DIR, level]
-		var res = load(path)
-
 		var btn = TextureButton.new()
-		btn.texture_normal = res.cover
+		btn.texture_normal = level.cover
 		
 		var preview = preview_scene.instantiate()
-		preview.level = res
+		preview.level = level
 		preview.hide()
 		
-		btn.modulate = inactive_color
-		btn.pressed.connect(func(): _load_level(path))
-		btn.mouse_entered.connect(func(): _on_enter(btn))
-		btn.mouse_exited.connect(func(): _on_exit(btn))
-		
+		btn.pressed.connect(func(): _load_level(level))
 		btn.add_child(preview)
+		btn.add_child(ControlHighlight.new())
 		container.add_child(btn)
 
-func _on_enter(btn):
-	#preview.show()
-	btn.modulate = Color.WHITE
-	
-func _on_exit(btn):
-	#preview.hide()
-	btn.modulate = inactive_color
-
-func _load_level(path: String):
-	GameManager.start_game(path)
+func _load_level(level: LevelResource):
+	select_cards.emit(level)
