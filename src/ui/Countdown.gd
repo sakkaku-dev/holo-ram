@@ -20,6 +20,10 @@ func start_timer(time: int):
 	timer.start()
 	_update_time()
 
+func add_time(time: int):
+	time_in_sec += time
+	_update_time()
+
 func _on_timeout():
 	time_in_sec -= 1
 	_update_time()

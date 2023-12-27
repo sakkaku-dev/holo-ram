@@ -5,9 +5,13 @@ extends Node2D
 @export var countdown: Countdown
 @export var gui: GUI
 
+@export_category("Values")
+@export var time_per_card := 2
+
 @onready var queue = $DataEventQueue
 
 var ready_characters: Array[Character] = []
+var time_for_match := 0.0
 
 func _ready():
 	var cards = GameManager.get_cards_for_game()
@@ -18,7 +22,8 @@ func _ready():
 	queue.cleared.connect(_win)
 	queue.updated.connect(func(): board.update_card_data(queue.get_data()))
 
-	countdown.start_timer(max(60, cards.size() * 10))
+	time_for_match = cards.size() * time_per_card
+	countdown.start_timer(cards.size() * time_per_card)
 	countdown.timeout.connect(_lose)
 
 	action_timer.connect("timeout", _do_action)
@@ -42,9 +47,13 @@ func _do_action():
 
 func _on_board_selected(coord1, coord2):
 	var ev = MatchEvent.new(coord1, coord2)
-	ev.matched.connect(func(card): _spawn_card_character(card, board.get_global_position_for(coord1)))
+	ev.matched.connect(func(card): _on_matched(card, coord1))
 	ev.wrong_match.connect(func(): board.close_cards())
 	queue.do_event(ev, get_tree().create_timer(1.0).timeout)
+
+func _on_matched(card: CardResource, coord: Vector2):
+	countdown.add_time(time_for_match)
+	_spawn_card_character(card, board.get_global_position_for(coord))
 
 func _spawn_card_character(card: CardResource, pos: Vector2):
 	var scene = card.character

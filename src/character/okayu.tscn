@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://xagbokcol421"]
+[gd_scene load_steps=6 format=3 uid="uid://xagbokcol421"]
 
 [ext_resource type="PackedScene" uid="uid://dxcx81de68w1" path="res://src/character/character.tscn" id="1_0p1k5"]
 [ext_resource type="Texture2D" uid="uid://drj66eijbc5xi" path="res://assets/Okayu.png" id="2_g4i3q"]
@@ -25,6 +25,9 @@ _data = {
 "run": SubResource("Animation_q1jvx")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wswep"]
+size = Vector2(18, 4)
+
 [node name="Okayu" instance=ExtResource("1_0p1k5")]
 
 [node name="AnimationPlayer" parent="." index="0"]
@@ -32,6 +35,10 @@ libraries = {
 "": SubResource("AnimationLibrary_nrgyn")
 }
 
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_wswep")
+
 [node name="Sprite2D" parent="CollisionShape2D" index="0"]
+position = Vector2(0, -15)
 texture = ExtResource("2_g4i3q")
 hframes = 4
