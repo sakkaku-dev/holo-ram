@@ -1,5 +1,7 @@
 extends Node
 
+signal unlocked_cards()
+
 @export var max_cards_per_game := 50
 @export var save_manager: SaveManager
 
@@ -20,44 +22,70 @@ const _level_type_map = {
 }
 
 var _unlocked_cards = []
-var _unlocked_levels = []
 var _current_level_file = ""
 var _cards := []
+var _unlocked_packs := {}
 
 func _ready():
 	load_data()
 
-func start_game(lvl, cards: Array):
-	_current_level_file = lvl
+func start_game(lvl: LevelResource, cards: Array):
+	_current_level_file = lvl.resource_path
 	_cards = cards
 	get_tree().change_scene_to_file("res://src/game.tscn")
 
 func get_cards_for_game():
 	return _cards.duplicate()
 
-func unlock_level():
-	var level = load(_current_level_file) as LevelResource
-	var level_key = LevelResource.Type.keys()[level.type]
-	if not level_key in _unlocked_levels:
-		_unlocked_levels.append(level_key)
+func get_unlocked_packs() -> Dictionary:
+	return _unlocked_packs
 
-	for card in level.cards:
-		var card_key = CardResource.Type.keys()[card.type]
-		if not card_key in _unlocked_cards:
-			_unlocked_cards.append(card_key)
+func unlock_packs():
+	if _unlocked_packs.is_empty():
+		return []
+
+	var unlocked = []
+	for pack_path in _unlocked_packs:
+		var count = _unlocked_packs[pack_path]
+		var pack = load(pack_path)
+		for _i in range(count):
+			unlocked.append(_unlock_single_pack(pack))
+	_unlocked_packs = {}
+
+	unlocked_cards.emit()
+	#save_data()
+	return unlocked
+
+func _unlock_single_pack(pack: LevelResource):
+	var card = pack.cards.pick_random() # TODO: improve it for the user
+	var card_key = CardResource.Type.keys()[card.type]
+	if not card_key in _unlocked_cards:
+		_unlocked_cards.append(card_key)
+	return card
+
+func unlock_level():
+	if not _current_level_file in _unlocked_packs:
+		_unlocked_packs[_current_level_file] = 0
+	
+	_unlocked_packs[_current_level_file] += 1 # TODO: get more if more difficult
 	save_data()
 
 func save_data():
 	save_manager.save_to_slot(0, {
 		"cards": _unlocked_cards,
-		"levels": _unlocked_levels,
+		"packs": _unlocked_packs,
 	})
 
 func load_data():
 	var data = save_manager.load_from_slot(0)
-	if data:
+	if not data:
+		return
+		
+	if "cards" in data:
 		_unlocked_cards = data["cards"]
-		_unlocked_levels = data["levels"]
+	
+	if "packs" in data:
+		_unlocked_packs = data["packs"]
 
 func get_card_resource(type: int) -> CardResource:
 	return load(_card_type_map[type])
@@ -73,6 +101,9 @@ func get_unlocked_card_types():
 	for c in _unlocked_cards:
 		types.append(CardResource.Type[c])
 	return types
+
+func is_card_type_unlocked(type):
+	return type in get_unlocked_card_types()
 
 func change_to_menu():
 	get_tree().change_scene_to_file("res://src/ui/start.tscn")

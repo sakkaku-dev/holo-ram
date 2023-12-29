@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://pihadjqbutpv"]
+[gd_scene load_steps=15 format=3 uid="uid://pihadjqbutpv"]
 
 [ext_resource type="Script" path="res://src/ui/LevelSelect.gd" id="1_rwe0w"]
 [ext_resource type="Script" path="res://src/ui/start.gd" id="1_x1jhj"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://src/base-system/effect/EffectRoot.gd" id="8_uki7r"]
 [ext_resource type="Script" path="res://src/base-system/effect/Fade.gd" id="9_2q6d4"]
 [ext_resource type="Script" path="res://src/base-system/effect/Slide.gd" id="10_eq285"]
+[ext_resource type="Script" path="res://src/ui/UnpackView.gd" id="14_p3a0t"]
 
 [node name="Start" type="Control" node_paths=PackedStringArray("level_select", "card_view", "card_select")]
 layout_mode = 3
@@ -32,6 +33,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(589839, 131073, 2, 524303, 131073, 1, 458767, 131073, 1, 393231, 131073, 1, 327695, 131073, 1, 262159, 131073, 1, 196623, 131073, 1, 131087, 131073, 1, 65551, 131073, 1, 15, 131073, 1, -65521, 131073, 0, 589838, 65537, 2, 524302, 65537, 1, 458766, 65537, 1, 393230, 65537, 1, 327694, 65537, 1, 262158, 65537, 1, 196622, 65537, 1, 131086, 65537, 1, 65550, 65537, 1, 14, 65537, 1, -65522, 65537, 0, 589837, 65537, 2, 524301, 65537, 1, 458765, 65537, 1, 393229, 65537, 1, 327693, 65537, 1, 262157, 65537, 1, 196621, 65537, 1, 131085, 65537, 1, 65549, 65537, 1, 13, 65537, 1, -65523, 65537, 0, 589836, 65537, 2, 524300, 65537, 1, 458764, 65537, 1, 393228, 65537, 1, 327692, 65537, 1, 262156, 65537, 1, 196620, 65537, 1, 131084, 65537, 1, 65548, 65537, 1, 12, 65537, 1, -65524, 65537, 0, 589835, 65537, 2, 524299, 65537, 1, 458763, 65537, 1, 393227, 65537, 1, 327691, 65537, 1, 262155, 65537, 1, 196619, 65537, 1, 131083, 65537, 1, 65547, 65537, 1, 11, 65537, 1, -65525, 65537, 0, 589834, 65537, 2, 524298, 65537, 1, 458762, 65537, 1, 393226, 65537, 1, 327690, 65537, 1, 262154, 65537, 1, 196618, 65537, 1, 131082, 65537, 1, 65546, 65537, 1, 10, 65537, 1, -65526, 65537, 0, 589833, 65537, 2, 524297, 65537, 1, 458761, 65537, 1, 393225, 65537, 1, 327689, 65537, 1, 262153, 65537, 1, 196617, 65537, 1, 131081, 65537, 1, 65545, 65537, 1, 9, 65537, 1, -65527, 65537, 0, 589832, 65537, 2, 524296, 65537, 1, 458760, 65537, 1, 393224, 65537, 1, 327688, 65537, 1, 262152, 65537, 1, 196616, 65537, 1, 131080, 65537, 1, 65544, 65537, 1, 8, 65537, 1, -65528, 65537, 0, 589831, 65537, 2, 524295, 65537, 1, 458759, 65537, 1, 393223, 65537, 1, 327687, 65537, 1, 262151, 65537, 1, 196615, 65537, 1, 131079, 65537, 1, 65543, 65537, 1, 7, 65537, 1, -65529, 65537, 0, 589830, 65537, 2, 524294, 65537, 1, 458758, 65537, 1, 393222, 65537, 1, 327686, 65537, 1, 262150, 65537, 1, 196614, 65537, 1, 131078, 65537, 1, 65542, 65537, 1, 6, 65537, 1, -65530, 65537, 0, 589829, 65537, 2, 524293, 65537, 1, 458757, 65537, 1, 393221, 65537, 1, 327685, 65537, 1, 262149, 65537, 1, 196613, 65537, 1, 131077, 65537, 1, 65541, 65537, 1, 5, 65537, 1, -65531, 65537, 0, 589828, 65537, 2, 524292, 65537, 1, 458756, 65537, 1, 393220, 65537, 1, 327684, 65537, 1, 262148, 65537, 1, 196612, 65537, 1, 131076, 65537, 1, 65540, 65537, 1, 4, 65537, 1, -65532, 65537, 0, 589827, 65537, 2, 524291, 65537, 1, 458755, 65537, 1, 393219, 65537, 1, 327683, 65537, 1, 262147, 65537, 1, 196611, 65537, 1, 131075, 65537, 1, 65539, 65537, 1, 3, 65537, 1, -65533, 65537, 0, 589826, 65537, 2, 524290, 65537, 1, 458754, 65537, 1, 393218, 65537, 1, 327682, 65537, 1, 262146, 65537, 1, 196610, 65537, 1, 131074, 65537, 1, 65538, 65537, 1, 2, 65537, 1, -65534, 65537, 0, 589825, 65537, 2, 524289, 65537, 1, 458753, 65537, 1, 393217, 65537, 1, 327681, 65537, 1, 262145, 65537, 1, 196609, 65537, 1, 131073, 65537, 1, 65537, 65537, 1, 1, 65537, 1, -65535, 65537, 0, 589824, 65537, 2, 524288, 65537, 1, 458752, 65537, 1, 393216, 65537, 1, 327680, 65537, 1, 262144, 65537, 1, 196608, 65537, 1, 131072, 65537, 1, 65536, 65537, 1, 0, 65537, 1, -65536, 65537, 0, 655359, 1, 2, 589823, 1, 1, 524287, 1, 1, 458751, 1, 1, 393215, 1, 1, 327679, 1, 1, 262143, 1, 1, 196607, 1, 1, 131071, 1, 1, 65535, 1, 1, -1, 1, 0)
 
 [node name="LevelSelect" type="Control" parent="." node_paths=PackedStringArray("container")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,6 +73,7 @@ layout_mode = 2
 text = "CARDS"
 
 [node name="CardSelect" type="Control" parent="." node_paths=PackedStringArray("container", "slot_card_select")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -263,8 +266,52 @@ layout_mode = 2
 layout_mode = 2
 text = "CLOSE"
 
+[node name="UnpackView" type="Control" parent="." node_paths=PackedStringArray("container")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_p3a0t")
+container = NodePath("CenterContainer/PackButton/HBoxContainer")
+
+[node name="ColorRect2" type="ColorRect" parent="UnpackView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.733333)
+
+[node name="CenterContainer" type="CenterContainer" parent="UnpackView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PackButton" type="TextureButton" parent="UnpackView/CenterContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UnpackView/CenterContainer/PackButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -30
+alignment = 1
+
 [connection signal="select_cards" from="LevelSelect" to="." method="_on_level_select_select_cards"]
 [connection signal="pressed" from="LevelSelect/MarginContainer/HBoxContainer/CardView" to="." method="_on_card_view_pressed"]
 [connection signal="cards_selected" from="CardSelect" to="." method="_on_card_select_cards_selected"]
 [connection signal="pressed" from="CardSelect/Control/MarginContainer/Play" to="CardSelect" method="_on_play_pressed"]
 [connection signal="pressed" from="CardView/MarginContainer2/HBoxContainer/CloseCardView" to="." method="_on_close_card_view_pressed"]
+[connection signal="pressed" from="UnpackView/CenterContainer/PackButton" to="UnpackView" method="_on_pack_button_pressed"]

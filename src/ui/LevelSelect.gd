@@ -8,6 +8,8 @@ const LEVELS_DIR = "res://src/levels"
 @export var container: Control
 
 func _ready():
+	show()
+	
 	var levels = Array(DirAccess.get_files_at(LEVELS_DIR)) \
 		.filter(func(x): return x.ends_with(".tres")) \
 		.map(func(x): return load("%s/%s" % [LEVELS_DIR, x]))

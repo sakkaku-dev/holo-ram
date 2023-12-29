@@ -18,6 +18,7 @@ var selected_slot = null
 var selected_card = null
 
 func _ready():
+	hide()
 	for i in range(max_cards):
 		var slot = card_slot_scene.instantiate()
 		container.add_child(slot)
@@ -82,6 +83,7 @@ func _unselect_slots():
 	selected_slot = null
 
 func open_select(level: LevelResource):
+	show()
 	_add_cards_to_slots(level.cards)
 	_create_card_selects(level.cards)
 	effect_root.do_effect()
