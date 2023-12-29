@@ -171,7 +171,7 @@ script = ExtResource("10_eq285")
 dir = Vector2(1, 0)
 node = NodePath("../../Control")
 
-[node name="CardView" type="Control" parent="." node_paths=PackedStringArray("grid", "texture", "name_label", "text_label")]
+[node name="CardView" type="Control" parent="." node_paths=PackedStringArray("grid", "card_view_tex", "name_label", "text_label")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -181,7 +181,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_egsno")
 grid = NodePath("VBoxContainer/MarginContainer/MarginContainer/GridContainer")
-texture = NodePath("VBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/TextureRect")
+card_view_tex = NodePath("VBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/TextureRect")
 name_label = NodePath("VBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/Name")
 text_label = NodePath("VBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/Desc")
 
