@@ -53,7 +53,7 @@ func unlock_packs():
 	_unlocked_packs = {}
 
 	unlocked_cards.emit()
-	#save_data()
+	save_data()
 	return unlocked
 
 func _unlock_single_pack(pack: LevelResource):

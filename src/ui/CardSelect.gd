@@ -84,10 +84,15 @@ func _unselect_slots():
 
 func open_select(level: LevelResource):
 	show()
+	_reset_slots()
 	_add_cards_to_slots(level.cards)
 	_create_card_selects(level.cards)
 	effect_root.do_effect()
 	self.level = level
+
+func _reset_slots():
+	for c in container.get_children():
+		c.reset_card()
 
 func _add_cards_to_slots(cards: Array):
 	for i in cards.size():

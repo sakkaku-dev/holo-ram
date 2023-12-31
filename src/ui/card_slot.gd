@@ -22,3 +22,8 @@ func set_card(card: CardResource, changable = true):
 	btn.texture_normal = card.profile
 	btn.disabled = not changable
 	self.card = card
+
+func reset_card():
+	card = null
+	btn.disabled = false
+	btn.texture_normal = null
