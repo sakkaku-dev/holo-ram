@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/cards/CardResource.gd" id="1_4o711"]
+
+[resource]
+script = ExtResource("1_4o711")
+id = "ina"
+name = "Ninomae Ina'nis"
+group = "hololive English -Myth-"
+hair_color = ""
+eye_color = ""

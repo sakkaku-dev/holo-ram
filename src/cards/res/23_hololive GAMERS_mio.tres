@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/cards/CardResource.gd" id="1_f8lic"]
+
+[resource]
+script = ExtResource("1_f8lic")
+id = "mio"
+name = "大神ミオ"
+group = "hololive GAMERS"
+hair_color = ""
+eye_color = ""

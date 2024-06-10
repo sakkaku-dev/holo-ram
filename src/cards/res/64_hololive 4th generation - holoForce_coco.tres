@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/cards/CardResource.gd" id="1_0g6i8"]
+
+[resource]
+script = ExtResource("1_0g6i8")
+id = "coco"
+name = "桐生ココ"
+group = "hololive 4th generation - holoForce"
+hair_color = ""
+eye_color = ""

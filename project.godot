@@ -33,9 +33,9 @@ window/size/viewport_width=960
 window/size/viewport_height=540
 window/stretch/mode="canvas_items"
 
-[editor_plugins]
+[gui]
 
-enabled=PackedStringArray("res://addons/godot-vim/plugin.cfg", "res://addons/gut/plugin.cfg")
+common/snap_controls_to_pixels=false
 
 [importer_defaults]
 

@@ -1,0 +1,96 @@
+-- hololive generation 0
+sora;ときのそら
+roboco;ロボ子さん
+miko;さくらみこ
+suisei;星街すいせい
+azki;AZKi
+
+-- hololive GAMERS
+fubuki;白上フブキ
+okayu;猫又おかゆ
+korone;戌神ころね
+mio;大神ミオ
+
+-- hololive 1st generation
+matsuri;夏色まつり
+haachama;赤井はあと
+aki;アキ・ローゼンタール
+mel;夜空メル
+
+-- hololive 2nd generation
+aqua;湊あくあ
+shion;紫咲シオン
+ayame;百鬼あやめ
+choco;癒月ちょこ
+subaru;大空スバル
+
+-- hololive 3rd generation - hololive Fantasy
+peko;兎田ぺこら
+flare;不知火フレア
+noel;白銀ノエル
+marine;宝鐘マリン
+rushia;潤羽るしあ
+
+-- hololive 4th generation - holoForce
+kanata;天音かなた
+watame;角巻わため
+towa;常闇トワ
+luna;姫森ルーナ
+coco;桐生ココ
+
+-- hololive 5th generation
+lamy;雪花ラミィ
+nene;桃鈴ねね
+botan;獅白ぼたん
+polka;尾丸ポルカ
+
+-- Secret Society holoX
+lapu;ラプラス・ダークネス
+lui;鷹嶺ルイ
+koyori;博衣こより
+chloe;沙花叉クロヱ
+iroha;風真いろは
+
+-- hololive Indonesia 1st generation
+risu;Ayunda Risu
+moona;Moona Hoshinova
+iofi;Airani Iofifteen
+
+-- hololive Indonesia 2nd generation
+ollie;Kureiji Ollie
+anya;Anya Melfissa
+reine;Pavolia Reine
+
+-- hololive Indonesia 3rd generation
+kobo;Kobo Kanaeru
+zeta;Vestia Zeta
+kaela;Kaela Kovalskia
+
+-- hololive English -Myth-
+calli;Mori Calliope
+kiara;Takanashi Kiara
+ina;Ninomae Ina'nis
+gura;Gawr Gura
+ame;Watson Amelia
+
+-- hololive English -Promise-
+irys;IRyS
+fauna;Ceres Fauna
+kronii;Ouro Kronii
+mumei;Nanashi Mumei
+baelz;Hakos Baelz
+sana;Tsukumo Sana
+
+-- hololive English -Advent-
+shiori;Shiori Novella
+bijou;Koseki Bijou
+nerissa;Nerissa Ravencroft
+fuwawa;Fuwawa Abyssgard
+mococo;Mococo Abyssgard
+
+-- ReGLOSS
+ao;火威青
+kanade;音乃瀬奏
+ririka;一条莉々華
+raden;儒烏風亭らでん
+hajime;轟はじめ

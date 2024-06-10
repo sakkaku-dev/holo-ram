@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/cards/CardResource.gd" id="1_vj382"]
+
+[resource]
+script = ExtResource("1_vj382")
+id = "bijou"
+name = "Koseki Bijou"
+group = "hololive English -Advent-"
+hair_color = ""
+eye_color = ""

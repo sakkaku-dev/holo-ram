@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/cards/CardResource.gd" id="1_ehfg3"]
+
+[resource]
+script = ExtResource("1_ehfg3")
+id = "anya"
+name = "Anya Melfissa"
+group = "hololive Indonesia 2nd generation"
+hair_color = ""
+eye_color = ""

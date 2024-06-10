@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/cards/CardResource.gd" id="1_glkm6"]
+
+[resource]
+script = ExtResource("1_glkm6")
+id = "moona"
+name = "Moona Hoshinova"
+group = "hololive Indonesia 1st generation"
+hair_color = ""
+eye_color = ""

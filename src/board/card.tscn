@@ -1,11 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://djykhlcwbn25l"]
+[gd_scene load_steps=9 format=3 uid="uid://djykhlcwbn25l"]
 
 [ext_resource type="Script" path="res://src/board/card.gd" id="1_cmurf"]
-[ext_resource type="Texture2D" uid="uid://f3kxdr51ljxg" path="res://assets/Card_Back.png" id="2_nt10v"]
-[ext_resource type="Texture2D" uid="uid://cc6vwpsp5jjiw" path="res://assets/Card_Logo.png" id="3_plra6"]
-[ext_resource type="Texture2D" uid="uid://b0lau3ob7dj66" path="res://assets/Profile_Ina.png" id="4_oy4aw"]
-[ext_resource type="Texture2D" uid="uid://c0vnw0qu6f0de" path="res://assets/Kiara_Card.png" id="5_jbrv1"]
-[ext_resource type="Texture2D" uid="uid://bcalwqjouyquf" path="res://assets/Card_Summon.png" id="6_w1qlq"]
+[ext_resource type="Texture2D" uid="uid://vnm80wstycwb" path="res://assets/Kiara_Card.png" id="5_jbrv1"]
+[ext_resource type="Texture2D" uid="uid://c5v6d0rtptwji" path="res://assets/Card_Summon.png" id="6_w1qlq"]
 
 [sub_resource type="Animation" id="Animation_7mjbq"]
 length = 0.001
@@ -187,14 +184,11 @@ debug = true
 
 [node name="Back" type="Sprite2D" parent="BackCover"]
 modulate = Color(0.505882, 0.180392, 0.803922, 1)
-texture = ExtResource("2_nt10v")
 
 [node name="Logo" type="Sprite2D" parent="BackCover"]
-texture = ExtResource("3_plra6")
 
 [node name="Front" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("4_oy4aw")
 
 [node name="Clickable" type="TextureButton" parent="."]
 offset_left = -20.0

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/cards/CardResource.gd" id="1_n0rd0"]
+
+[resource]
+script = ExtResource("1_n0rd0")
+id = "zeta"
+name = "Vestia Zeta"
+group = "hololive Indonesia 3rd generation"
+hair_color = ""
+eye_color = ""

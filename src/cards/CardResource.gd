@@ -1,23 +1,23 @@
 class_name CardResource
 extends Resource
 
-enum Type {
-	AME,
-	CALLI,
-	GURA,
-	INA,
-	KIARA,
-	KORONE,
-	OKAYU,
-	FUBUKI,
-	MIO,
-}
+const SCENE_FOLDER = "res://src/cards/scenes/"
+const PROFILE_FOLDER = "res://src/cards/profile/"
 
-@export var profile: Texture2D
-@export var border_color: Color
-@export var character: PackedScene
-@export var type: Type
+@export var id := ""
+@export var name := ""
+@export var group := ""
+@export var hair_color := ""
+@export var eye_color := ""
 
-@export var illust: Texture2D
-@export var name: String
-@export var text: String
+func get_profile() -> Texture2D:
+	var path = PROFILE_FOLDER + "%s.png" % id
+	if ResourceLoader.exists(path):
+		return load(path)
+	return null
+
+func get_scene() -> PackedScene:
+	var path = SCENE_FOLDER + "%s.tscn" % id
+	if ResourceLoader.exists(path):
+		return load(path)
+	return null

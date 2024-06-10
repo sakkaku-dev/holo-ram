@@ -13,6 +13,7 @@ const BOARD_TILE = Vector2(1, 1)
 
 var current_select = null
 var card_nodes = {}
+var tiles := []
 
 func get_coord_for(pos: Vector2):
 	return local_to_map(pos)
@@ -38,6 +39,8 @@ func init_board(size):
 	camera.update(size)
 
 func _create_board_tiles(board_size: int):
+	tiles = []
+	
 	var cells = []
 	for y in range(-1, board_size + 1):
 		for x in range(-1, board_size + 1):
@@ -50,8 +53,12 @@ func _create_board_tiles(board_size: int):
 				card.clicked.connect(func(): _on_card_click(card, coord))
 				add_child(card)
 				card_nodes[coord] = card
+				tiles.append(coord)
 	
 	set_cells_terrain_connect(LAYER, cells, TERRAIN_SET, TERRAIN)
+
+func get_valid_spawns(layer = 0):
+	return get_used_cells(layer).filter(func(c): return get_cell_source_id(layer, c) == 1 and get_cell_atlas_coords(layer, c) == Vector2i(1, 1))
 
 func _on_card_click(card_node: Card, coord: Vector2):
 	card_node.open()

@@ -6,16 +6,20 @@
 [ext_resource type="Script" path="res://src/queue/DataEventQueue.gd" id="2_k5nvo"]
 [ext_resource type="Script" path="res://src/board/BoardCamera.gd" id="5_2tqqg"]
 [ext_resource type="Script" path="res://src/board/Board.gd" id="5_hyufg"]
-[ext_resource type="PackedScene" uid="uid://cfipnqrkop3v0" path="res://src/ui/gui.tscn" id="6_vpecd"]
-[ext_resource type="Script" path="res://src/ui/Pause.gd" id="7_d0s3h"]
+[ext_resource type="PackedScene" uid="uid://tgshhpyvq8af" path="res://src/ui/char_option_button.tscn" id="7_gx2qx"]
+[ext_resource type="Theme" uid="uid://gwa8fapew7ih" path="res://theme.tres" id="8_2k8tr"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("board", "action_timer", "countdown", "gui")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("board", "action_timer", "countdown", "gui", "option_container", "root", "result_label")]
 y_sort_enabled = true
 script = ExtResource("1_qyeys")
 board = NodePath("Board")
 action_timer = NodePath("ActionTimer")
-countdown = NodePath("CanvasLayer/GUI/Game/Countdown")
-gui = NodePath("CanvasLayer/GUI")
+countdown = NodePath("")
+gui = NodePath("")
+option_container = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer")
+option_scene = ExtResource("7_gx2qx")
+root = NodePath("Root")
+result_label = NodePath("CanvasLayer/Control/Result")
 
 [node name="DataEventQueue" type="Node" parent="."]
 script = ExtResource("2_k5nvo")
@@ -25,7 +29,6 @@ z_index = -1
 tile_set = ExtResource("2_3888b")
 rendering_quadrant_size = 64
 format = 2
-layer_0/tile_data = PackedInt32Array(65535, 65537, 1)
 script = ExtResource("5_hyufg")
 card_scene = ExtResource("2_ed1hm")
 camera = NodePath("Camera2D")
@@ -34,52 +37,78 @@ camera = NodePath("Camera2D")
 script = ExtResource("5_2tqqg")
 tilemap = NodePath("..")
 
+[node name="Root" type="Node2D" parent="."]
+y_sort_enabled = true
+
 [node name="ActionTimer" type="Timer" parent="."]
 wait_time = 6.0
+autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="GUI" parent="CanvasLayer" instance=ExtResource("6_vpecd")]
-
-[node name="Pause" type="Control" parent="CanvasLayer"]
-process_mode = 3
+[node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("7_d0s3h")
+mouse_filter = 2
+theme = ExtResource("8_2k8tr")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Pause"]
+[node name="Result" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 2
+offset_left = 750.0
+offset_top = 242.0
+offset_right = 950.0
+offset_bottom = 256.0
+text = "__"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 11
+anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_left = -200.0
+grow_horizontal = 0
 grow_vertical = 2
-color = Color(0, 0, 0, 0.705882)
+theme = ExtResource("8_2k8tr")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Pause"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pause/CenterContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Who is the odd one out?"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="Resume" type="Button" parent="CanvasLayer/Pause/CenterContainer/VBoxContainer"]
+[node name="CharOptionButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" instance=ExtResource("7_gx2qx")]
 layout_mode = 2
-text = "RESUME_GAME"
 
-[node name="Back" type="Button" parent="CanvasLayer/Pause/CenterContainer/VBoxContainer"]
+[node name="CharOptionButton2" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" node_paths=PackedStringArray("label", "tex") instance=ExtResource("7_gx2qx")]
 layout_mode = 2
-text = "BACK_MENU"
+label = NodePath("../CharOptionButton/HBoxContainer/Label")
+tex = NodePath("../CharOptionButton/HBoxContainer/TextureRect")
+
+[node name="CharOptionButton3" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" node_paths=PackedStringArray("label", "tex") instance=ExtResource("7_gx2qx")]
+layout_mode = 2
+label = NodePath("../CharOptionButton/HBoxContainer/Label")
+tex = NodePath("../CharOptionButton/HBoxContainer/TextureRect")
+
+[node name="CharOptionButton4" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" node_paths=PackedStringArray("label", "tex") instance=ExtResource("7_gx2qx")]
+layout_mode = 2
+label = NodePath("../CharOptionButton/HBoxContainer/Label")
+tex = NodePath("../CharOptionButton/HBoxContainer/TextureRect")
 
 [connection signal="locked" from="DataEventQueue" to="." method="_on_data_event_queue_locked"]
 [connection signal="selected" from="Board" to="." method="_on_board_selected"]
-[connection signal="pressed" from="CanvasLayer/Pause/CenterContainer/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_resume_pressed"]
-[connection signal="pressed" from="CanvasLayer/Pause/CenterContainer/VBoxContainer/Back" to="CanvasLayer/Pause" method="_on_back_pressed"]

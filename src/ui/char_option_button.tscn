@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://tgshhpyvq8af"]
+
+[ext_resource type="Script" path="res://src/ui/char_option_button.gd" id="1_kpax7"]
+[ext_resource type="Texture2D" uid="uid://ciyh52fgqr8x1" path="res://icon.svg" id="2_ru78g"]
+
+[node name="CharOptionButton" type="TextureButton" node_paths=PackedStringArray("label", "tex")]
+custom_minimum_size = Vector2(200, 50)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("1_kpax7")
+label = NodePath("HBoxContainer/Label")
+tex = NodePath("HBoxContainer/TextureRect")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_ru78g")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "__NAME__"

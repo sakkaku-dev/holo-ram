@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="LevelResource" load_steps=8 format=3 uid="uid://d2d1vpkp66qtd"]
 
-[ext_resource type="Resource" uid="uid://dy2ianhrus4vh" path="res://src/cards/Ame.tres" id="1_cal73"]
-[ext_resource type="Resource" uid="uid://c1okh1gerjewp" path="res://src/cards/Calli.tres" id="2_y8eu8"]
-[ext_resource type="Resource" uid="uid://dv3cwr8w7m7qp" path="res://src/cards/Gura.tres" id="3_uq1am"]
-[ext_resource type="Resource" uid="uid://bahy3vbd5wik1" path="res://src/cards/Ina.tres" id="4_6rcgc"]
-[ext_resource type="Resource" uid="uid://blo4ichun627l" path="res://src/cards/Kiara.tres" id="5_3xrnq"]
-[ext_resource type="Texture2D" uid="uid://cd0jfoqkxh6n0" path="res://assets/Pack_HoloMyth.png" id="6_1qdjc"]
+[ext_resource type="Resource" uid="uid://dy2ianhrus4vh" path="res://src/cards/res/Ame.tres" id="1_cal73"]
+[ext_resource type="Resource" uid="uid://c1okh1gerjewp" path="res://src/cards/res/Calli.tres" id="2_y8eu8"]
+[ext_resource type="Resource" uid="uid://dv3cwr8w7m7qp" path="res://src/cards/res/Gura.tres" id="3_uq1am"]
+[ext_resource type="Resource" uid="uid://bahy3vbd5wik1" path="res://src/cards/res/Ina.tres" id="4_6rcgc"]
+[ext_resource type="Resource" uid="uid://blo4ichun627l" path="res://src/cards/res/Kiara.tres" id="5_3xrnq"]
+[ext_resource type="Texture2D" uid="uid://c8turlff7shas" path="res://assets/Pack_HoloMyth.png" id="6_1qdjc"]
 [ext_resource type="Script" path="res://src/levels/LevelResource.gd" id="6_ehtp5"]
 
 [resource]

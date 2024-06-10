@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/ui/start.gd" id="1_x1jhj"]
 [ext_resource type="Script" path="res://src/ui/CardView.gd" id="3_egsno"]
 [ext_resource type="PackedScene" uid="uid://ptqjtyoovh87" path="res://src/ui/pack_preview.tscn" id="4_77clk"]
-[ext_resource type="Texture2D" uid="uid://b6byl0f6fnfk2" path="res://assets/Illust_Ina.png" id="4_ysbjm"]
+[ext_resource type="Texture2D" uid="uid://dl8jyfwkdfnxs" path="res://assets/Illust_Ina.png" id="4_ysbjm"]
 [ext_resource type="Script" path="res://src/ui/CardSelect.gd" id="5_u1gqe"]
 [ext_resource type="PackedScene" uid="uid://8ly61l37hqye" path="res://src/ui/card_slot.tscn" id="6_7qsxn"]
 [ext_resource type="TileSet" uid="uid://ca7clh3efb1t0" path="res://src/board/tiles.tres" id="6_c6fpq"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/cards/CardResource.gd" id="1_yi1ca"]
+
+[resource]
+script = ExtResource("1_yi1ca")
+id = "kronii"
+name = "Ouro Kronii"
+group = "hololive English -Promise-"
+hair_color = ""
+eye_color = ""
