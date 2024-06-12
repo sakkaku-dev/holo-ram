@@ -7,5 +7,4 @@ script = ExtResource("1_dwhro")
 id = "hajime"
 name = "轟はじめ"
 group = "ReGLOSS"
-hair_color = ""
-eye_color = ""
+hair_color = "white"

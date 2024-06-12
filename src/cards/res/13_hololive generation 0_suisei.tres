@@ -7,5 +7,4 @@ script = ExtResource("1_cnueg")
 id = "suisei"
 name = "星街すいせい"
 group = "hololive generation 0"
-hair_color = ""
-eye_color = ""
+hair_color = "blue"

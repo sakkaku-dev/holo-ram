@@ -7,5 +7,4 @@ script = ExtResource("1_vwgww")
 id = "luna"
 name = "姫森ルーナ"
 group = "hololive 4th generation - holoForce"
-hair_color = ""
-eye_color = ""
+hair_color = "pink"

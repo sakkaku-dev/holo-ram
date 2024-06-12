@@ -7,5 +7,4 @@ script = ExtResource("1_adno4")
 id = "azki"
 name = "AZKi"
 group = "hololive generation 0"
-hair_color = ""
-eye_color = ""
+hair_color = "brown"

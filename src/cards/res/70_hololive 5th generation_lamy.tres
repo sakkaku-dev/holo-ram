@@ -7,5 +7,4 @@ script = ExtResource("1_pr18y")
 id = "lamy"
 name = "雪花ラミィ"
 group = "hololive 5th generation"
-hair_color = ""
-eye_color = ""
+hair_color = "blue"

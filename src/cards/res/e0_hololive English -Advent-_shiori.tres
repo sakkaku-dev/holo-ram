@@ -7,5 +7,4 @@ script = ExtResource("1_5w8xt")
 id = "shiori"
 name = "Shiori Novella"
 group = "hololive English -Advent-"
-hair_color = ""
-eye_color = ""
+hair_color = "black"

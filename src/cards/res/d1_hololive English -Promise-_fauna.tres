@@ -7,5 +7,4 @@ script = ExtResource("1_3iuv5")
 id = "fauna"
 name = "Ceres Fauna"
 group = "hololive English -Promise-"
-hair_color = ""
-eye_color = ""
+hair_color = "green"

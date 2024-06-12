@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3 uid="uid://enyx1lb4oeag"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://src/cards/CardResource.gd" id="1_ipfpg"]
 
@@ -7,5 +7,4 @@ script = ExtResource("1_ipfpg")
 id = "sora"
 name = "ときのそら"
 group = "hololive generation 0"
-hair_color = ""
-eye_color = ""
+hair_color = "brown"

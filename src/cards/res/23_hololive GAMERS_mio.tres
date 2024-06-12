@@ -7,5 +7,4 @@ script = ExtResource("1_f8lic")
 id = "mio"
 name = "大神ミオ"
 group = "hololive GAMERS"
-hair_color = ""
-eye_color = ""
+hair_color = "black"

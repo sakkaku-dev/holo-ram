@@ -7,5 +7,4 @@ script = ExtResource("1_wknxl")
 id = "ame"
 name = "Watson Amelia"
 group = "hololive English -Myth-"
-hair_color = ""
-eye_color = ""
+hair_color = "yellow"

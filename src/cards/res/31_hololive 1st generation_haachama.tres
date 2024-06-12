@@ -7,5 +7,4 @@ script = ExtResource("1_qmp0e")
 id = "haachama"
 name = "赤井はあと"
 group = "hololive 1st generation"
-hair_color = ""
-eye_color = ""
+hair_color = "blonde"

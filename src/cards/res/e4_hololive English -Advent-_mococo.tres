@@ -7,5 +7,4 @@ script = ExtResource("1_5fmkw")
 id = "mococo"
 name = "Mococo Abyssgard"
 group = "hololive English -Advent-"
-hair_color = ""
-eye_color = ""
+hair_color = "blonde"

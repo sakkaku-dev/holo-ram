@@ -2,6 +2,20 @@ extends Node
 
 const CHAR_FOLDER = "res://src/cards/res/"
 
+const GROUPS = [
+	# Sizes
+	["lapu", "gura", "rushia", "ina", "shion", "matsuri"],
+	["noel", "coco", "kronii", "choco", "flare", "lamy"],
+	["lapu", "gura", "bijou", "luna", "rushia", "shion"],
+	["coco", "kaela", "reine", "ao", "nerissa"],
+
+	# Sub Groups
+	["subaru", "kiara", "reine", "mumei", "lui"],
+	["ina", "gura", "marine", "chloe", "aqua"],
+
+	["fubuki", "mio", "korone", "okayu", "peko", "risu", "polka", "koyori", "botan"]
+]
+
 signal unlocked_cards()
 
 @export var max_cards_per_game := 50
@@ -23,25 +37,48 @@ signal unlocked_cards()
 	#LevelResource.Type.HOLOGAMERS: "res://src/levels/HoloGamers.tres"
 #}
 
-var _unlocked_cards = []
-var _current_level_file = ""
-var _cards := []
-var _unlocked_packs := {}
+#var _unlocked_cards = []
+#var _current_level_file = ""
+var _cards := {}
+var _groups := []
+#var _unlocked_packs := {}
 
 func _ready():
+	var groups = {}
+	var hair_colors = {}
+	
 	for file in DirAccess.get_files_at(CHAR_FOLDER):
 		var char = load(CHAR_FOLDER + file)
-		if char.get_scene() != null:
-			_cards.append(char)
+		#if char.get_scene() != null:
+		_cards[char.id] = char
+		
+		if not char.group in groups:
+			groups[char.group] = []
+		groups[char.group].append(char.id)
+		
+		if not char.hair_color in hair_colors:
+			hair_colors[char.hair_color] = []
+		hair_colors[char.hair_color].append(char.id)
 	
+	_groups.append_array(GROUPS)
+	for g in groups.values():
+		_groups.append(g)
+	for h in hair_colors.values():
+		_groups.append(h)
 
 #func start_game(lvl: LevelResource, cards: Array):
 	#_current_level_file = lvl.resource_path
 	#_cards = cards
 	#get_tree().change_scene_to_file("res://src/game.tscn")
 
-func get_cards_for_game():
-	return _cards.duplicate()
+func get_card_groups() -> Array:
+	return _groups.duplicate()
+
+func get_card(id: String):
+	return _cards[id]
+
+#func get_cards_for_game():
+	#return _cards.values()
 	#return _card_type_map.values().map(func(p): return load(p))
 
 #func get_unlocked_packs() -> Dictionary:

@@ -7,5 +7,4 @@ script = ExtResource("1_yi1ca")
 id = "kronii"
 name = "Ouro Kronii"
 group = "hololive English -Promise-"
-hair_color = ""
-eye_color = ""
+hair_color = "blue"

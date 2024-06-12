@@ -32,6 +32,7 @@ func _ready():
 		char.id = parts[0]
 		char.name = parts[1]
 		char.group = group
+		char.hair_color = parts[2]
 		names[char.id] = char
 
 		group_idx[group] = g_idx

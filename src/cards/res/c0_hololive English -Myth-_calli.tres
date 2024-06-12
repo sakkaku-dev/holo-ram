@@ -7,5 +7,4 @@ script = ExtResource("1_4pgsu")
 id = "calli"
 name = "Mori Calliope"
 group = "hololive English -Myth-"
-hair_color = ""
-eye_color = ""
+hair_color = "pink"

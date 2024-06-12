@@ -7,5 +7,4 @@ script = ExtResource("1_gwx3j")
 id = "towa"
 name = "常闇トワ"
 group = "hololive 4th generation - holoForce"
-hair_color = ""
-eye_color = ""
+hair_color = "purple"

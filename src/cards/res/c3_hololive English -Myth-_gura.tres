@@ -7,5 +7,4 @@ script = ExtResource("1_xmlal")
 id = "gura"
 name = "Gawr Gura"
 group = "hololive English -Myth-"
-hair_color = ""
-eye_color = ""
+hair_color = "white"

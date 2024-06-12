@@ -1,96 +1,96 @@
 -- hololive generation 0
-sora;ときのそら
-roboco;ロボ子さん
-miko;さくらみこ
-suisei;星街すいせい
-azki;AZKi
+sora;ときのそら;brown
+roboco;ロボ子さん;brown
+miko;さくらみこ;pink
+suisei;星街すいせい;blue
+azki;AZKi;brown
 
 -- hololive GAMERS
-fubuki;白上フブキ
-okayu;猫又おかゆ
-korone;戌神ころね
-mio;大神ミオ
+fubuki;白上フブキ;white
+okayu;猫又おかゆ;purple
+korone;戌神ころね;brown
+mio;大神ミオ;black
 
 -- hololive 1st generation
-matsuri;夏色まつり
-haachama;赤井はあと
-aki;アキ・ローゼンタール
-mel;夜空メル
+matsuri;夏色まつり;brown
+haachama;赤井はあと;blonde
+aki;アキ・ローゼンタール;blonde
+mel;夜空メル;yellow
 
 -- hololive 2nd generation
-aqua;湊あくあ
-shion;紫咲シオン
-ayame;百鬼あやめ
-choco;癒月ちょこ
-subaru;大空スバル
+aqua;湊あくあ;pink
+shion;紫咲シオン;purple
+ayame;百鬼あやめ;white
+choco;癒月ちょこ;blonde
+subaru;大空スバル;black
 
 -- hololive 3rd generation - hololive Fantasy
-peko;兎田ぺこら
-flare;不知火フレア
-noel;白銀ノエル
-marine;宝鐘マリン
-rushia;潤羽るしあ
+peko;兎田ぺこら;blue
+flare;不知火フレア;orange
+noel;白銀ノエル;gray
+marine;宝鐘マリン;red
+rushia;潤羽るしあ;green
 
 -- hololive 4th generation - holoForce
-kanata;天音かなた
-watame;角巻わため
-towa;常闇トワ
-luna;姫森ルーナ
-coco;桐生ココ
+kanata;天音かなた;gray
+watame;角巻わため;yellow
+towa;常闇トワ;purple
+luna;姫森ルーナ;pink
+coco;桐生ココ;orange
 
 -- hololive 5th generation
-lamy;雪花ラミィ
-nene;桃鈴ねね
-botan;獅白ぼたん
-polka;尾丸ポルカ
+lamy;雪花ラミィ;blue
+nene;桃鈴ねね;blonde
+botan;獅白ぼたん;white
+polka;尾丸ポルカ;blonde
 
 -- Secret Society holoX
-lapu;ラプラス・ダークネス
-lui;鷹嶺ルイ
-koyori;博衣こより
-chloe;沙花叉クロヱ
-iroha;風真いろは
+lapu;ラプラス・ダークネス;purple
+lui;鷹嶺ルイ;orange
+koyori;博衣こより;pink
+chloe;沙花叉クロヱ;gray
+iroha;風真いろは;blonde
 
 -- hololive Indonesia 1st generation
-risu;Ayunda Risu
-moona;Moona Hoshinova
-iofi;Airani Iofifteen
+risu;Ayunda Risu;brown
+moona;Moona Hoshinova;purple
+iofi;Airani Iofifteen;blonde
 
 -- hololive Indonesia 2nd generation
-ollie;Kureiji Ollie
-anya;Anya Melfissa
-reine;Pavolia Reine
+ollie;Kureiji Ollie;red
+anya;Anya Melfissa;brown
+reine;Pavolia Reine;white
 
 -- hololive Indonesia 3rd generation
-kobo;Kobo Kanaeru
-zeta;Vestia Zeta
-kaela;Kaela Kovalskia
+kobo;Kobo Kanaeru;blue
+zeta;Vestia Zeta;gray
+kaela;Kaela Kovalskia;yellow
 
 -- hololive English -Myth-
-calli;Mori Calliope
-kiara;Takanashi Kiara
-ina;Ninomae Ina'nis
-gura;Gawr Gura
-ame;Watson Amelia
+calli;Mori Calliope;pink
+kiara;Takanashi Kiara;orange
+ina;Ninomae Ina'nis;purple
+gura;Gawr Gura;white
+ame;Watson Amelia;yellow
 
 -- hololive English -Promise-
-irys;IRyS
-fauna;Ceres Fauna
-kronii;Ouro Kronii
-mumei;Nanashi Mumei
-baelz;Hakos Baelz
-sana;Tsukumo Sana
+irys;IRyS;red
+fauna;Ceres Fauna;green
+kronii;Ouro Kronii;blue
+mumei;Nanashi Mumei;brown
+baelz;Hakos Baelz;red
+sana;Tsukumo Sana;white
 
 -- hololive English -Advent-
-shiori;Shiori Novella
-bijou;Koseki Bijou
-nerissa;Nerissa Ravencroft
-fuwawa;Fuwawa Abyssgard
-mococo;Mococo Abyssgard
+shiori;Shiori Novella;black
+bijou;Koseki Bijou;gray
+nerissa;Nerissa Ravencroft;black
+fuwawa;Fuwawa Abyssgard;blonde
+mococo;Mococo Abyssgard;blonde
 
 -- ReGLOSS
-ao;火威青
-kanade;音乃瀬奏
-ririka;一条莉々華
-raden;儒烏風亭らでん
-hajime;轟はじめ
+ao;火威青;black
+kanade;音乃瀬奏;yellow
+ririka;一条莉々華;orange
+raden;儒烏風亭らでん;black
+hajime;轟はじめ;white

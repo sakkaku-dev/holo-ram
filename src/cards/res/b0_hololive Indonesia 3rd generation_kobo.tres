@@ -7,5 +7,4 @@ script = ExtResource("1_ojs0c")
 id = "kobo"
 name = "Kobo Kanaeru"
 group = "hololive Indonesia 3rd generation"
-hair_color = ""
-eye_color = ""
+hair_color = "blue"

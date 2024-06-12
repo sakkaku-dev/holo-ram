@@ -7,5 +7,4 @@ script = ExtResource("1_oh2yk")
 id = "subaru"
 name = "大空スバル"
 group = "hololive 2nd generation"
-hair_color = ""
-eye_color = ""
+hair_color = "black"

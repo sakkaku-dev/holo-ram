@@ -7,5 +7,4 @@ script = ExtResource("1_mbsmf")
 id = "ao"
 name = "火威青"
 group = "ReGLOSS"
-hair_color = ""
-eye_color = ""
+hair_color = "black"

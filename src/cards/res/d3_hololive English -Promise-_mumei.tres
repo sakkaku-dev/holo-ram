@@ -7,5 +7,4 @@ script = ExtResource("1_a4wmy")
 id = "mumei"
 name = "Nanashi Mumei"
 group = "hololive English -Promise-"
-hair_color = ""
-eye_color = ""
+hair_color = "brown"

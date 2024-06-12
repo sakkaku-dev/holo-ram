@@ -7,5 +7,4 @@ script = ExtResource("1_x8j44")
 id = "korone"
 name = "戌神ころね"
 group = "hololive GAMERS"
-hair_color = ""
-eye_color = ""
+hair_color = "brown"

@@ -7,5 +7,4 @@ script = ExtResource("1_f6ari")
 id = "baelz"
 name = "Hakos Baelz"
 group = "hololive English -Promise-"
-hair_color = ""
-eye_color = ""
+hair_color = "red"

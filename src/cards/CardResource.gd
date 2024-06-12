@@ -8,7 +8,6 @@ const PROFILE_FOLDER = "res://src/cards/profile/"
 @export var name := ""
 @export var group := ""
 @export var hair_color := ""
-@export var eye_color := ""
 
 func get_profile() -> Texture2D:
 	var path = PROFILE_FOLDER + "%s.png" % id

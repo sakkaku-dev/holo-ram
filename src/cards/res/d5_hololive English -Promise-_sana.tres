@@ -7,5 +7,4 @@ script = ExtResource("1_1lfnd")
 id = "sana"
 name = "Tsukumo Sana"
 group = "hololive English -Promise-"
-hair_color = ""
-eye_color = ""
+hair_color = "white"

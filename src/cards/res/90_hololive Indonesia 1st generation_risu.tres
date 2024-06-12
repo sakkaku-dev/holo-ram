@@ -7,5 +7,4 @@ script = ExtResource("1_p3abv")
 id = "risu"
 name = "Ayunda Risu"
 group = "hololive Indonesia 1st generation"
-hair_color = ""
-eye_color = ""
+hair_color = "brown"

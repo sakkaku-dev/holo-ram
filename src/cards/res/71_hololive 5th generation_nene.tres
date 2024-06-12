@@ -7,5 +7,4 @@ script = ExtResource("1_omucd")
 id = "nene"
 name = "桃鈴ねね"
 group = "hololive 5th generation"
-hair_color = ""
-eye_color = ""
+hair_color = "blonde"

@@ -7,5 +7,4 @@ script = ExtResource("1_kh3ug")
 id = "fubuki"
 name = "白上フブキ"
 group = "hololive GAMERS"
-hair_color = ""
-eye_color = ""
+hair_color = "white"

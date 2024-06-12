@@ -7,5 +7,4 @@ script = ExtResource("1_opokr")
 id = "kanata"
 name = "天音かなた"
 group = "hololive 4th generation - holoForce"
-hair_color = ""
-eye_color = ""
+hair_color = "gray"

@@ -7,5 +7,4 @@ script = ExtResource("1_glkm6")
 id = "moona"
 name = "Moona Hoshinova"
 group = "hololive Indonesia 1st generation"
-hair_color = ""
-eye_color = ""
+hair_color = "purple"

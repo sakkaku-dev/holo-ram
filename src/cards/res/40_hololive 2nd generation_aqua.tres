@@ -7,5 +7,4 @@ script = ExtResource("1_8k1wf")
 id = "aqua"
 name = "湊あくあ"
 group = "hololive 2nd generation"
-hair_color = ""
-eye_color = ""
+hair_color = "pink"

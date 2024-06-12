@@ -7,5 +7,4 @@ script = ExtResource("1_vj382")
 id = "bijou"
 name = "Koseki Bijou"
 group = "hololive English -Advent-"
-hair_color = ""
-eye_color = ""
+hair_color = "gray"

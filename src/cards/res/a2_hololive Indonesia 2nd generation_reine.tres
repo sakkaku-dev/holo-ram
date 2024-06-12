@@ -7,5 +7,4 @@ script = ExtResource("1_7un1e")
 id = "reine"
 name = "Pavolia Reine"
 group = "hololive Indonesia 2nd generation"
-hair_color = ""
-eye_color = ""
+hair_color = "white"

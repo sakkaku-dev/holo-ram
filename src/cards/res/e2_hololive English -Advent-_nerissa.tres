@@ -7,5 +7,4 @@ script = ExtResource("1_gdx1y")
 id = "nerissa"
 name = "Nerissa Ravencroft"
 group = "hololive English -Advent-"
-hair_color = ""
-eye_color = ""
+hair_color = "black"

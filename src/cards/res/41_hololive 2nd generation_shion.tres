@@ -7,5 +7,4 @@ script = ExtResource("1_ffu38")
 id = "shion"
 name = "紫咲シオン"
 group = "hololive 2nd generation"
-hair_color = ""
-eye_color = ""
+hair_color = "purple"

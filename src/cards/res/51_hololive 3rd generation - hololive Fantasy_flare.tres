@@ -7,5 +7,4 @@ script = ExtResource("1_i1dyj")
 id = "flare"
 name = "不知火フレア"
 group = "hololive 3rd generation - hololive Fantasy"
-hair_color = ""
-eye_color = ""
+hair_color = "orange"

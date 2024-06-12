@@ -7,5 +7,4 @@ script = ExtResource("1_4pdt7")
 id = "kanade"
 name = "音乃瀬奏"
 group = "ReGLOSS"
-hair_color = ""
-eye_color = ""
+hair_color = "yellow"

@@ -7,5 +7,4 @@ script = ExtResource("1_5ssy5")
 id = "rushia"
 name = "潤羽るしあ"
 group = "hololive 3rd generation - hololive Fantasy"
-hair_color = ""
-eye_color = ""
+hair_color = "green"

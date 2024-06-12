@@ -7,5 +7,4 @@ script = ExtResource("1_563iw")
 id = "fuwawa"
 name = "Fuwawa Abyssgard"
 group = "hololive English -Advent-"
-hair_color = ""
-eye_color = ""
+hair_color = "blonde"

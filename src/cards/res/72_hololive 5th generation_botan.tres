@@ -7,5 +7,4 @@ script = ExtResource("1_n5gan")
 id = "botan"
 name = "獅白ぼたん"
 group = "hololive 5th generation"
-hair_color = ""
-eye_color = ""
+hair_color = "white"

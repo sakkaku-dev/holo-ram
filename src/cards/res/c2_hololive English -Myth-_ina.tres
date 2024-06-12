@@ -7,5 +7,4 @@ script = ExtResource("1_4o711")
 id = "ina"
 name = "Ninomae Ina'nis"
 group = "hololive English -Myth-"
-hair_color = ""
-eye_color = ""
+hair_color = "purple"
