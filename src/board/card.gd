@@ -36,6 +36,9 @@ func _set_card(c: CardResource):
 		front.texture = card.profile
 		back.modulate = card.border_color
 
+func is_open():
+	return front.visible
+
 func open():
 	if card:
 		front.texture = card.profile

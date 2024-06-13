@@ -21,10 +21,11 @@ func _ready():
 	
 	queue.cleared.connect(_win)
 	queue.updated.connect(func(): board.update_card_data(queue.get_data()))
+	queue.locked.connect(func(coords): board.disable_cards(coords))
 
-	time_for_match = cards.size() * time_per_card
-	countdown.start_timer(cards.size() * time_per_card)
-	countdown.timeout.connect(_lose)
+	#time_for_match = cards.size() * time_per_card
+	#countdown.start_timer(cards.size() * time_per_card)
+	#countdown.timeout.connect(_lose)
 
 	action_timer.connect("timeout", _do_action)
 
@@ -36,11 +37,15 @@ func _lose():
 	gui.lose()
 
 func _do_action():
+	print(ready_characters)
 	if ready_characters.size() > 0:
 		print("Picking random char for action")
 		var c = ready_characters.pick_random() as Character
 		ready_characters.erase(c)
-		c.action_cooldown.connect(func(): ready_characters.append(c))
+		c.action_cooldown.connect(func():
+			if not c in ready_characters:
+				ready_characters.append(c)
+		)
 		c.do_action()
 	else:
 		print("Action ready but no characters")

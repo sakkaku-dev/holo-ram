@@ -3,8 +3,8 @@ extends Node
 
 signal updated()
 signal cleared()
-signal unlocked()
-signal locked()
+signal unlocked(coords)
+signal locked(coords)
 
 var event_queue: Array[Dictionary] = []
 var event_history: Array[EventAction] = []
@@ -41,9 +41,6 @@ func process_event(ev: EventAction):
 	if ev is UndoEvent:
 		_undo_event()
 	else:
-		if ev.get_affected().size() > 0:
-			locked.emit()
-		
 		ev.do(current_data)
 		event_history.append(ev)
 	
@@ -54,7 +51,11 @@ func _process(_delta):
 	if obj:
 		var ev = obj["event"] as EventAction
 		var wait = obj["wait"]
-
+		
+		var coords = ev.get_affected()
+		if coords.size() > 0:
+			locked.emit(coords)
+		
 		if wait:
 			await wait
 

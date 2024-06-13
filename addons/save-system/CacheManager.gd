@@ -3,7 +3,7 @@ extends Node
 
 const PERSIST_GROUP = "Persist"
 
-var logger = Logger.new("CacheManager")
+var logger = Tracer
 var scene_data = {}
 
 
@@ -12,7 +12,7 @@ func save_scene():
 	var data = _get_persist_group_data()
 	if not data.empty():
 		scene_data[scene.name] = data
-		logger.debug("Save scene data: %s" % scene_data)
+		Tracer.debug("Save scene data: %s" % scene_data)
 
 
 func load_scene():
@@ -20,7 +20,7 @@ func load_scene():
 	if scene_data.has(scene.name):
 		var data = scene_data[scene.name]
 		_load_perist_group_data(data)
-		logger.debug("Load scene data: %s" % data)
+		Tracer.debug("Load scene data: %s" % data)
 
 
 func _get_persist_group_data(global: bool = false):

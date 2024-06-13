@@ -17,7 +17,6 @@ func get_affected():
 func do(data: DataSnapshot):
 	var card1 = data.get_card(data1)
 	var card2 = data.get_card(data2)
-	print(card1 == card2)
 	if card1 == card2:
 		data.set_card(data1, null)
 		data.set_card(data2, null)

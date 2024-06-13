@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dxcx81de68w1" path="res://src/character/character.tscn" id="1_156q1"]
 [ext_resource type="Script" path="res://src/character/kiara.gd" id="1_165gu"]
-[ext_resource type="Texture2D" uid="uid://balbfrl7hlui6" path="res://assets/Kiara_Body.png" id="2_yb5jx"]
+[ext_resource type="Texture2D" uid="uid://cvbmayadvq51x" path="res://assets/Kiara_Body.png" id="2_yb5jx"]
 
 [sub_resource type="Animation" id="Animation_c7880"]
 length = 0.001

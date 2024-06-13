@@ -27,6 +27,7 @@ var _cards := []
 var _unlocked_packs := {}
 
 func _ready():
+	TraceSubscriber.new().init()
 	load_data()
 
 func start_game(lvl: LevelResource, cards: Array):
@@ -35,7 +36,7 @@ func start_game(lvl: LevelResource, cards: Array):
 	get_tree().change_scene_to_file("res://src/game.tscn")
 
 func get_cards_for_game():
-	return _cards.duplicate()
+	return _card_type_map.values().map(func(p): return load(p))
 
 func get_unlocked_packs() -> Dictionary:
 	return _unlocked_packs

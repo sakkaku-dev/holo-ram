@@ -73,11 +73,14 @@ func update_card_data(data: DataSnapshot):
 		card_node.card = data.get_card(coord)
 		card_node.enable()
 
-func disable_cards(filter_coords: Array[Vector2] = []):
+func disable_cards(filter_coords: Array = []):
 	var coords = card_nodes.keys() if filter_coords.is_empty() else filter_coords
 	for coord in coords:
 		card_nodes[coord].disable()
-		
+		#if card_nodes[coord].is_open:
+			#card_nodes[coord].close()
+			#current_select = null
+	
 func enable_cards():
 	for coord in card_nodes:
 		card_nodes[coord].enable()

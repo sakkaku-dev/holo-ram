@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="LevelResource" load_steps=7 format=3 uid="uid://d3vvng6sjjt4r"]
 
-[ext_resource type="Resource" uid="uid://b46alej3nn3cq" path="res://src/cards/Korone.tres" id="1_f461q"]
-[ext_resource type="Texture2D" uid="uid://b2fj5hq632qij" path="res://assets/Pack_HoloGamers.png" id="1_s6dlv"]
+[ext_resource type="Resource" path="res://src/cards/Korone.tres" id="1_f461q"]
+[ext_resource type="Texture2D" uid="uid://bespw1sjf45fs" path="res://assets/Pack_HoloGamers.png" id="1_s6dlv"]
 [ext_resource type="Script" path="res://src/levels/LevelResource.gd" id="1_t2i78"]
-[ext_resource type="Resource" uid="uid://bukbbdr4n8ejl" path="res://src/cards/Okayu.tres" id="2_cstol"]
-[ext_resource type="Resource" uid="uid://bxsjiq4g7ymdm" path="res://src/cards/Fubuki.tres" id="3_1bdmj"]
-[ext_resource type="Resource" uid="uid://cda1j5xb6hr23" path="res://src/cards/Mio.tres" id="4_dbie3"]
+[ext_resource type="Resource" path="res://src/cards/Okayu.tres" id="2_cstol"]
+[ext_resource type="Resource" path="res://src/cards/Fubuki.tres" id="3_1bdmj"]
+[ext_resource type="Resource" path="res://src/cards/Mio.tres" id="4_dbie3"]
 
 [resource]
 script = ExtResource("1_t2i78")

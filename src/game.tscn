@@ -35,14 +35,17 @@ script = ExtResource("5_2tqqg")
 tilemap = NodePath("..")
 
 [node name="ActionTimer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 5.0
+autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("6_vpecd")]
+visible = false
 
 [node name="Pause" type="Control" parent="CanvasLayer"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
