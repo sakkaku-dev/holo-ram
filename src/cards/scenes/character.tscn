@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxcx81de68w1"]
+[gd_scene load_steps=7 format=3 uid="uid://dxcx81de68w1"]
 
 [ext_resource type="Script" path="res://src/cards/scenes/character.gd" id="1_nv4eb"]
+[ext_resource type="PackedScene" uid="uid://dstuakx4mk33h" path="res://src/point.tscn" id="2_54moe"]
 [ext_resource type="Script" path="res://src/MouseEvent.gd" id="2_wk64d"]
 [ext_resource type="Script" path="res://src/cards/scenes/Move.gd" id="2_wt56o"]
 [ext_resource type="Script" path="res://src/cards/scenes/MoveTarget.gd" id="3_h0cbu"]
@@ -9,9 +10,11 @@
 size = Vector2(10, 4)
 
 [node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("mouse_event")]
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_nv4eb")
 mouse_event = NodePath("CollisionShape2D/Sprite2D/MouseEvent")
+point_scene = ExtResource("2_54moe")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../CollisionShape2D/Sprite2D")
@@ -58,3 +61,7 @@ anim = NodePath("../AnimationPlayer")
 [node name="MoveTarget" type="Node" parent="." node_paths=PackedStringArray("move")]
 script = ExtResource("3_h0cbu")
 move = NodePath("../Move")
+
+[node name="PointSpawn" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

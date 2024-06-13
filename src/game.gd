@@ -15,6 +15,7 @@ extends Node2D
 @export var max_char_count := 20
 
 @onready var camera_2d = $Camera2D
+@onready var single_room = $SingleRoom
 
 var valid_spawns := []
 
@@ -27,86 +28,102 @@ var valid_card: CardResource
 var selected_grid := 0:
 	set(v):
 		if v < 0:
-			selected_grid = grid.size() - 1
+			#selected_grid = grid.size() - 1
+			return
 		elif v >= grid.size():
-			selected_grid = 0
-		else:
-			selected_grid = v
+			#selected_grid = 0
+			return
+		
+		selected_grid = v
 		
 		camera_2d.global_position = root.get_child(selected_grid).global_position
 
 var grid := []
 
 func _ready():
-	result_label.text = ""
+	pass
 	
-	var groups = GameManager.get_card_groups()
-	var selected_groups = _pick_random_unique(groups, screen_count)
-	
-	for group in selected_groups:
-		var char_count = min(group.size(), randi_range(min_char, max_char))
-		var selected_chars = _pick_random_unique(group, char_count)
-		var total_char_count = randi_range(min_char_count, max_char_count)
-		var equal_count = floor(total_char_count / float(selected_chars.size()))
-		
-		var char_counts = {}
-		for c in selected_chars:
-			char_counts[c] = equal_count
-		
-		# Random offset count
-		for i in range(3):
-			var change = _pick_random_unique(char_counts.keys(), 2)
-			var d = randi_range(-1, 1)
-			char_counts[change[0]] += d
-			char_counts[change[1]] -= d
-		
-		# Fill remaining until total_char_count
-		var current_total = char_counts.values().reduce(func(a, b): return a + b, 0)
-		var delta = total_char_count - current_total
-		var current_idx = 0
-		while delta != 0:
-			var c = selected_chars[current_idx]
-			var change_by = sign(delta)
-			char_counts[c] += change_by
-			delta -= change_by
-			
-			current_idx += 1
-			if current_idx >= selected_chars.size():
-				current_idx = 0
-		
-		# To array
-		#var result = [];
-		#for c in char_counts:
-			#for i in char_counts[c]:
-				#result.append(c)
-		
-		grid.append(char_counts)
-	
-	print(grid)
-	var current_row = 0
-	for i in grid.size():
-		var g = grid[i]
-		var room = room_scene.instantiate()
-		root.add_child(room)
+	#result_label.text = ""
+	#
+	#var groups = GameManager.get_card_groups()
+	#var selected_groups = _pick_random_unique(groups, screen_count)
+	#
+	#for group in selected_groups:
+		#var char_count = min(group.size(), randi_range(min_char, max_char))
+		#var selected_chars = _pick_random_unique(group, char_count)
+		#var total_char_count = randi_range(min_char_count, max_char_count)
+		#var equal_count = floor(total_char_count / float(selected_chars.size()))
+		#
+		#var char_counts = {}
+		#for c in selected_chars:
+			#char_counts[c] = equal_count
+		#
+		## Random offset count
+		#for i in range(3):
+			#var change = _pick_random_unique(char_counts.keys(), 2)
+			#var d = randi_range(-1, 1)
+			#char_counts[change[0]] += d
+			#char_counts[change[1]] -= d
+		#
+		## Fill remaining until total_char_count
+		#var current_total = char_counts.values().reduce(func(a, b): return a + b, 0)
+		#var delta = total_char_count - current_total
+		#var current_idx = 0
+		#while delta != 0:
+			#var c = selected_chars[current_idx]
+			#var change_by = sign(delta)
+			#char_counts[c] += change_by
+			#delta -= change_by
+			#
+			#current_idx += 1
+			#if current_idx >= selected_chars.size():
+				#current_idx = 0
+		#
+		## To array
+		##var result = [];
+		##for c in char_counts:
+			##for i in char_counts[c]:
+				##result.append(c)
+		#
+		#grid.append(char_counts)
+	#
+	#print(grid)
+	#var current_row = 0
+	#for i in grid.size():
+		#var g = grid[i]
+		#var room = room_scene.instantiate()
+		#root.add_child(room)
+#
+		#var pos = Vector2(i % grid_col, current_row)
+		#room.global_position = pos * Vector2(room.get_size())
+		#room.add_characters(g)
+#
+		#if pos.x >= grid_col - 1:
+			#current_row += 1
+			#
+	#self.selected_grid = 0
 
-		var pos = Vector2(i % grid_col, current_row)
-		room.global_position = pos * Vector2(room.get_size())
-		room.add_characters(g)
-
-		if pos.x >= grid_col - 1:
-			current_row += 1
-			
-	self.selected_grid = 0
+var spawned_cards := []
 
 func _unhandled_input(event):
-	if event.is_action_pressed("move_left"):
-		self.selected_grid -= 1
-	elif event.is_action_pressed("move_right"):
-		self.selected_grid += 1
+	if event.is_action_pressed("action"):
+		var card = GameManager.get_random_card(spawned_cards)
+		if card:
+			spawned_cards.append(card)
+			single_room.add_clone(card)
 	elif event.is_action_pressed("move_up"):
-		self.selected_grid -= grid_col
-	elif event.is_action_pressed("move_down"):
-		self.selected_grid += grid_col
+		var card = spawned_cards.pick_random()
+		if card:
+			single_room.add_clone(card)
+		
+	#if event.is_action_pressed("move_left"):
+		#self.selected_grid -= 1
+	#elif event.is_action_pressed("move_right"):
+		#self.selected_grid += 1
+	#elif event.is_action_pressed("move_up"):
+		#self.selected_grid -= grid_col
+	#elif event.is_action_pressed("move_down"):
+		#self.selected_grid += grid_col
 
 #func _on_select(char: CardResource):
 	#if char == valid_card:

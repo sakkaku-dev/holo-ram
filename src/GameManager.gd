@@ -17,9 +17,20 @@ const GROUPS = [
 ]
 
 signal unlocked_cards()
+signal points_changed()
+signal clones_changed()
 
 @export var max_cards_per_game := 50
 @export var save_manager: SaveManager
+
+var clones := 0:
+	set(v):
+		clones = v
+		clones_changed.emit()
+var points := 0:
+	set(v):
+		points = v
+		points_changed.emit()
 
 #const _card_type_map = {
 	#CardResource.Type.AME: "res://src/cards/Ame.tres",
@@ -44,12 +55,17 @@ var _groups := []
 #var _unlocked_packs := {}
 
 func _ready():
+	self.points = 0
+	self.clones = 0
+	
 	var groups = {}
 	var hair_colors = {}
 	
 	for file in DirAccess.get_files_at(CHAR_FOLDER):
 		var char = load(CHAR_FOLDER + file)
-		#if char.get_scene() != null:
+		if char.get_scene() == null:
+			continue
+		 
 		_cards[char.id] = char
 		
 		if not char.group in groups:
@@ -76,6 +92,12 @@ func get_card_groups() -> Array:
 
 func get_card(id: String):
 	return _cards[id]
+
+func get_random_card(exclude: Array = []):
+	var available = _cards.values().filter(func(c): return not c in exclude)
+	if available.is_empty():
+		return null
+	return available.pick_random()
 
 #func get_cards_for_game():
 	#return _cards.values()
